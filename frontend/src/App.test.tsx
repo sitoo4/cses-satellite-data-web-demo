@@ -275,7 +275,9 @@ describe("App upload workflow", () => {
     expect(screen.getByText("-5 deg 至 5 deg")).toBeInTheDocument();
     expect(screen.getByRole("table", { name: "质量标志统计表" })).toBeInTheDocument();
     expect(screen.getAllByText("/FLAG_MT").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("未标记=2, 磁力矩器干扰标记=2").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("未标记=2").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("磁力矩器干扰标记=2").length).toBeGreaterThan(0);
+    expect(screen.queryByText("未标记=2, 磁力矩器干扰标记=2")).not.toBeInTheDocument();
     expect(screen.queryByText("/FLAG_MT: 0=2, 1=2")).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "导出统计 JSON" })).toHaveAttribute("href", "/api/artifacts/stats-json?download=1");
     expect(screen.getByRole("link", { name: "导出统计 CSV" })).toHaveAttribute("href", "/api/artifacts/stats-csv?download=1");

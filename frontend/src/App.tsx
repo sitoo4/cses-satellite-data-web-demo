@@ -443,7 +443,17 @@ function FeatureStatisticsPanel({ statistics, loading }: { statistics: FeatureSt
                 {Object.entries(quality).map(([field, summary]) => (
                   <tr key={field}>
                     <th scope="row"><span>{field}</span><small>{qualityFlagFieldLabel(field)}</small></th>
-                    <td>{summary.status === "missing" ? "missing" : formatQualityFlagCounts(field, summary.value_counts)}</td>
+                    <td>
+                      {summary.status === "missing" ? (
+                        "missing"
+                      ) : (
+                        <span className="quality-count-lines">
+                          {formatQualityFlagCountItems(field, summary.value_counts).map((item) => (
+                            <span key={item}>{item}</span>
+                          ))}
+                        </span>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -493,7 +503,11 @@ function rangeLabel(min: NumericStats[keyof NumericStats] | number | null | unde
 }
 
 function formatQualityFlagCounts(field: string, counts: Record<string, number>): string {
-  return Object.entries(counts).map(([value, count]) => `${qualityFlagValueLabel(field, value)}=${count}`).join(", ");
+  return formatQualityFlagCountItems(field, counts).join(", ");
+}
+
+function formatQualityFlagCountItems(field: string, counts: Record<string, number>): string[] {
+  return Object.entries(counts).map(([value, count]) => `${qualityFlagValueLabel(field, value)}=${count}`);
 }
 
 function qualityFlagValueLabel(field: string, value: string): string {

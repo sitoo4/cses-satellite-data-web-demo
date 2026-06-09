@@ -608,8 +608,22 @@ button:disabled {
 }
 
 .quality-statistics-table td {
-  white-space: nowrap;
+  white-space: normal;
   overflow-wrap: normal;
+}
+
+.quality-count-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  line-height: 1.18;
+}
+
+.quality-count-lines span {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .statistics-block.compact span {
