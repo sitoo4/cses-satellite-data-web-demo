@@ -77,6 +77,8 @@ export type PlotPayload = {
     label?: string;
     media_type?: string;
     path?: string;
+    url?: string;
+    download_url?: string;
     exists?: boolean;
   };
 };
@@ -92,6 +94,8 @@ export type ExportPayload = {
     label?: string;
     media_type?: string;
     path?: string;
+    url?: string;
+    download_url?: string;
     exists?: boolean;
   };
   manifest_artifact?: {
@@ -99,6 +103,8 @@ export type ExportPayload = {
     label?: string;
     media_type?: string;
     path?: string;
+    url?: string;
+    download_url?: string;
     exists?: boolean;
   };
   manifest?: Record<string, unknown>;
@@ -155,9 +161,9 @@ export type FeatureStatisticsPayload = {
   generated_at: string;
   run_log_entry?: string;
   artifacts?: {
-    statistics_json?: { artifact_id: string; label?: string; media_type?: string; path?: string; exists?: boolean };
-    statistics_summary_csv?: { artifact_id: string; label?: string; media_type?: string; path?: string; exists?: boolean };
-    manifest_json?: { artifact_id: string; label?: string; media_type?: string; path?: string; exists?: boolean };
+    statistics_json?: { artifact_id: string; label?: string; media_type?: string; path?: string; url?: string; download_url?: string; exists?: boolean };
+    statistics_summary_csv?: { artifact_id: string; label?: string; media_type?: string; path?: string; url?: string; download_url?: string; exists?: boolean };
+    manifest_json?: { artifact_id: string; label?: string; media_type?: string; path?: string; url?: string; download_url?: string; exists?: boolean };
   };
 };
 
@@ -184,6 +190,14 @@ export function artifactUrl(artifactId: string): string {
 
 export function artifactDownloadUrl(artifactId: string): string {
   return `${artifactUrl(artifactId)}?download=1`;
+}
+
+export function publicAssetUrl(path: string): string {
+  if (/^https?:\/\//.test(path)) {
+    return path;
+  }
+  const base = import.meta.env.BASE_URL || "/";
+  return `${base.replace(/\/?$/, "/")}${path.replace(/^\/+/, "")}`;
 }
 
 export const api = {

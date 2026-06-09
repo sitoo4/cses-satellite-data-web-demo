@@ -7,7 +7,7 @@ Last updated: 2026-06-05
 Phase 2 created and ran the CSES HPM H5 inspection module against the configured local HPM directory:
 
 ```text
-/Users/foursoils/Downloads/HPM
+<local_cses_hpm_root>
 ```
 
 The inspection is metadata-first and bounded:
@@ -30,7 +30,7 @@ backend/tests/test_cses_h5_inspector.py
 The script writes reports under:
 
 ```text
-/Volumes/Elements/satellite_data_web/outputs/cses_hpm_inspection
+<repo>/outputs/cses_hpm_inspection
 ```
 
 Per H5 file output:
@@ -47,9 +47,9 @@ Batch output:
 ## Command Run
 
 ```bash
-python /Volumes/Elements/satellite_data_web/backend/scripts/inspect_cses_hpm.py \
-  --input-root /Users/foursoils/Downloads/HPM \
-  --output-root /Volumes/Elements/satellite_data_web/outputs/cses_hpm_inspection \
+python <repo>/backend/scripts/inspect_cses_hpm.py \
+  --input-root <local_cses_hpm_root> \
+  --output-root <repo>/outputs/cses_hpm_inspection \
   --max-preview 8 \
   --sample-size 2048
 ```
@@ -67,16 +67,16 @@ Result:
 Verification checks:
 
 - Missing per-file outputs: `0`.
-- Project raw-data copy check: `0` H5/HDF5/HE5/CDF files under `/Volumes/Elements/satellite_data_web`.
+- Project raw-data copy check: `0` H5/HDF5/HE5/CDF files under `<repo>`.
 - Logical size of non-AppleDouble inspection outputs: about `33.32 MB`.
 - Non-AppleDouble inspection file count: `2625`.
 
 ## Test Command
 
 ```bash
-PYTHONPATH=/Volumes/Elements/satellite_data_web/backend \
+PYTHONPATH=<repo>/backend \
 python -m unittest discover \
-  -s /Volumes/Elements/satellite_data_web/backend/tests \
+  -s <repo>/backend/tests \
   -p 'test_*.py' \
   -v
 ```
@@ -121,7 +121,7 @@ Example report:
 
 ```text
 outputs/cses_hpm_inspection/
-  CSES_01_HPM_5_L02_A2_289220_20230419_235533_20230420_003011_000/
+  demo_hpm_inspection_sample/
     report.md
 ```
 

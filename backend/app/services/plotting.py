@@ -157,7 +157,7 @@ def plot_cluster_b_quicklook(
 ) -> list[str]:
     """Render the Web Cluster B quicklook with the idlpython_v2 panel recipe.
 
-    This mirrors /Volumes/Elements/data/idlpython_v2/plot_daily_quicklook.py:
+    This mirrors <cluster_processed_root>/plot_daily_quicklook.py:
     segment B_GSE, B_MFA, dB_MFA, three dB PSD panels using jet+LogNorm, band
     power, and bottom UTC/MLAT/MLT/L tick rows. It does not recompute physics.
     """

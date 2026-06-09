@@ -1,16 +1,35 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Download, FileUp, Image as ImageIcon, Loader2, Play, Rotate3D, Save } from "lucide-react";
 
-import { api, artifactDownloadUrl, artifactUrl, type CropSelectDefault, type CropSelectOptions, type ExportPayload, type FeatureStatisticsPayload, type NumericStats, type PlotPayload, type SegmentRange, type UploadSessionPayload, type UploadedFileRecord } from "./api";
+import { api, artifactDownloadUrl, artifactUrl, publicAssetUrl, type CropSelectDefault, type CropSelectOptions, type ExportPayload, type FeatureStatisticsPayload, type NumericStats, type PlotPayload, type SegmentRange, type UploadSessionPayload, type UploadedFileRecord } from "./api";
 
 type PlotType = "magnetic" | "orbit" | "spectrogram";
-type ExportFormat = "csv" | "dat" | "h5" | "cdf";
+type ExportFormat = "csv" | "dat" | "h5" | "cdf" | "json" | "manifest";
 type CropSide = "start" | "end";
 
-const SPECTROGRAM_DISABLED_REASON = "频谱图暂未启用：当前 HPM 数据的时频分析规则尚未确认";
+const IS_STATIC_DEMO = import.meta.env.VITE_DEMO_STATIC === "true";
+const LOCAL_SPECTROGRAM_DISABLED_REASON = "频谱图暂未启用：当前 HPM 数据的时频分析规则尚未确认";
+const STATIC_DEMO_NOTICE = "当前为 demo，脱敏数据已准备，不支持上传";
+const STATIC_RUN_LOG_TEXT = "当前为 demo，不提供运行日志服务";
+const STATIC_SPECTROGRAM_DISABLED_REASON = "涉及其他数据，demo 版本不支持展示";
+const SPECTROGRAM_DISABLED_REASON = IS_STATIC_DEMO ? STATIC_SPECTROGRAM_DISABLED_REASON : LOCAL_SPECTROGRAM_DISABLED_REASON;
+
+type StaticDemoSummary = {
+  static_demo: boolean;
+  mode: string;
+  notice: string;
+  session: UploadSessionPayload;
+  plots: Record<"magnetic" | "orbit", NonNullable<PlotPayload["artifact"]>>;
+  downloads: {
+    statistics_json: NonNullable<FeatureStatisticsPayload["artifacts"]>["statistics_json"];
+    statistics_summary_csv: NonNullable<FeatureStatisticsPayload["artifacts"]>["statistics_summary_csv"];
+    manifest_json: NonNullable<FeatureStatisticsPayload["artifacts"]>["manifest_json"];
+  };
+};
 
 export default function App() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [staticSummary, setStaticSummary] = useState<StaticDemoSummary | null>(null);
   const [session, setSession] = useState<UploadSessionPayload | null>(null);
   const [plot, setPlot] = useState<PlotPayload | null>(null);
   const [statistics, setStatistics] = useState<FeatureStatisticsPayload | null>(null);
@@ -22,11 +41,61 @@ export default function App() {
   const [loading, setLoading] = useState<"upload" | "plot" | "export" | "statistics" | "">("");
   const [error, setError] = useState("");
 
-  const modeLabel = session ? (session.mode === "single" ? "SINGLE FILE" : "BATCH") : "READY";
-  const cropDisabled = !session?.crop_enabled;
+  useEffect(() => {
+    if (!IS_STATIC_DEMO) {
+      return;
+    }
+    let ignore = false;
+    async function loadStaticDemo() {
+      setLoading("upload");
+      setError("");
+      try {
+        const [summaryResponse, statisticsResponse] = await Promise.all([
+          fetch(publicAssetUrl("demo_data/demo_summary.json")),
+          fetch(publicAssetUrl("demo_data/demo_statistics.json"))
+        ]);
+        if (!summaryResponse.ok || !statisticsResponse.ok) {
+          throw new Error("静态 demo 数据缺失，请先运行 build_sanitized_static_demo.py");
+        }
+        const summary = (await summaryResponse.json()) as StaticDemoSummary;
+        const stats = (await statisticsResponse.json()) as FeatureStatisticsPayload;
+        if (ignore) {
+          return;
+        }
+        setStaticSummary(summary);
+        setSession(summary.session);
+        setStatistics(stats);
+        setCropStart(summary.session.crop_options?.start.default ?? null);
+        setCropEnd(summary.session.crop_options?.end.default ?? null);
+        setPlot(staticPlotPayload("magnetic", summary));
+      } catch (err) {
+        if (!ignore) {
+          setError(errorMessage(err));
+        }
+      } finally {
+        if (!ignore) {
+          setLoading("");
+        }
+      }
+    }
+    void loadStaticDemo();
+    return () => {
+      ignore = true;
+    };
+  }, []);
+
+  const modeLabel = IS_STATIC_DEMO ? "DEMO" : session ? (session.mode === "single" ? "SINGLE FILE" : "BATCH") : "READY";
+  const cropDisabled = IS_STATIC_DEMO || !session?.crop_enabled;
   const runLog = useMemo(() => session?.run_log ?? [], [session]);
 
   async function uploadFiles(files: FileList | null) {
+    if (IS_STATIC_DEMO) {
+      setError(STATIC_DEMO_NOTICE);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+      return;
+    }
     const selected = Array.from(files ?? []).filter((file) => file.name.toLowerCase().endsWith(".h5"));
     if (!selected.length) {
       setError("请上传 H5 文件");
@@ -60,6 +129,15 @@ export default function App() {
     }
     if (selectedPlot === "spectrogram") {
       setError(SPECTROGRAM_DISABLED_REASON);
+      return;
+    }
+    if (IS_STATIC_DEMO) {
+      setError("");
+      if (!staticSummary) {
+        setError("静态 demo 数据尚未加载完成");
+        return;
+      }
+      setPlot(staticPlotPayload(selectedPlot, staticSummary));
       return;
     }
     setLoading("plot");
@@ -101,6 +179,23 @@ export default function App() {
       setError("请先上传 H5 文件");
       return;
     }
+    if (IS_STATIC_DEMO) {
+      if (!staticSummary) {
+        setError("静态 demo 数据尚未加载完成");
+        return;
+      }
+      const artifact = staticDownloadArtifact(staticSummary, exportFormat);
+      setExportResult({
+        upload_session_id: session.upload_session_id,
+        format: exportFormat,
+        status: "ok",
+        row_count: statistics?.processing_summary.final_sample_count,
+        artifact,
+        manifest_artifact: staticSummary.downloads.manifest_json
+      });
+      triggerArtifactDownload(artifact);
+      return;
+    }
     setLoading("export");
     setError("");
     try {
@@ -112,7 +207,7 @@ export default function App() {
       if (payload.status !== "ok") {
         setError(payload.reason ?? "导出不可用");
       } else if (payload.artifact?.artifact_id) {
-        triggerArtifactDownload(payload.artifact.artifact_id);
+        triggerArtifactDownload(payload.artifact);
       }
     } catch (err) {
       setError(errorMessage(err));
@@ -142,27 +237,34 @@ export default function App() {
     <main className="app-shell">
       <header className="topbar">
         <div className="mascot mascot-left">
-          <img src="/mascots/theme-main.png" alt="" />
+          <img src={publicAssetUrl("mascots/theme-main.png")} alt="" />
         </div>
         <h1>张衡一号数据分析</h1>
-        <label className="upload-button">
-          <FileUp size={19} aria-hidden="true" />
-          上传文件
-          <input
-            ref={fileInputRef}
-            aria-label="上传文件"
-            type="file"
-            multiple
-            accept=".h5,.hdf5"
-            onChange={(event) => void uploadFiles(event.target.files)}
-          />
-        </label>
+        {IS_STATIC_DEMO ? (
+          <button className="upload-button" type="button" title={STATIC_DEMO_NOTICE} onClick={() => setError(STATIC_DEMO_NOTICE)}>
+            <FileUp size={19} aria-hidden="true" />
+            上传文件
+          </button>
+        ) : (
+          <label className="upload-button">
+            <FileUp size={19} aria-hidden="true" />
+            上传文件
+            <input
+              ref={fileInputRef}
+              aria-label="上传文件"
+              type="file"
+              multiple
+              accept=".h5,.hdf5"
+              onChange={(event) => void uploadFiles(event.target.files)}
+            />
+          </label>
+        )}
         <div className="mode-badge">{modeLabel}</div>
         <div className="mascot-strip" aria-hidden="true">
-          <img className="mascot-strip-image mascot-3" src="/mascots/theme-3.png" alt="" />
-          <img className="mascot-strip-image mascot-5" src="/mascots/theme-5.png" alt="" />
-          <img className="mascot-strip-image mascot-6" src="/mascots/theme-6.png" alt="" />
-          <img className="mascot-strip-image mascot-7" src="/mascots/theme-7.png" alt="" />
+          <img className="mascot-strip-image mascot-3" src={publicAssetUrl("mascots/theme-3.png")} alt="" />
+          <img className="mascot-strip-image mascot-5" src={publicAssetUrl("mascots/theme-5.png")} alt="" />
+          <img className="mascot-strip-image mascot-6" src={publicAssetUrl("mascots/theme-6.png")} alt="" />
+          <img className="mascot-strip-image mascot-7" src={publicAssetUrl("mascots/theme-7.png")} alt="" />
         </div>
       </header>
 
@@ -194,7 +296,7 @@ export default function App() {
             <strong>裁剪区</strong>
             <small>
               <span>裁剪范围来自后端可用时间段。</span>
-              <span>{cropDisabled ? "需要可解析 UTC_TIME 才能时间裁剪。" : "按北京时间选择。"}</span>
+              <span>按北京时间选择。</span>
             </small>
           </div>
           <div className="crop-box">
@@ -209,12 +311,22 @@ export default function App() {
               />
             ) : null}
             <div className="crop-export-row">
-              <span className="crop-export-label">按当前裁剪后的数据范围导出</span>
+              <span className="crop-export-label">{IS_STATIC_DEMO ? "下载 demo 统计结果" : "按当前裁剪后的数据范围导出"}</span>
               <select value={exportFormat} onChange={(event) => setExportFormat(event.target.value as ExportFormat)}>
-                <option value="csv">csv</option>
-                <option value="dat">dat</option>
-                <option value="h5">h5</option>
-                <option value="cdf" disabled>cdf TODO</option>
+                {IS_STATIC_DEMO ? (
+                  <>
+                    <option value="csv">csv</option>
+                    <option value="json">json</option>
+                    <option value="manifest">manifest</option>
+                  </>
+                ) : (
+                  <>
+                    <option value="csv">csv</option>
+                    <option value="dat">dat</option>
+                    <option value="h5">h5</option>
+                    <option value="cdf" disabled>cdf TODO</option>
+                  </>
+                )}
               </select>
               <button type="button" onClick={() => void exportData()}>
                 {loading === "export" ? <Loader2 size={16} aria-hidden="true" /> : <Save size={16} aria-hidden="true" />}
@@ -246,8 +358,8 @@ export default function App() {
             <FeatureStatisticsPanel statistics={statistics} loading={loading === "plot" || loading === "statistics"} />
             <div className="plot-preview-stage">
               {plot?.status === "ok" && plot.artifact ? <PlotArtifact plot={plot} /> : <strong>图预览</strong>}
-              {plot?.artifact ? (
-                <a className="plot-download-button" href={artifactDownloadUrl(plot.artifact.artifact_id)} download>
+              {plot?.artifact && !IS_STATIC_DEMO ? (
+                <a className="plot-download-button" href={artifactDownloadHref(plot.artifact)} download>
                   <Download size={15} aria-hidden="true" />
                   导出当前图像
                 </a>
@@ -257,7 +369,7 @@ export default function App() {
         </section>
 
         <section className="bottom-row">
-          <RunLogPanel session={session} runLog={runLog} exportResult={exportResult} />
+          <RunLogPanel session={session} runLog={runLog} exportResult={exportResult} staticDemo={IS_STATIC_DEMO} />
         </section>
       </section>
     </main>
@@ -268,7 +380,7 @@ function PlotArtifact({ plot }: { plot: PlotPayload }) {
   if (!plot.artifact) {
     return null;
   }
-  const url = artifactUrl(plot.artifact.artifact_id);
+  const url = artifactHref(plot.artifact);
   if (plot.artifact.media_type === "text/html") {
     return <iframe className="plot-frame" src={url} title="交互轨道图" />;
   }
@@ -321,24 +433,36 @@ function FeatureStatisticsPanel({ statistics, loading }: { statistics: FeatureSt
           ) : null}
           <div className="statistics-block compact">
             <strong>位置范围</strong>
-            {["GEO_LAT", "GEO_LON", "ALTITUDE"].map((name) => {
-              const stats = positionVariables[name];
-              return (
-                <span key={name}>
-                  {name}: {stats?.status === "missing" ? "missing" : `${numberLabel(stats?.min, stats?.unit)} - ${numberLabel(stats?.max, stats?.unit)}`}
-                </span>
-              );
-            })}
+            <table className="statistics-table position-statistics-table" aria-label="位置范围统计表">
+              <tbody>
+                {["GEO_LAT", "GEO_LON", "ALTITUDE"].map((name) => {
+                  const stats = positionVariables[name];
+                  return (
+                    <tr key={name}>
+                      <th scope="row">{name}</th>
+                      <td>{stats?.status === "missing" ? "missing" : rangeLabel(stats?.min, stats?.max, stats?.unit)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
           <div className="statistics-block compact">
             <strong>质量标志</strong>
-            {Object.entries(quality).map(([field, summary]) => (
-              <span key={field}>{field}: {summary.status === "missing" ? "missing" : formatQualityFlagCounts(field, summary.value_counts)}</span>
-            ))}
+            <table className="statistics-table quality-statistics-table" aria-label="质量标志统计表">
+              <tbody>
+                {Object.entries(quality).map(([field, summary]) => (
+                  <tr key={field}>
+                    <th scope="row"><span>{field}</span><small>{qualityFlagFieldLabel(field)}</small></th>
+                    <td>{summary.status === "missing" ? "missing" : formatQualityFlagCounts(field, summary.value_counts)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
           <div className="statistics-downloads">
-            {statistics.artifacts?.statistics_json?.artifact_id ? <a href={artifactDownloadUrl(statistics.artifacts.statistics_json.artifact_id)} download>导出统计 JSON</a> : null}
-            {statistics.artifacts?.statistics_summary_csv?.artifact_id ? <a href={artifactDownloadUrl(statistics.artifacts.statistics_summary_csv.artifact_id)} download>导出统计 CSV</a> : null}
+            {statistics.artifacts?.statistics_json ? <a href={artifactDownloadHref(statistics.artifacts.statistics_json)} download>导出统计 JSON</a> : null}
+            {statistics.artifacts?.statistics_summary_csv ? <a href={artifactDownloadHref(statistics.artifacts.statistics_summary_csv)} download>导出统计 CSV</a> : null}
           </div>
           {statistics.warnings.length ? <p className="statistics-warning">warning: {statistics.warnings.join("; ")}</p> : null}
         </>
@@ -364,23 +488,71 @@ function numberLabel(value: NumericStats[keyof NumericStats] | number | null | u
   return unit ? `${formatted} ${unit}` : formatted;
 }
 
+function rangeLabel(min: NumericStats[keyof NumericStats] | number | null | undefined, max: NumericStats[keyof NumericStats] | number | null | undefined, unit?: string | null): string {
+  return `${numberLabel(min, unit)} 至 ${numberLabel(max, unit)}`;
+}
+
 function formatQualityFlagCounts(field: string, counts: Record<string, number>): string {
   return Object.entries(counts).map(([value, count]) => `${qualityFlagValueLabel(field, value)}=${count}`).join(", ");
 }
 
 function qualityFlagValueLabel(field: string, value: string): string {
   const labels: Record<string, Record<string, string>> = {
-    "/FLAG_MT": { "0": "正常", "1": "磁力矩器干扰" },
+    "/FLAG_MT": { "0": "未标记", "1": "磁力矩器干扰标记" },
     "/FLAG_SHW": { "0": "未触发", "1": "触发" },
     "/FLAG_TBB": { "0": "未触发", "1": "触发" },
-    "/FLAG_N3": { "0": "正常", "1": "异常" }
+    "/FLAG_N3": { "0": "未标记", "1": "已标记" }
   };
   return labels[field]?.[value] ?? `值 ${value}`;
 }
 
-function triggerArtifactDownload(artifactId: string) {
+function qualityFlagFieldLabel(field: string): string {
+  const labels: Record<string, string> = {
+    "/FLAG_MT": "磁力矩器干扰标志",
+    "/FLAG_SHW": "地影/日照状态",
+    "/FLAG_TBB": "TBB 开关状态",
+    "/FLAG_N3": "N3 标志"
+  };
+  return labels[field] ?? "质量标志";
+}
+
+function artifactHref(artifact: { artifact_id: string; url?: string }): string {
+  return artifact.url ? publicAssetUrl(artifact.url) : artifactUrl(artifact.artifact_id);
+}
+
+function artifactDownloadHref(artifact: { artifact_id: string; url?: string; download_url?: string }): string {
+  if (artifact.download_url) {
+    return publicAssetUrl(artifact.download_url);
+  }
+  if (artifact.url) {
+    return publicAssetUrl(artifact.url);
+  }
+  return artifactDownloadUrl(artifact.artifact_id);
+}
+
+function staticPlotPayload(plotType: "magnetic" | "orbit", summary: StaticDemoSummary): PlotPayload {
+  return {
+    upload_session_id: summary.session.upload_session_id,
+    plot_type: plotType,
+    status: "ok",
+    segments: summary.session.segments,
+    artifact: summary.plots[plotType]
+  };
+}
+
+function staticDownloadArtifact(summary: StaticDemoSummary, format: ExportFormat): NonNullable<ExportPayload["artifact"]> {
+  if (format === "json") {
+    return summary.downloads.statistics_json!;
+  }
+  if (format === "manifest") {
+    return summary.downloads.manifest_json!;
+  }
+  return summary.downloads.statistics_summary_csv!;
+}
+
+function triggerArtifactDownload(artifact: { artifact_id: string; url?: string; download_url?: string }) {
   const link = document.createElement("a");
-  link.href = artifactDownloadUrl(artifactId);
+  link.href = artifactDownloadHref(artifact);
   link.download = "";
   link.style.display = "none";
   document.body.appendChild(link);
@@ -460,7 +632,16 @@ function LabeledSelect({ label, value, options, disabled, pad = false, onChange 
   );
 }
 
-function RunLogPanel({ session, runLog, exportResult }: { session: UploadSessionPayload | null; runLog: string[]; exportResult: ExportPayload | null }) {
+function RunLogPanel({ session, runLog, exportResult, staticDemo }: { session: UploadSessionPayload | null; runLog: string[]; exportResult: ExportPayload | null; staticDemo: boolean }) {
+  if (staticDemo) {
+    return (
+      <section className="run-log-panel">
+        <h2>运行记录</h2>
+        <p className="empty-log">{STATIC_RUN_LOG_TEXT}</p>
+        {exportResult?.status === "ok" ? <p className="empty-log">demo 统计结果已准备下载：{exportResult.format}</p> : null}
+      </section>
+    );
+  }
   return (
     <section className="run-log-panel">
       <h2>运行记录</h2>

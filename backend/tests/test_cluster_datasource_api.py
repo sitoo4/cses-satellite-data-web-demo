@@ -1,13 +1,23 @@
 from __future__ import annotations
 
+import os
 import unittest
 
 from fastapi.testclient import TestClient
 
+from app.core.config import load_config
 from app.main import create_app
 
 
+def cluster_processed_sample_available() -> bool:
+    if os.environ.get("SATELLITE_WEB_RUN_EXTERNAL_CLUSTER_TESTS") != "1":
+        return False
+    root = load_config().cluster_processed_root
+    return (root / "daily_full" / "2005" / "daily_full_20051203.npz").exists()
+
+
 class ClusterDatasourceApiTest(unittest.TestCase):
+    @unittest.skipUnless(cluster_processed_sample_available(), "Cluster processed sample data is not included in public-demo")
     def test_cluster_processed_outputs_are_listed_and_served_read_only(self) -> None:
         client = TestClient(create_app())
 
@@ -150,7 +160,7 @@ class ClusterDatasourceApiTest(unittest.TestCase):
         self.assertIn("segment_dB_phi_psd", field_paths)
         self.assertIn("segment_sqrt_Bphi_band_power", field_paths)
         self.assertIn("outputs/generated_plots/cluster", magnetic_payload["artifact"]["path"])
-        self.assertEqual(magnetic_payload["processing_log"][1], "Matched /Volumes/Elements/data/idlpython_v2/plot_daily_quicklook.py B panel recipe.")
+        self.assertEqual(magnetic_payload["processing_log"][1], "Matched <cluster_processed_root>/plot_daily_quicklook.py B panel recipe.")
         magnetic_artifact = client.get(f"/api/artifacts/{magnetic_payload['artifact']['artifact_id']}")
         self.assertEqual(magnetic_artifact.status_code, 200)
         self.assertEqual(magnetic_artifact.headers["content-type"], "image/png")

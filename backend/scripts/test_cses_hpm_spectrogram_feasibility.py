@@ -28,8 +28,8 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.colors import LogNorm  # noqa: E402
 
 
-DEFAULT_OUTDIR = Path("/Volumes/Elements/satellite_data_web/outputs/cses_hpm_spectrogram_feasibility")
-DEFAULT_INPUT_ROOT = Path("/Users/foursoils/Downloads/HPM")
+DEFAULT_OUTDIR = Path("<repo>/outputs/cses_hpm_spectrogram_feasibility")
+DEFAULT_INPUT_ROOT = Path("<local_cses_hpm_root>")
 PC5_MIN_MHZ = 1.6
 PC5_MAX_MHZ = 6.7
 PC5_MIN_PERIOD_SEC = 1000.0 / PC5_MIN_MHZ

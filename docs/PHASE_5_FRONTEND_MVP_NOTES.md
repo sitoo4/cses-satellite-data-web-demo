@@ -4,7 +4,7 @@ Last updated: 2026-06-05
 
 ## Scope
 
-Phase 5 adds a Vite + React frontend under `/Volumes/Elements/satellite_data_web/frontend`.
+Phase 5 adds a Vite + React frontend under `<repo>/frontend`.
 
 The MVP is a working science dashboard, not a landing page:
 
@@ -43,7 +43,7 @@ The MVP is a working science dashboard, not a landing page:
 Commands run on 2026-06-05:
 
 ```bash
-cd /Volumes/Elements/satellite_data_web/frontend
+cd <repo>/frontend
 npm test
 ```
 
@@ -55,7 +55,7 @@ Tests  8 passed (8)
 ```
 
 ```bash
-cd /Volumes/Elements/satellite_data_web/frontend
+cd <repo>/frontend
 npm run build
 ```
 
@@ -68,7 +68,7 @@ built in 1.49s
 ```
 
 ```bash
-cd /Volumes/Elements/satellite_data_web/frontend
+cd <repo>/frontend
 npm audit --json
 ```
 
@@ -79,8 +79,8 @@ Result:
 ```
 
 ```bash
-PYTHONPATH=/Volumes/Elements/satellite_data_web/backend \
-  python -m unittest discover -s /Volumes/Elements/satellite_data_web/backend/tests -p 'test_*.py' -v
+PYTHONPATH=<repo>/backend \
+  python -m unittest discover -s <repo>/backend/tests -p 'test_*.py' -v
 ```
 
 Result:
@@ -93,7 +93,7 @@ OK
 Safety check:
 
 ```bash
-find /Volumes/Elements/satellite_data_web -type f \( -name '*.h5' -o -name '*.hdf5' -o -name '*.cdf' \) -print
+find <repo> -type f \( -name '*.h5' -o -name '*.hdf5' -o -name '*.cdf' \) -print
 ```
 
 Result: no raw H5/CDF files found in the app tree.

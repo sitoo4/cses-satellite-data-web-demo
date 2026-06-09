@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -13,6 +14,10 @@ from fastapi.testclient import TestClient
 from app.datasources.cses_hpm import parse_cses_utc_time_millis
 from app.main import create_app
 from app.services.cses_h5_inspector import inspect_h5_tree
+
+
+def run_external_cluster_tests() -> bool:
+    return os.environ.get("SATELLITE_WEB_RUN_EXTERNAL_CLUSTER_TESTS") == "1"
 
 
 class Phase6ExportStatsApiTest(unittest.TestCase):
@@ -448,6 +453,7 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
         self.assertEqual(parsed[1] - parsed[0], 1250)
         self.assertEqual(parsed[2] - parsed[1], 1000)
 
+    @unittest.skipUnless(run_external_cluster_tests(), "External Cluster processed products are not included in public-demo")
     def test_cluster_processed_subset_stats_and_export_use_daily_full_only(self) -> None:
         client = TestClient(create_app())
 
@@ -494,8 +500,8 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
         cluster_stats_artifact = saved_cluster_stats.json()["stats_artifact"]
         self.assertEqual(cluster_stats_artifact["media_type"], "application/json")
         self.assertTrue(str(cluster_stats_artifact["artifact_id"]).startswith("cluster:stats:20051203:"))
-        self.assertIn("/Volumes/Elements/satellite_data_web/outputs/stats", cluster_stats_artifact["path"])
-        self.assertNotIn("/Volumes/Elements/data/cluster", cluster_stats_artifact["path"])
+        self.assertIn("<repo>/outputs/stats", cluster_stats_artifact["path"])
+        self.assertNotIn("<cluster_raw_root>", cluster_stats_artifact["path"])
 
         saved_cluster_dat_stats = client.post(
             "/api/datasources/cluster/stats",
@@ -509,8 +515,8 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
         self.assertEqual(saved_cluster_dat_stats.status_code, 200)
         cluster_dat_stats_artifact = saved_cluster_dat_stats.json()["stats_artifact"]
         self.assertEqual(cluster_dat_stats_artifact["media_type"], "text/plain")
-        self.assertIn("/Volumes/Elements/satellite_data_web/outputs/stats", cluster_dat_stats_artifact["path"])
-        self.assertNotIn("/Volumes/Elements/data/cluster", cluster_dat_stats_artifact["path"])
+        self.assertIn("<repo>/outputs/stats", cluster_dat_stats_artifact["path"])
+        self.assertNotIn("<cluster_raw_root>", cluster_dat_stats_artifact["path"])
         cluster_dat_stats_text = client.get(f"/api/artifacts/{cluster_dat_stats_artifact['artifact_id']}").text
         self.assertTrue(cluster_dat_stats_text.startswith("variable\tcomponent\tcount\tfinite_count\tmin\tmax\tmean\tmedian\tstd\tmissing_ratio\n"))
         self.assertIn("segment_MLAT\t0\t3\t3", cluster_dat_stats_text)
@@ -545,8 +551,8 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
         export_payload = export.json()
         artifact = export_payload["artifact"]
         self.assertTrue(str(artifact["artifact_id"]).startswith("cluster:export:20051203:"))
-        self.assertIn("/Volumes/Elements/satellite_data_web/outputs/exports", artifact["path"])
-        self.assertNotIn("/Volumes/Elements/data/cluster", artifact["path"])
+        self.assertIn("<repo>/outputs/exports", artifact["path"])
+        self.assertNotIn("<cluster_raw_root>", artifact["path"])
         self.assertIn("manifest_artifact", export_payload)
         self.assertEqual(export_payload["manifest"]["datasource"], "cluster")
         self.assertEqual(export_payload["manifest"]["export_format"], "csv")
@@ -563,7 +569,7 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
 
         manifest_response = client.get(f"/api/artifacts/{export_payload['manifest_artifact']['artifact_id']}")
         self.assertEqual(manifest_response.status_code, 200)
-        self.assertIn("/Volumes/Elements/data/idlpython_v2/daily_full/2005/daily_full_20051203.npz", manifest_response.json()["original_file"])
+        self.assertIn("<cluster_processed_root>/daily_full/2005/daily_full_20051203.npz", manifest_response.json()["original_file"])
 
         dat_export = client.post(
             "/api/datasources/cluster/export",
@@ -577,8 +583,8 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
         self.assertEqual(dat_export.status_code, 200)
         dat_artifact = dat_export.json()["artifact"]
         self.assertEqual(dat_artifact["media_type"], "text/plain")
-        self.assertIn("/Volumes/Elements/satellite_data_web/outputs/exports", dat_artifact["path"])
-        self.assertNotIn("/Volumes/Elements/data/cluster", dat_artifact["path"])
+        self.assertIn("<repo>/outputs/exports", dat_artifact["path"])
+        self.assertNotIn("<cluster_raw_root>", dat_artifact["path"])
         dat_text = client.get(f"/api/artifacts/{dat_artifact['artifact_id']}").text
         self.assertTrue(dat_text.startswith("sample_index\tsegment_MLAT\n"))
 
@@ -599,6 +605,7 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
         self.assertNotIn("artifact", cluster_cdf_payload)
         self.assertIn("CDF remains reserved", cluster_cdf_payload["reason"])
 
+    @unittest.skipUnless(run_external_cluster_tests(), "External Cluster processed products are not included in public-demo")
     def test_cluster_time_range_uses_confirmed_processed_time_axis(self) -> None:
         client = TestClient(create_app())
         range_spec = {

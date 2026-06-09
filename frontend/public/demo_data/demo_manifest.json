@@ -1,0 +1,86 @@
+{
+  "name": "CSES HPM GitHub Pages sanitized static demo",
+  "mode": "static_public_demo_sanitized",
+  "generated_at": "2026-06-09T11:29:59.549435+00:00",
+  "source": {
+    "description": "Derived locally from six CSES-01 HPM_5 H5 files. Raw H5 files are not included.",
+    "file_count": 6,
+    "source_labels": [
+      "demo_segment_01",
+      "demo_segment_02",
+      "demo_segment_03",
+      "demo_segment_04",
+      "demo_segment_05",
+      "demo_segment_06"
+    ],
+    "raw_h5_included": false,
+    "raw_h5_download_enabled": false,
+    "real_filenames_included": false,
+    "local_paths_included": false
+  },
+  "sanitization": {
+    "file_display_names": [
+      "demo_segment_01",
+      "demo_segment_02",
+      "demo_segment_03",
+      "demo_segment_04",
+      "demo_segment_05",
+      "demo_segment_06"
+    ],
+    "time": "Full 1 Hz UTC_TIME arrays are not included. Demo visualization files use downsampled display labels.",
+    "magnetic_downsample_interval_seconds": 60,
+    "orbit_downsample_interval_seconds": 120,
+    "magnetic_rounding_decimal_places": 1,
+    "orbit_lat_lon_rounding_decimal_places": 2,
+    "orbit_altitude_rounding_decimal_places": 1,
+    "magnetic_noise": {
+      "seed": 20260609,
+      "std_fraction_of_component_std": 0.005,
+      "deterministic": true
+    },
+    "quality_flags": "Only value_counts and value_percent are included; no per-sample flag arrays are exported.",
+    "statistics": "Aggregate descriptive statistics only; no point arrays inside statistics JSON."
+  },
+  "privacy": {
+    "contains_original_h5": false,
+    "contains_local_absolute_paths": false,
+    "contains_file_hashes": false,
+    "contains_full_h5_reconstruction": false,
+    "contains_full_resolution_time_series": false,
+    "contains_real_h5_filenames": false
+  },
+  "data_summary": {
+    "product_type": "HPM_5",
+    "raw_sample_count_after_time_dedupe": 12467,
+    "magnetic_demo_point_count": 211,
+    "orbit_demo_point_count": 108,
+    "time_range_utc": {
+      "start": "2023-04-19T23:55:43Z",
+      "end": "2023-04-20T04:26:54Z"
+    },
+    "time_range_beijing": {
+      "start": "2023-04-20 07:55",
+      "end": "2023-04-20 12:26"
+    },
+    "segment_count": 6,
+    "plot_group_count": 1
+  },
+  "derived_files": [
+    "demo_manifest.json",
+    "demo_summary.json",
+    "magnetic_sanitized_downsampled.json",
+    "orbit_points_sanitized.json",
+    "demo_statistics.json",
+    "demo_statistics_summary.csv",
+    "magnetic_overview.png",
+    "orbit_demo.html"
+  ],
+  "limitations": [
+    "Static GitHub Pages demo only.",
+    "No backend API is used.",
+    "No upload or browser-side H5 parsing is enabled.",
+    "No full-resolution point series are included.",
+    "Spectrogram/Pc5 products are not included.",
+    "Statistics are descriptive demo summaries, not formal science conclusions."
+  ]
+}

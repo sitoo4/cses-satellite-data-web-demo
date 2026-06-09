@@ -58,7 +58,7 @@
 
 如果选择范围内没有数据，后端返回不可用，前端显示错误提示。
 
-如果 `/UTC_TIME` 无法解析，裁剪区会禁用，并提示需要可解析 UTC_TIME。
+如果 `/UTC_TIME` 无法解析，裁剪区会禁用。
 
 ### 图像按钮
 
@@ -159,7 +159,7 @@ CDF 保留为 TODO，不生成文件。
 
 ```bash
 curl -s -X POST http://127.0.0.1:8000/api/cses-hpm/uploads \
-  -F "files=@/Volumes/Elements/HPM/CSES_01_HPM_5_L02_A2_289220_20230419_235533_20230420_003011_000.h5"
+  -F "files=@<local_cses_hpm_root>/demo_hpm_sample.h5"
 ```
 
 生成磁场图：
@@ -191,15 +191,15 @@ curl -s -X POST http://127.0.0.1:8000/api/cses-hpm/uploads/<upload_session_id>/e
 后端：
 
 ```bash
-cd /Volumes/Elements/satellite_data_web
-PYTHONPATH=/Volumes/Elements/satellite_data_web/backend \
+cd <repo>
+PYTHONPATH=<repo>/backend \
   python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
 前端：
 
 ```bash
-cd /Volumes/Elements/satellite_data_web/frontend
+cd <repo>/frontend
 npm install
 npm run dev
 ```

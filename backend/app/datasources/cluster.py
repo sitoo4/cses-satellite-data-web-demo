@@ -374,7 +374,7 @@ class ClusterDataSource(DataSource):
             "sample_count": sample_count,
             "processing_log": [
                 "Read segment-first B quicklook fields from daily_full.",
-                "Matched /Volumes/Elements/data/idlpython_v2/plot_daily_quicklook.py B panel recipe.",
+                "Matched <cluster_processed_root>/plot_daily_quicklook.py B panel recipe.",
                 "Used stored arrays only; no B-chain, detrend, wavelet, band-power, or context values were recomputed.",
             ],
             "artifact": artifact,

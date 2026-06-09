@@ -11,24 +11,24 @@ The backend should expose Cluster and CSES HPM through one internal datasource i
 Application root:
 
 ```text
-/Volumes/Elements/satellite_data_web
+<repo>
 ```
 
 External data roots:
 
 ```text
-/Volumes/Elements/data/cluster
-/Volumes/Elements/data/idlpython_v2
-/Users/foursoils/Downloads/HPM
+<cluster_raw_root>
+<cluster_processed_root>
+<local_cses_hpm_root>
 ```
 
 Rules:
 
 - Do not copy raw H5 or CDF files into the application directory.
 - Do not move or rename raw data.
-- Do not modify `/Volumes/Elements/data/cluster`.
+- Do not modify `<cluster_raw_root>`.
 - Do not modify frozen Cluster stage scripts as part of the web app.
-- Store generated inspection reports, plots, exports, and stats under `/Volumes/Elements/satellite_data_web/outputs`.
+- Store generated inspection reports, plots, exports, and stats under `<repo>/outputs`.
 
 ## Proposed Backend Layout
 
@@ -138,8 +138,8 @@ Confidence tags:
 
 Cluster datasource uses two roots:
 
-- Raw root: `/Volumes/Elements/data/cluster`
-- Processed root: `/Volumes/Elements/data/idlpython_v2`
+- Raw root: `<cluster_raw_root>`
+- Processed root: `<cluster_processed_root>`
 
 The MVP should use processed root first.
 
@@ -189,8 +189,8 @@ Confirmed initial variables from `daily_full`:
 
 MVP plotting policy:
 
-1. Treat historical PNG/PDF quicklooks in `/Volumes/Elements/data/idlpython_v2` as reference/debug artifacts only.
-2. Generate formal web Cluster plots from existing `daily_full` arrays under `/Volumes/Elements/satellite_data_web/outputs/generated_plots/cluster`.
+1. Treat historical PNG/PDF quicklooks in `<cluster_processed_root>` as reference/debug artifacts only.
+2. Generate formal web Cluster plots from existing `daily_full` arrays under `<repo>/outputs/generated_plots/cluster`.
 3. Use existing PSD arrays for spectrograms; do not recompute wavelets or rerun production.
 
 Implemented Cluster catalog plots:
@@ -228,10 +228,10 @@ Cluster solar wind is exposed as a catalog item so the frontend can show the int
 CSES HPM root should default to:
 
 ```text
-/Users/foursoils/Downloads/HPM
+<local_cses_hpm_root>
 ```
 
-This differs from the originally known archive path `/Volumes/Elements/HPM`; the phase-2 script is explicitly required to inspect `/Users/foursoils/Downloads/HPM`.
+This differs from the originally known archive path `<local_cses_hpm_root>`; the phase-2 script is explicitly required to inspect `<local_cses_hpm_root>`.
 
 ### Phase-2 Inspector
 
@@ -333,7 +333,7 @@ Deferred behavior:
 Exports should be datasource-neutral and written under:
 
 ```text
-/Volumes/Elements/satellite_data_web/outputs/exports/
+<repo>/outputs/exports/
 ```
 
 Phase 6 implemented:

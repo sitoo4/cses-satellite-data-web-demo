@@ -74,8 +74,8 @@ Deferred:
 Commands run on 2026-06-05:
 
 ```bash
-PYTHONPATH=/Volumes/Elements/satellite_data_web/backend \
-  python -m unittest discover -s /Volumes/Elements/satellite_data_web/backend/tests -p 'test_*.py' -v
+PYTHONPATH=<repo>/backend \
+  python -m unittest discover -s <repo>/backend/tests -p 'test_*.py' -v
 ```
 
 Result:
@@ -86,7 +86,7 @@ OK
 ```
 
 ```bash
-cd /Volumes/Elements/satellite_data_web/frontend
+cd <repo>/frontend
 npm test
 ```
 
@@ -98,7 +98,7 @@ Tests  9 passed (9)
 ```
 
 ```bash
-cd /Volumes/Elements/satellite_data_web/frontend
+cd <repo>/frontend
 npm run build
 ```
 

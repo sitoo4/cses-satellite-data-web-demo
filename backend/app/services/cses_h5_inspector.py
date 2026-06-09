@@ -583,10 +583,10 @@ def inspect_h5_tree(
 
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Inspect CSES HPM H5/HDF5 files without full-array reads.")
-    parser.add_argument("--input-root", default="/Users/foursoils/Downloads/HPM", help="Root containing CSES HPM H5 files.")
+    parser.add_argument("--input-root", default="<local_cses_hpm_root>", help="Root containing CSES HPM H5 files.")
     parser.add_argument(
         "--output-root",
-        default="/Volumes/Elements/satellite_data_web/outputs/cses_hpm_inspection",
+        default="<repo>/outputs/cses_hpm_inspection",
         help="Directory for inspection reports.",
     )
     parser.add_argument("--max-preview", type=int, default=8, help="Head/tail rows to preview per dataset.")

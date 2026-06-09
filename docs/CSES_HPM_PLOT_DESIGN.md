@@ -7,16 +7,16 @@ Last updated: 2026-06-05
 CSES HPM plots are designed from H5 inspector output. The backend must not copy Cluster plot categories into CSES by default. CSES HPM is currently a CSES-01 HPM magnetometer-only H5 datasource rooted at:
 
 ```text
-/Users/foursoils/Downloads/HPM
+<local_cses_hpm_root>
 ```
 
 Generated HPM plot artifacts are written under:
 
 ```text
-/Volumes/Elements/satellite_data_web/outputs/generated_plots/cses_hpm/
+<repo>/outputs/generated_plots/cses_hpm/
 ```
 
-The backend does not write to `/Users/foursoils/Downloads/HPM` and does not modify source H5 files.
+The backend does not write to `<local_cses_hpm_root>` and does not modify source H5 files.
 
 ## Implemented HPM Catalog Plots
 

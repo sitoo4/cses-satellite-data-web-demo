@@ -38,7 +38,7 @@ describe("frontend format helpers", () => {
 
   it("uses dates or file basenames for selector labels", () => {
     expect(fileDisplayName({ file_id: "20051203", date: "20051203" })).toBe("2005-12-03");
-    expect(fileDisplayName({ file_id: "nested/CSES_01_HPM_5_L02_A2_sample.h5" })).toBe("CSES_01_HPM_5_L02_A2_sample.h5");
+    expect(fileDisplayName({ file_id: "nested/demo_hpm_sample.h5" })).toBe("demo_hpm_sample.h5");
   });
 
   it("renders confirmed unit metadata objects as their value", () => {

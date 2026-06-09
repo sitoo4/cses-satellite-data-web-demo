@@ -1,0 +1,1279 @@
+{
+  "static_demo": true,
+  "mode": "github_pages_static_sanitized",
+  "notice": "当前为 GitHub Pages 静态 demo，展示预生成脱敏派生数据，不支持上传或实时 H5 解析。",
+  "privacy": {
+    "contains_original_h5": false,
+    "contains_local_absolute_paths": false,
+    "contains_file_hashes": false,
+    "contains_full_h5_reconstruction": false,
+    "contains_full_resolution_time_series": false,
+    "contains_real_h5_filenames": false
+  },
+  "session": {
+    "upload_session_id": "static-public-demo",
+    "mode": "batch",
+    "created_at": "2026-06-09T11:29:59.477728+00:00",
+    "per_file_records": [
+      {
+        "upload_id": "demo_segment_01",
+        "filename": "demo_segment_01",
+        "display_name": "demo_segment_01",
+        "size_bytes": 0,
+        "duplicate_of": null,
+        "status": "ok",
+        "hpm_product": "HPM_5",
+        "sample_count": 2060,
+        "time_parseable": true,
+        "start_time": "2023-04-19T23:55:43Z",
+        "end_time": "2023-04-20T00:30:02Z",
+        "display_start_time": "2023-04-20 07:55",
+        "display_end_time": "2023-04-20 08:30",
+        "has_vector_magnetic": true,
+        "has_scalar_magnetic": false,
+        "quality_flag_summary": {
+          "/FLAG_MT": {
+            "label": "磁力矩器干扰标志",
+            "distribution": {
+              "0": 2053,
+              "1": 7
+            },
+            "value_counts": {
+              "0": 2053,
+              "1": 7
+            },
+            "value_percent": {
+              "0": 99.66,
+              "1": 0.34
+            },
+            "sample_count": 2060
+          },
+          "/FLAG_SHW": {
+            "label": "地影/日照状态",
+            "distribution": {
+              "0": 2060
+            },
+            "value_counts": {
+              "0": 2060
+            },
+            "value_percent": {
+              "0": 100.0
+            },
+            "sample_count": 2060
+          },
+          "/FLAG_TBB": {
+            "label": "TBB 开关状态",
+            "distribution": {
+              "0": 2060
+            },
+            "value_counts": {
+              "0": 2060
+            },
+            "value_percent": {
+              "0": 100.0
+            },
+            "sample_count": 2060
+          }
+        },
+        "warnings": [],
+        "errors": []
+      },
+      {
+        "upload_id": "demo_segment_02",
+        "filename": "demo_segment_02",
+        "display_name": "demo_segment_02",
+        "size_bytes": 0,
+        "duplicate_of": null,
+        "status": "ok",
+        "hpm_product": "HPM_5",
+        "sample_count": 2064,
+        "time_parseable": true,
+        "start_time": "2023-04-20T00:43:05Z",
+        "end_time": "2023-04-20T01:17:28Z",
+        "display_start_time": "2023-04-20 08:43",
+        "display_end_time": "2023-04-20 09:17",
+        "has_vector_magnetic": true,
+        "has_scalar_magnetic": false,
+        "quality_flag_summary": {
+          "/FLAG_MT": {
+            "label": "磁力矩器干扰标志",
+            "distribution": {
+              "0": 2050,
+              "1": 14
+            },
+            "value_counts": {
+              "0": 2050,
+              "1": 14
+            },
+            "value_percent": {
+              "0": 99.322,
+              "1": 0.678
+            },
+            "sample_count": 2064
+          },
+          "/FLAG_SHW": {
+            "label": "地影/日照状态",
+            "distribution": {
+              "0": 214,
+              "1": 1850
+            },
+            "value_counts": {
+              "0": 214,
+              "1": 1850
+            },
+            "value_percent": {
+              "0": 10.368,
+              "1": 89.632
+            },
+            "sample_count": 2064
+          },
+          "/FLAG_TBB": {
+            "label": "TBB 开关状态",
+            "distribution": {
+              "0": 2064
+            },
+            "value_counts": {
+              "0": 2064
+            },
+            "value_percent": {
+              "0": 100.0
+            },
+            "sample_count": 2064
+          }
+        },
+        "warnings": [],
+        "errors": []
+      },
+      {
+        "upload_id": "demo_segment_03",
+        "filename": "demo_segment_03",
+        "display_name": "demo_segment_03",
+        "size_bytes": 0,
+        "duplicate_of": null,
+        "status": "ok",
+        "hpm_product": "HPM_5",
+        "sample_count": 2156,
+        "time_parseable": true,
+        "start_time": "2023-04-20T01:28:50Z",
+        "end_time": "2023-04-20T02:04:45Z",
+        "display_start_time": "2023-04-20 09:28",
+        "display_end_time": "2023-04-20 10:04",
+        "has_vector_magnetic": true,
+        "has_scalar_magnetic": false,
+        "quality_flag_summary": {
+          "/FLAG_MT": {
+            "label": "磁力矩器干扰标志",
+            "distribution": {
+              "0": 2055,
+              "1": 101
+            },
+            "value_counts": {
+              "0": 2055,
+              "1": 101
+            },
+            "value_percent": {
+              "0": 95.315,
+              "1": 4.685
+            },
+            "sample_count": 2156
+          },
+          "/FLAG_SHW": {
+            "label": "地影/日照状态",
+            "distribution": {
+              "0": 2156
+            },
+            "value_counts": {
+              "0": 2156
+            },
+            "value_percent": {
+              "0": 100.0
+            },
+            "sample_count": 2156
+          },
+          "/FLAG_TBB": {
+            "label": "TBB 开关状态",
+            "distribution": {
+              "0": 2156
+            },
+            "value_counts": {
+              "0": 2156
+            },
+            "value_percent": {
+              "0": 100.0
+            },
+            "sample_count": 2156
+          }
+        },
+        "warnings": [],
+        "errors": []
+      },
+      {
+        "upload_id": "demo_segment_04",
+        "filename": "demo_segment_04",
+        "display_name": "demo_segment_04",
+        "size_bytes": 0,
+        "duplicate_of": null,
+        "status": "ok",
+        "hpm_product": "HPM_5",
+        "sample_count": 2063,
+        "time_parseable": true,
+        "start_time": "2023-04-20T02:17:48Z",
+        "end_time": "2023-04-20T02:52:10Z",
+        "display_start_time": "2023-04-20 10:17",
+        "display_end_time": "2023-04-20 10:52",
+        "has_vector_magnetic": true,
+        "has_scalar_magnetic": false,
+        "quality_flag_summary": {
+          "/FLAG_MT": {
+            "label": "磁力矩器干扰标志",
+            "distribution": {
+              "0": 2049,
+              "1": 14
+            },
+            "value_counts": {
+              "0": 2049,
+              "1": 14
+            },
+            "value_percent": {
+              "0": 99.321,
+              "1": 0.679
+            },
+            "sample_count": 2063
+          },
+          "/FLAG_SHW": {
+            "label": "地影/日照状态",
+            "distribution": {
+              "0": 217,
+              "1": 1846
+            },
+            "value_counts": {
+              "0": 217,
+              "1": 1846
+            },
+            "value_percent": {
+              "0": 10.519,
+              "1": 89.481
+            },
+            "sample_count": 2063
+          },
+          "/FLAG_TBB": {
+            "label": "TBB 开关状态",
+            "distribution": {
+              "0": 2063
+            },
+            "value_counts": {
+              "0": 2063
+            },
+            "value_percent": {
+              "0": 100.0
+            },
+            "sample_count": 2063
+          }
+        },
+        "warnings": [],
+        "errors": []
+      },
+      {
+        "upload_id": "demo_segment_05",
+        "filename": "demo_segment_05",
+        "display_name": "demo_segment_05",
+        "size_bytes": 0,
+        "duplicate_of": null,
+        "status": "ok",
+        "hpm_product": "HPM_5",
+        "sample_count": 2060,
+        "time_parseable": true,
+        "start_time": "2023-04-20T03:05:09Z",
+        "end_time": "2023-04-20T03:39:28Z",
+        "display_start_time": "2023-04-20 11:05",
+        "display_end_time": "2023-04-20 11:39",
+        "has_vector_magnetic": true,
+        "has_scalar_magnetic": false,
+        "quality_flag_summary": {
+          "/FLAG_MT": {
+            "label": "磁力矩器干扰标志",
+            "distribution": {
+              "0": 2046,
+              "1": 14
+            },
+            "value_counts": {
+              "0": 2046,
+              "1": 14
+            },
+            "value_percent": {
+              "0": 99.32,
+              "1": 0.68
+            },
+            "sample_count": 2060
+          },
+          "/FLAG_SHW": {
+            "label": "地影/日照状态",
+            "distribution": {
+              "0": 2060
+            },
+            "value_counts": {
+              "0": 2060
+            },
+            "value_percent": {
+              "0": 100.0
+            },
+            "sample_count": 2060
+          },
+          "/FLAG_TBB": {
+            "label": "TBB 开关状态",
+            "distribution": {
+              "0": 2060
+            },
+            "value_counts": {
+              "0": 2060
+            },
+            "value_percent": {
+              "0": 100.0
+            },
+            "sample_count": 2060
+          }
+        },
+        "warnings": [],
+        "errors": []
+      },
+      {
+        "upload_id": "demo_segment_06",
+        "filename": "demo_segment_06",
+        "display_name": "demo_segment_06",
+        "size_bytes": 0,
+        "duplicate_of": null,
+        "status": "ok",
+        "hpm_product": "HPM_5",
+        "sample_count": 2064,
+        "time_parseable": true,
+        "start_time": "2023-04-20T03:52:31Z",
+        "end_time": "2023-04-20T04:26:54Z",
+        "display_start_time": "2023-04-20 11:52",
+        "display_end_time": "2023-04-20 12:26",
+        "has_vector_magnetic": true,
+        "has_scalar_magnetic": false,
+        "quality_flag_summary": {
+          "/FLAG_MT": {
+            "label": "磁力矩器干扰标志",
+            "distribution": {
+              "0": 2057,
+              "1": 7
+            },
+            "value_counts": {
+              "0": 2057,
+              "1": 7
+            },
+            "value_percent": {
+              "0": 99.661,
+              "1": 0.339
+            },
+            "sample_count": 2064
+          },
+          "/FLAG_SHW": {
+            "label": "地影/日照状态",
+            "distribution": {
+              "0": 218,
+              "1": 1846
+            },
+            "value_counts": {
+              "0": 218,
+              "1": 1846
+            },
+            "value_percent": {
+              "0": 10.562,
+              "1": 89.438
+            },
+            "sample_count": 2064
+          },
+          "/FLAG_TBB": {
+            "label": "TBB 开关状态",
+            "distribution": {
+              "-9999": 58,
+              "0": 2006
+            },
+            "value_counts": {
+              "-9999": 58,
+              "0": 2006
+            },
+            "value_percent": {
+              "-9999": 2.81,
+              "0": 97.19
+            },
+            "sample_count": 2064
+          }
+        },
+        "warnings": [],
+        "errors": []
+      }
+    ],
+    "sorted_files": [
+      {
+        "upload_id": "demo_segment_01",
+        "filename": "demo_segment_01",
+        "hpm_product": "HPM_5",
+        "start": "2023-04-19T23:55:43Z",
+        "end": "2023-04-20T00:30:02Z",
+        "display_start": "2023-04-20 07:55",
+        "display_end": "2023-04-20 08:30"
+      },
+      {
+        "upload_id": "demo_segment_02",
+        "filename": "demo_segment_02",
+        "hpm_product": "HPM_5",
+        "start": "2023-04-20T00:43:05Z",
+        "end": "2023-04-20T01:17:28Z",
+        "display_start": "2023-04-20 08:43",
+        "display_end": "2023-04-20 09:17"
+      },
+      {
+        "upload_id": "demo_segment_03",
+        "filename": "demo_segment_03",
+        "hpm_product": "HPM_5",
+        "start": "2023-04-20T01:28:50Z",
+        "end": "2023-04-20T02:04:45Z",
+        "display_start": "2023-04-20 09:28",
+        "display_end": "2023-04-20 10:04"
+      },
+      {
+        "upload_id": "demo_segment_04",
+        "filename": "demo_segment_04",
+        "hpm_product": "HPM_5",
+        "start": "2023-04-20T02:17:48Z",
+        "end": "2023-04-20T02:52:10Z",
+        "display_start": "2023-04-20 10:17",
+        "display_end": "2023-04-20 10:52"
+      },
+      {
+        "upload_id": "demo_segment_05",
+        "filename": "demo_segment_05",
+        "hpm_product": "HPM_5",
+        "start": "2023-04-20T03:05:09Z",
+        "end": "2023-04-20T03:39:28Z",
+        "display_start": "2023-04-20 11:05",
+        "display_end": "2023-04-20 11:39"
+      },
+      {
+        "upload_id": "demo_segment_06",
+        "filename": "demo_segment_06",
+        "hpm_product": "HPM_5",
+        "start": "2023-04-20T03:52:31Z",
+        "end": "2023-04-20T04:26:54Z",
+        "display_start": "2023-04-20 11:52",
+        "display_end": "2023-04-20 12:26"
+      }
+    ],
+    "merged_time_range": {
+      "start": "2023-04-19T23:55:43Z",
+      "end": "2023-04-20T04:26:54Z"
+    },
+    "display_time_zone": "Asia/Shanghai",
+    "display_time_range": {
+      "start": "2023-04-20 07:55",
+      "end": "2023-04-20 12:26"
+    },
+    "crop_options": {
+      "start": {
+        "years": [
+          2023
+        ],
+        "months": [
+          4
+        ],
+        "days": [
+          20
+        ],
+        "hours": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "minutes_by_hour": {
+          "2023-04-20T07": [
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T08": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T09": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T10": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T11": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T12": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        "default": {
+          "year": 2023,
+          "month": 4,
+          "day": 20,
+          "hour": 7,
+          "minute": 55
+        }
+      },
+      "end": {
+        "years": [
+          2023
+        ],
+        "months": [
+          4
+        ],
+        "days": [
+          20
+        ],
+        "hours": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "minutes_by_hour": {
+          "2023-04-20T07": [
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T08": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T09": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T10": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T11": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "2023-04-20T12": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ]
+        },
+        "default": {
+          "year": 2023,
+          "month": 4,
+          "day": 20,
+          "hour": 12,
+          "minute": 26
+        }
+      }
+    },
+    "segments": [
+      {
+        "segment_id": "segment_1",
+        "source_id": null,
+        "start": "2023-04-19T23:55:43Z",
+        "end": "2023-04-20T00:30:02Z",
+        "display_start": "2023-04-20 07:55",
+        "display_end": "2023-04-20 08:30",
+        "sample_count": 2060
+      },
+      {
+        "segment_id": "segment_2",
+        "source_id": null,
+        "start": "2023-04-20T00:43:05Z",
+        "end": "2023-04-20T01:17:28Z",
+        "display_start": "2023-04-20 08:43",
+        "display_end": "2023-04-20 09:17",
+        "sample_count": 2064
+      },
+      {
+        "segment_id": "segment_3",
+        "source_id": null,
+        "start": "2023-04-20T01:28:50Z",
+        "end": "2023-04-20T02:04:45Z",
+        "display_start": "2023-04-20 09:28",
+        "display_end": "2023-04-20 10:04",
+        "sample_count": 2156
+      },
+      {
+        "segment_id": "segment_4",
+        "source_id": null,
+        "start": "2023-04-20T02:17:48Z",
+        "end": "2023-04-20T02:52:10Z",
+        "display_start": "2023-04-20 10:17",
+        "display_end": "2023-04-20 10:52",
+        "sample_count": 2063
+      },
+      {
+        "segment_id": "segment_5",
+        "source_id": null,
+        "start": "2023-04-20T03:05:09Z",
+        "end": "2023-04-20T03:39:28Z",
+        "display_start": "2023-04-20 11:05",
+        "display_end": "2023-04-20 11:39",
+        "sample_count": 2060
+      },
+      {
+        "segment_id": "segment_6",
+        "source_id": null,
+        "start": "2023-04-20T03:52:31Z",
+        "end": "2023-04-20T04:26:54Z",
+        "display_start": "2023-04-20 11:52",
+        "display_end": "2023-04-20 12:26",
+        "sample_count": 2064
+      }
+    ],
+    "plot_groups": [
+      {
+        "group_id": "group_1",
+        "start": "2023-04-19T23:55:43Z",
+        "end": "2023-04-20T04:26:54Z",
+        "display_start": "2023-04-20 07:55",
+        "display_end": "2023-04-20 12:26",
+        "segment_ids": [
+          "segment_1",
+          "segment_2",
+          "segment_3",
+          "segment_4",
+          "segment_5",
+          "segment_6"
+        ],
+        "reason": "same_beijing_day_or_gap_lt_60min",
+        "sample_count": 12467
+      }
+    ],
+    "sample_count": 12467,
+    "raw_sample_count": 12467,
+    "dedupe": {
+      "duplicate_file_count": 0,
+      "duplicate_sample_count": 0
+    },
+    "data_products": [
+      "HPM_5"
+    ],
+    "time_parseable": true,
+    "crop_enabled": false,
+    "quality_flag_summary": {
+      "/FLAG_MT": {
+        "distribution": {
+          "0": 12310,
+          "1": 157
+        },
+        "sample_count": 12467,
+        "label": "磁力矩器干扰标志",
+        "value_labels": {
+          "0": "该标志未触发",
+          "1": "磁力矩器干扰标记"
+        }
+      },
+      "/FLAG_SHW": {
+        "distribution": {
+          "0": 6925,
+          "1": 5542
+        },
+        "sample_count": 12467,
+        "label": "地影/日照状态",
+        "value_labels": {
+          "0": "该标志未触发",
+          "1": "该标志触发"
+        }
+      },
+      "/FLAG_TBB": {
+        "distribution": {
+          "-9999": 58,
+          "0": 12409
+        },
+        "sample_count": 12467,
+        "label": "TBB 开关状态",
+        "value_labels": {
+          "0": "该标志未触发",
+          "1": "该标志触发"
+        }
+      },
+      "/FLAG_N3": {
+        "distribution": {},
+        "sample_count": 0,
+        "label": "N3 标志",
+        "value_labels": {
+          "0": "未标记",
+          "1": "已标记"
+        }
+      }
+    },
+    "run_log": []
+  },
+  "plots": {
+    "magnetic": {
+      "artifact_id": "static-magnetic-overview",
+      "label": "CSES HPM demo magnetic overview",
+      "media_type": "image/png",
+      "url": "demo_data/magnetic_overview.png",
+      "download_url": "demo_data/magnetic_overview.png",
+      "exists": true
+    },
+    "orbit": {
+      "artifact_id": "static-orbit-demo",
+      "label": "CSES HPM demo interactive orbit",
+      "media_type": "text/html",
+      "url": "demo_data/orbit_demo.html",
+      "download_url": "demo_data/orbit_demo.html",
+      "exists": true
+    }
+  },
+  "downloads": {
+    "statistics_json": {
+      "artifact_id": "static-demo-statistics-json",
+      "label": "CSES HPM demo statistics JSON",
+      "media_type": "application/json",
+      "url": "demo_data/demo_statistics.json",
+      "download_url": "demo_data/demo_statistics.json",
+      "exists": true
+    },
+    "statistics_summary_csv": {
+      "artifact_id": "static-demo-statistics-summary-csv",
+      "label": "CSES HPM demo statistics CSV",
+      "media_type": "text/csv",
+      "url": "demo_data/demo_statistics_summary.csv",
+      "download_url": "demo_data/demo_statistics_summary.csv",
+      "exists": true
+    },
+    "manifest_json": {
+      "artifact_id": "static-demo-manifest-json",
+      "label": "CSES HPM demo manifest JSON",
+      "media_type": "application/json",
+      "url": "demo_data/demo_manifest.json",
+      "download_url": "demo_data/demo_manifest.json",
+      "exists": true
+    }
+  }
+}

@@ -1028,7 +1028,7 @@ def interactive_orbit_html(payload: dict[str, Any]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CSES HPM 交互轨道图</title>
   <style>
-    body {{ margin: 0; background: #f4ecd8; color: #211c16; font-family: Arial, sans-serif; }}
+    body {{ margin: 0; background: #f4ecd8; color: #211c16; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif; }}
     header {{ display: flex; justify-content: space-between; gap: 16px; padding: 12px 16px; border-bottom: 2px solid #2a2923; }}
     h1 {{ margin: 0; font-size: 18px; }}
     button {{ border: 2px solid #2a2923; background: #c88b2d; padding: 8px 12px; font-weight: 700; }}
@@ -1049,6 +1049,7 @@ def interactive_orbit_html(payload: dict[str, Any]) -> str:
 <script>
 const orbitData = {payload_json};
 const earthTextureUrl = {earth_texture_json};
+const uiFont = '-apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif';
 const canvas = document.getElementById("orbitCanvas");
 const ctx = canvas.getContext("2d");
 const resetButton = document.getElementById("resetView");
@@ -1082,7 +1083,7 @@ function line(points, color, width=1) {{ if(points.length<2)return; ctx.beginPat
 function dashedLine(points, color, width=1) {{ if(points.length<2)return; ctx.save(); ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(points[0].x,points[0].y); for(let i=1;i<points.length;i++)ctx.lineTo(points[i].x,points[i].y); ctx.strokeStyle=color; ctx.lineWidth=width; ctx.stroke(); ctx.restore(); }}
 function segmentHighlightColor(color) {{ const match = /^#?([a-f\\d]{{2}})([a-f\\d]{{2}})([a-f\\d]{{2}})$/i.exec(color || ""); if(!match) return "rgba(255,244,214,.95)"; const r=Math.min(255, parseInt(match[1],16)+70), g=Math.min(255, parseInt(match[2],16)+54), b=Math.min(255, parseInt(match[3],16)+42); return `rgb(${{r}},${{g}},${{b}})`; }}
 function drawOrbitStroke(points, color) {{ if(points.length<2)return; line(points, "rgba(42,41,35,.86)", 8.2); line(points, "rgba(244,236,216,.94)", 6.0); line(points, color, 3.4); ctx.save(); ctx.setLineDash([2, 8]); ctx.lineCap="round"; ctx.beginPath(); ctx.moveTo(points[0].x,points[0].y); for(let i=1;i<points.length;i++)ctx.lineTo(points[i].x,points[i].y); ctx.strokeStyle=segmentHighlightColor(color); ctx.lineWidth=2.0; ctx.stroke(); ctx.restore(); }}
-function label(text, p, dx=0, dy=0) {{ ctx.save(); ctx.font="11px Arial"; ctx.strokeStyle="rgba(244,236,216,.92)"; ctx.lineWidth=3; ctx.fillStyle="#2a2923"; ctx.strokeText(text,p.x+dx,p.y+dy); ctx.fillText(text,p.x+dx,p.y+dy); ctx.restore(); }}
+function label(text, p, dx=0, dy=0) {{ ctx.save(); ctx.font="11px " + uiFont; ctx.strokeStyle="rgba(244,236,216,.92)"; ctx.lineWidth=3; ctx.fillStyle="#2a2923"; ctx.strokeText(text,p.x+dx,p.y+dy); ctx.fillText(text,p.x+dx,p.y+dy); ctx.restore(); }}
 function drawLatitudeLongitudeGrid(cx, cy, scale) {{ const radius=orbitData.earth_radius_km; for(let lat=-60;lat<=60;lat+=30){{ const pts=[]; for(let lon=-180;lon<=180;lon+=5)pts.push(projectedGeoPoint(lat,lon,radius,scale,cx,cy)); line(pts, lat===0?"rgba(188,131,39,.56)":"rgba(95,131,118,.35)", lat===0?1.4:.9); label(`Latitude ${{lat}} deg`, projectedGeoPoint(lat,-170,radius,scale,cx,cy),4,-4); }} for(let lon=-180;lon<180;lon+=30){{ const pts=[]; for(let lat=-90;lat<=90;lat+=4)pts.push(projectedGeoPoint(lat,lon,radius,scale,cx,cy)); line(pts, lon===0?"rgba(188,131,39,.56)":"rgba(95,131,118,.28)", lon===0?1.4:.8); if(lon%60===0)label(`Longitude ${{lon}} deg`, projectedGeoPoint(0,lon,radius,scale,cx,cy),6,12); }} }}
 function drawFallbackEarth(cx, cy, radius) {{
   const ocean=ctx.createRadialGradient(cx-radius*.32,cy-radius*.38,radius*.08,cx,cy,radius);

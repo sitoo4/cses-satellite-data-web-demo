@@ -1,0 +1,2997 @@
+{
+  "session_id": "static-public-demo",
+  "product_type_status": {
+    "status": "single",
+    "products": [
+      "HPM_5"
+    ],
+    "product_type": "HPM_5"
+  },
+  "time_range": {
+    "start_time": "2023-04-19T23:55:43Z",
+    "end_time": "2023-04-20T04:26:54Z",
+    "display_start_time": "2023-04-20 07:55",
+    "display_end_time": "2023-04-20 12:26"
+  },
+  "processing_summary": {
+    "uploaded_file_count": 6,
+    "unique_file_count": 6,
+    "duplicate_file_count": 0,
+    "raw_sample_count": 12467,
+    "merged_sample_count": 12467,
+    "duplicate_time_removed_count": 0,
+    "sorted_by_time": true,
+    "dedup_by_time": true,
+    "segment_count": 6,
+    "crop_applied": false,
+    "crop_start": null,
+    "crop_end": null,
+    "final_sample_count": 12467
+  },
+  "overall_statistics": {
+    "time_coverage": {
+      "start_time": "2023-04-19T23:55:43Z",
+      "end_time": "2023-04-20T04:26:54Z",
+      "display_start_time": "2023-04-20 07:55",
+      "display_end_time": "2023-04-20 12:26",
+      "duration_seconds": 16271.0,
+      "sample_count": 12467,
+      "valid_time_count": 12467,
+      "duplicate_time_removed_count": 0,
+      "segment_count": 6
+    },
+    "sampling": {
+      "cadence_median_seconds": 1.0,
+      "cadence_min_seconds": 1.0,
+      "cadence_max_seconds": 783.0,
+      "cadence_mean_seconds": 1.305,
+      "cadence_std_seconds": 15.259,
+      "gap_count": 5,
+      "large_gap_threshold_seconds": 5.0,
+      "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+      "large_gap_ranges": [
+        {
+          "start": "2023-04-20T00:30:02Z",
+          "end": "2023-04-20T00:43:05Z",
+          "display_start": "2023-04-20 08:30",
+          "display_end": "2023-04-20 08:43",
+          "gap_seconds": 783.0
+        },
+        {
+          "start": "2023-04-20T01:17:28Z",
+          "end": "2023-04-20T01:28:50Z",
+          "display_start": "2023-04-20 09:17",
+          "display_end": "2023-04-20 09:28",
+          "gap_seconds": 682.0
+        },
+        {
+          "start": "2023-04-20T02:04:45Z",
+          "end": "2023-04-20T02:17:48Z",
+          "display_start": "2023-04-20 10:04",
+          "display_end": "2023-04-20 10:17",
+          "gap_seconds": 783.0
+        },
+        {
+          "start": "2023-04-20T02:52:10Z",
+          "end": "2023-04-20T03:05:09Z",
+          "display_start": "2023-04-20 10:52",
+          "display_end": "2023-04-20 11:05",
+          "gap_seconds": 779.0
+        },
+        {
+          "start": "2023-04-20T03:39:28Z",
+          "end": "2023-04-20T03:52:31Z",
+          "display_start": "2023-04-20 11:39",
+          "display_end": "2023-04-20 11:52",
+          "gap_seconds": 783.0
+        }
+      ]
+    },
+    "magnetic": {
+      "status": "ok",
+      "product_type": "HPM_5",
+      "variables": {
+        "Bx": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": -7661.917,
+          "max": 5332.973,
+          "mean": -755.317,
+          "median": -1075.748,
+          "std": 2732.358,
+          "q25": -2315.593,
+          "q75": 541.322,
+          "unit": "nT",
+          "iqr": 2856.915,
+          "rms": 2834.834,
+          "peak_to_peak": 12994.89
+        },
+        "By": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": -51158.087,
+          "max": 45104.692,
+          "mean": -889.524,
+          "median": -5246.893,
+          "std": 26997.878,
+          "q25": -20457.806,
+          "q75": 24475.208,
+          "unit": "nT",
+          "iqr": 44933.014,
+          "rms": 27012.528,
+          "peak_to_peak": 96262.78
+        },
+        "Bz": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": -27448.404,
+          "max": 26476.045,
+          "mean": -1469.359,
+          "median": -3011.906,
+          "std": 18789.394,
+          "q25": -20561.309,
+          "q75": 15148.431,
+          "unit": "nT",
+          "iqr": 35709.74,
+          "rms": 18846.759,
+          "peak_to_peak": 53924.449
+        },
+        "B_abs": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": 20162.569,
+          "max": 51241.468,
+          "mean": 32031.702,
+          "median": 30206.997,
+          "std": 8178.225,
+          "q25": 25152.992,
+          "q75": 38883.21,
+          "unit": "nT",
+          "iqr": 13730.219,
+          "rms": 33059.239,
+          "peak_to_peak": 31078.899
+        }
+      }
+    },
+    "position": {
+      "status": "ok",
+      "variables": {
+        "GEO_LAT": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": -64.254,
+          "max": 69.864,
+          "mean": 0.464,
+          "median": 0.407,
+          "std": 37.563,
+          "q25": -32.147,
+          "q75": 33.037,
+          "unit": "deg"
+        },
+        "GEO_LON": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": -179.995,
+          "max": 179.993,
+          "mean": -24.084,
+          "median": -12.355,
+          "std": 112.129,
+          "q25": -144.899,
+          "q75": 23.435,
+          "unit": "deg"
+        },
+        "ALTITUDE": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": 499.384,
+          "max": 518.932,
+          "mean": 510.791,
+          "median": 511.742,
+          "std": 5.894,
+          "q25": 505.534,
+          "q75": 516.178,
+          "unit": "km"
+        },
+        "MAG_LAT": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": -70.349,
+          "max": 71.903,
+          "mean": 1.345,
+          "median": 1.313,
+          "std": 38.522,
+          "q25": -31.893,
+          "q75": 34.553,
+          "unit": "deg"
+        },
+        "MAG_LON": {
+          "status": "ok",
+          "finite_count": 12467,
+          "nan_count": 0,
+          "min": -122.301,
+          "max": 97.93,
+          "mean": -11.636,
+          "median": -69.701,
+          "std": 86.258,
+          "q25": -95.095,
+          "q75": 73.125,
+          "unit": "deg"
+        }
+      }
+    },
+    "quality_flags": {
+      "/FLAG_MT": {
+        "status": "ok",
+        "value_counts": {
+          "0": 12310,
+          "1": 157
+        },
+        "value_percent": {
+          "0": 98.741,
+          "1": 1.259
+        },
+        "total_count": 12467
+      },
+      "/FLAG_SHW": {
+        "status": "ok",
+        "value_counts": {
+          "0": 6925,
+          "1": 5542
+        },
+        "value_percent": {
+          "0": 55.547,
+          "1": 44.453
+        },
+        "total_count": 12467
+      },
+      "/FLAG_TBB": {
+        "status": "ok",
+        "value_counts": {
+          "-9999": 58,
+          "0": 12409
+        },
+        "value_percent": {
+          "-9999": 0.465,
+          "0": 99.535
+        },
+        "total_count": 12467
+      },
+      "/FLAG_N3": {
+        "status": "missing",
+        "value_counts": {},
+        "value_percent": {},
+        "total_count": 0
+      }
+    }
+  },
+  "per_file_statistics": [
+    {
+      "upload_id": "demo_segment_01",
+      "filename": "demo_segment_01",
+      "status": "ok",
+      "hpm_product": "HPM_5",
+      "raw_sample_count": 2060,
+      "time_coverage": {
+        "start_time": "2023-04-19T23:55:43Z",
+        "end_time": "2023-04-20T00:30:02Z",
+        "display_start_time": "2023-04-20 07:55",
+        "display_end_time": "2023-04-20 08:30",
+        "duration_seconds": 2059.0,
+        "sample_count": 2060,
+        "valid_time_count": 2060,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -6662.456,
+            "max": -240.363,
+            "mean": -2615.473,
+            "median": -1564.241,
+            "std": 1745.417,
+            "q25": -3948.855,
+            "q75": -1332.876,
+            "unit": "nT",
+            "iqr": 2615.98,
+            "rms": 3144.388,
+            "peak_to_peak": 6422.093
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -45481.995,
+            "max": 44818.535,
+            "mean": 335.473,
+            "median": 1475.483,
+            "std": 28925.323,
+            "q25": -27001.443,
+            "q75": 26872.626,
+            "unit": "nT",
+            "iqr": 53874.069,
+            "rms": 28927.268,
+            "peak_to_peak": 90300.53
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -24787.853,
+            "max": -7941.936,
+            "mean": -19020.592,
+            "median": -20171.681,
+            "std": 4849.529,
+            "q25": -23355.759,
+            "q75": -15395.566,
+            "unit": "nT",
+            "iqr": 7960.192,
+            "rms": 19629.082,
+            "peak_to_peak": 16845.917
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": 24726.784,
+            "max": 46648.414,
+            "mean": 34372.87,
+            "median": 33833.21,
+            "std": 7104.976,
+            "q25": 27458.015,
+            "q75": 41020.547,
+            "unit": "nT",
+            "iqr": 13562.532,
+            "rms": 35099.5,
+            "peak_to_peak": 21921.63
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -64.242,
+            "max": 64.132,
+            "mean": -0.117,
+            "median": -0.15,
+            "std": 37.228,
+            "q25": -32.435,
+            "q75": 32.186,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -165.315,
+            "max": -124.876,
+            "mean": -145.08,
+            "median": -145.074,
+            "std": 9.54,
+            "q25": -152.039,
+            "q75": -138.117,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": 499.939,
+            "max": 517.374,
+            "mean": 509.554,
+            "median": 510.261,
+            "std": 5.569,
+            "q25": 504.432,
+            "q75": 514.787,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -63.013,
+            "max": 68.731,
+            "mean": 2.799,
+            "median": 2.767,
+            "std": 38.057,
+            "q25": -30.156,
+            "q75": 35.739,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -73.454,
+            "max": -69.697,
+            "mean": -71.656,
+            "median": -71.72,
+            "std": 1.346,
+            "q25": -73.03,
+            "q75": -70.319,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2053,
+            "1": 7
+          },
+          "value_percent": {
+            "0": 99.66,
+            "1": 0.34
+          },
+          "total_count": 2060,
+          "label": "磁力矩器干扰标志",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "磁力矩器干扰标记"
+          }
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2060
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2060,
+          "label": "地影/日照状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2060
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2060,
+          "label": "TBB 开关状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0,
+          "label": "N3 标志",
+          "value_labels": {
+            "0": "未标记",
+            "1": "已标记"
+          }
+        }
+      }
+    },
+    {
+      "upload_id": "demo_segment_02",
+      "filename": "demo_segment_02",
+      "status": "ok",
+      "hpm_product": "HPM_5",
+      "raw_sample_count": 2064,
+      "time_coverage": {
+        "start_time": "2023-04-20T00:43:05Z",
+        "end_time": "2023-04-20T01:17:28Z",
+        "display_start_time": "2023-04-20 08:43",
+        "display_end_time": "2023-04-20 09:17",
+        "duration_seconds": 2063.0,
+        "sample_count": 2064,
+        "valid_time_count": 2064,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -7661.917,
+            "max": 5332.973,
+            "mean": 1031.908,
+            "median": 3460.121,
+            "std": 4418.924,
+            "q25": -2994.548,
+            "q75": 4774.408,
+            "unit": "nT",
+            "iqr": 7768.956,
+            "rms": 4537.811,
+            "peak_to_peak": 12994.89
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -30990.745,
+            "max": 40877.811,
+            "mean": -39.941,
+            "median": -9533.705,
+            "std": 23919.332,
+            "q25": -20813.319,
+            "q75": 24489.509,
+            "unit": "nT",
+            "iqr": 45302.828,
+            "rms": 23919.365,
+            "peak_to_peak": 71868.555
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 9878.01,
+            "max": 26476.045,
+            "mean": 17115.268,
+            "median": 15626.859,
+            "std": 5722.586,
+            "q25": 11613.499,
+            "q75": 22809.939,
+            "unit": "nT",
+            "iqr": 11196.44,
+            "rms": 18046.617,
+            "peak_to_peak": 16598.035
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 23599.409,
+            "max": 42186.532,
+            "mean": 29740.884,
+            "median": 27612.365,
+            "std": 5821.339,
+            "q25": 24703.64,
+            "q75": 33875.774,
+            "unit": "nT",
+            "iqr": 9172.134,
+            "rms": 30305.249,
+            "peak_to_peak": 18587.123
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -64.18,
+            "max": 64.338,
+            "mean": 0.021,
+            "median": -0.011,
+            "std": 37.268,
+            "q25": -32.328,
+            "q75": 32.358,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 2.756,
+            "max": 43.319,
+            "mean": 23.087,
+            "median": 23.098,
+            "std": 9.561,
+            "q25": 16.122,
+            "q75": 30.065,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 501.266,
+            "max": 518.833,
+            "mean": 512.247,
+            "median": 513.642,
+            "std": 5.698,
+            "q25": 507.245,
+            "q75": 517.672,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -66.94,
+            "max": 64.976,
+            "mean": -1.043,
+            "median": -1.075,
+            "std": 38.107,
+            "q25": -34.04,
+            "q75": 31.94,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 95.265,
+            "max": 97.93,
+            "mean": 96.584,
+            "median": 96.566,
+            "std": 0.973,
+            "q25": 95.591,
+            "q75": 97.584,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2050,
+            "1": 14
+          },
+          "value_percent": {
+            "0": 99.322,
+            "1": 0.678
+          },
+          "total_count": 2064,
+          "label": "磁力矩器干扰标志",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "磁力矩器干扰标记"
+          }
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 214,
+            "1": 1850
+          },
+          "value_percent": {
+            "0": 10.368,
+            "1": 89.632
+          },
+          "total_count": 2064,
+          "label": "地影/日照状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2064
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2064,
+          "label": "TBB 开关状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0,
+          "label": "N3 标志",
+          "value_labels": {
+            "0": "未标记",
+            "1": "已标记"
+          }
+        }
+      }
+    },
+    {
+      "upload_id": "demo_segment_03",
+      "filename": "demo_segment_03",
+      "status": "ok",
+      "hpm_product": "HPM_5",
+      "raw_sample_count": 2156,
+      "time_coverage": {
+        "start_time": "2023-04-20T01:28:50Z",
+        "end_time": "2023-04-20T02:04:45Z",
+        "display_start_time": "2023-04-20 09:28",
+        "display_end_time": "2023-04-20 10:04",
+        "duration_seconds": 2155.0,
+        "sample_count": 2156,
+        "valid_time_count": 2156,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -5217.093,
+            "max": 526.842,
+            "mean": -2042.015,
+            "median": -1453.179,
+            "std": 1743.37,
+            "q25": -3660.072,
+            "q75": -612.821,
+            "unit": "nT",
+            "iqr": 3047.251,
+            "rms": 2684.989,
+            "peak_to_peak": 5743.935
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -49035.218,
+            "max": 45104.692,
+            "mean": -1257.729,
+            "median": 1443.977,
+            "std": 30797.894,
+            "q25": -31238.51,
+            "q75": 26734.215,
+            "unit": "nT",
+            "iqr": 57972.726,
+            "rms": 30823.565,
+            "peak_to_peak": 94139.911
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -26220.367,
+            "max": -4600.19,
+            "mean": -18970.257,
+            "median": -20186.257,
+            "std": 5833.939,
+            "q25": -24066.528,
+            "q75": -14771.185,
+            "unit": "nT",
+            "iqr": 9295.343,
+            "rms": 19847.052,
+            "peak_to_peak": 21620.177
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": 25623.386,
+            "max": 49525.694,
+            "mean": 35963.166,
+            "median": 35502.435,
+            "std": 7606.412,
+            "q25": 28534.184,
+            "q75": 42989.595,
+            "unit": "nT",
+            "iqr": 14455.411,
+            "rms": 36758.765,
+            "peak_to_peak": 23902.308
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -64.247,
+            "max": 69.864,
+            "mean": 2.869,
+            "median": 2.862,
+            "std": 38.94,
+            "q25": -30.939,
+            "q75": 36.695,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -179.995,
+            "max": 179.983,
+            "mean": -120.485,
+            "median": -164.485,
+            "std": 115.578,
+            "q25": -171.383,
+            "q75": -154.447,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": 499.384,
+            "max": 517.357,
+            "mean": 509.037,
+            "median": 509.656,
+            "std": 5.842,
+            "q25": 503.537,
+            "q75": 514.574,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -66.774,
+            "max": 71.134,
+            "mean": 2.122,
+            "median": 2.089,
+            "std": 39.844,
+            "q25": -32.383,
+            "q75": 36.614,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -96.427,
+            "max": -93.823,
+            "mean": -95.105,
+            "median": -95.055,
+            "std": 0.932,
+            "q25": -96.059,
+            "q75": -94.175,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2055,
+            "1": 101
+          },
+          "value_percent": {
+            "0": 95.315,
+            "1": 4.685
+          },
+          "total_count": 2156,
+          "label": "磁力矩器干扰标志",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "磁力矩器干扰标记"
+          }
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2156
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2156,
+          "label": "地影/日照状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2156
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2156,
+          "label": "TBB 开关状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0,
+          "label": "N3 标志",
+          "value_labels": {
+            "0": "未标记",
+            "1": "已标记"
+          }
+        }
+      }
+    },
+    {
+      "upload_id": "demo_segment_04",
+      "filename": "demo_segment_04",
+      "status": "ok",
+      "hpm_product": "HPM_5",
+      "raw_sample_count": 2063,
+      "time_coverage": {
+        "start_time": "2023-04-20T02:17:48Z",
+        "end_time": "2023-04-20T02:52:10Z",
+        "display_start_time": "2023-04-20 10:17",
+        "display_end_time": "2023-04-20 10:52",
+        "duration_seconds": 2062.0,
+        "sample_count": 2063,
+        "valid_time_count": 2063,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -3793.076,
+            "max": 3340.314,
+            "mean": 618.946,
+            "median": 1403.354,
+            "std": 2274.123,
+            "q25": -1424.541,
+            "q75": 2727.391,
+            "unit": "nT",
+            "iqr": 4151.932,
+            "rms": 2356.847,
+            "peak_to_peak": 7133.39
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -26172.093,
+            "max": 41120.448,
+            "mean": 329.654,
+            "median": -10652.426,
+            "std": 22455.298,
+            "q25": -18969.453,
+            "q75": 22589.149,
+            "unit": "nT",
+            "iqr": 41558.602,
+            "rms": 22457.718,
+            "peak_to_peak": 67292.541
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": 9025.764,
+            "max": 25661.958,
+            "mean": 16428.211,
+            "median": 15126.723,
+            "std": 5810.477,
+            "q25": 11058.029,
+            "q75": 22232.502,
+            "unit": "nT",
+            "iqr": 11174.472,
+            "rms": 17425.492,
+            "peak_to_peak": 16636.194
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": 20836.926,
+            "max": 42377.587,
+            "mean": 27773.748,
+            "median": 24949.345,
+            "std": 6493.881,
+            "q25": 22801.972,
+            "q75": 32250.235,
+            "unit": "nT",
+            "iqr": 9448.263,
+            "rms": 28522.825,
+            "peak_to_peak": 21540.661
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -64.174,
+            "max": 64.282,
+            "mean": -0.005,
+            "median": -0.037,
+            "std": 37.25,
+            "q25": -32.339,
+            "q75": 32.315,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -20.877,
+            "max": 19.642,
+            "mean": -0.581,
+            "median": -0.574,
+            "std": 9.554,
+            "q25": -7.545,
+            "q75": 6.392,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": 501.239,
+            "max": 518.855,
+            "mean": 512.271,
+            "median": 513.682,
+            "std": 5.713,
+            "q25": 507.262,
+            "q75": 517.71,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -63.171,
+            "max": 68.666,
+            "mean": 2.686,
+            "median": 2.654,
+            "std": 38.082,
+            "q25": -30.287,
+            "q75": 35.646,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": 71.292,
+            "max": 74.845,
+            "mean": 73.13,
+            "median": 73.184,
+            "std": 1.282,
+            "q25": 71.832,
+            "q75": 74.457,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2049,
+            "1": 14
+          },
+          "value_percent": {
+            "0": 99.321,
+            "1": 0.679
+          },
+          "total_count": 2063,
+          "label": "磁力矩器干扰标志",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "磁力矩器干扰标记"
+          }
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 217,
+            "1": 1846
+          },
+          "value_percent": {
+            "0": 10.519,
+            "1": 89.481
+          },
+          "total_count": 2063,
+          "label": "地影/日照状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2063
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2063,
+          "label": "TBB 开关状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0,
+          "label": "N3 标志",
+          "value_labels": {
+            "0": "未标记",
+            "1": "已标记"
+          }
+        }
+      }
+    },
+    {
+      "upload_id": "demo_segment_05",
+      "filename": "demo_segment_05",
+      "status": "ok",
+      "hpm_product": "HPM_5",
+      "raw_sample_count": 2060,
+      "time_coverage": {
+        "start_time": "2023-04-20T03:05:09Z",
+        "end_time": "2023-04-20T03:39:28Z",
+        "display_start_time": "2023-04-20 11:05",
+        "display_end_time": "2023-04-20 11:39",
+        "duration_seconds": 2059.0,
+        "sample_count": 2060,
+        "valid_time_count": 2060,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -2621.631,
+            "max": 2238.454,
+            "mean": -546.223,
+            "median": -1008.896,
+            "std": 1764.674,
+            "q25": -2249.888,
+            "q75": 1238.055,
+            "unit": "nT",
+            "iqr": 3487.943,
+            "rms": 1847.278,
+            "peak_to_peak": 4860.085
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -51158.087,
+            "max": 42579.413,
+            "mean": -6713.109,
+            "median": -5712.324,
+            "std": 31099.449,
+            "q25": -37666.624,
+            "q75": 22047.734,
+            "unit": "nT",
+            "iqr": 59714.358,
+            "rms": 31815.744,
+            "peak_to_peak": 93737.5
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -27448.404,
+            "max": -1251.549,
+            "mean": -19740.309,
+            "median": -21335.225,
+            "std": 6699.679,
+            "q25": -25407.584,
+            "q75": -15617.476,
+            "unit": "nT",
+            "iqr": 9790.108,
+            "rms": 20846.235,
+            "peak_to_peak": 26196.855
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": 26599.913,
+            "max": 51241.468,
+            "mean": 37220.086,
+            "median": 36438.72,
+            "std": 8055.103,
+            "q25": 29528.328,
+            "q75": 43601.958,
+            "unit": "nT",
+            "iqr": 14073.631,
+            "rms": 38081.747,
+            "peak_to_peak": 24641.555
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -64.254,
+            "max": 64.123,
+            "mean": -0.128,
+            "median": -0.161,
+            "std": 37.23,
+            "q25": -32.447,
+            "q75": 32.176,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -179.983,
+            "max": 179.993,
+            "mean": 127.193,
+            "median": 164.636,
+            "std": 108.217,
+            "q25": 156.342,
+            "q75": 171.198,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": 499.723,
+            "max": 517.402,
+            "mean": 509.426,
+            "median": 510.115,
+            "std": 5.645,
+            "q25": 504.225,
+            "q75": 514.727,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -70.349,
+            "max": 61.345,
+            "mean": -4.568,
+            "median": -4.603,
+            "std": 38.04,
+            "q25": -37.506,
+            "q75": 28.356,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -122.301,
+            "max": -115.876,
+            "mean": -118.684,
+            "median": -118.538,
+            "std": 1.992,
+            "q25": -120.42,
+            "q75": -116.836,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2046,
+            "1": 14
+          },
+          "value_percent": {
+            "0": 99.32,
+            "1": 0.68
+          },
+          "total_count": 2060,
+          "label": "磁力矩器干扰标志",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "磁力矩器干扰标记"
+          }
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2060
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2060,
+          "label": "地影/日照状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2060
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2060,
+          "label": "TBB 开关状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0,
+          "label": "N3 标志",
+          "value_labels": {
+            "0": "未标记",
+            "1": "已标记"
+          }
+        }
+      }
+    },
+    {
+      "upload_id": "demo_segment_06",
+      "filename": "demo_segment_06",
+      "status": "ok",
+      "hpm_product": "HPM_5",
+      "raw_sample_count": 2064,
+      "time_coverage": {
+        "start_time": "2023-04-20T03:52:31Z",
+        "end_time": "2023-04-20T04:26:54Z",
+        "display_start_time": "2023-04-20 11:52",
+        "display_end_time": "2023-04-20 12:26",
+        "duration_seconds": 2063.0,
+        "sample_count": 2064,
+        "valid_time_count": 2064,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -2348.867,
+            "max": 165.23,
+            "mean": -924.229,
+            "median": -682.847,
+            "std": 859.405,
+            "q25": -1760.858,
+            "q75": -171.058,
+            "unit": "nT",
+            "iqr": 1589.8,
+            "rms": 1262.052,
+            "peak_to_peak": 2514.097
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -24069.761,
+            "max": 42603.215,
+            "mean": 2016.596,
+            "median": -7814.819,
+            "std": 22118.069,
+            "q25": -17477.329,
+            "q75": 23370.171,
+            "unit": "nT",
+            "iqr": 40847.501,
+            "rms": 22209.809,
+            "peak_to_peak": 66672.975
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 9141.502,
+            "max": 24370.351,
+            "mean": 16090.85,
+            "median": 14968.776,
+            "std": 5258.185,
+            "q25": 11087.071,
+            "q75": 21376.752,
+            "unit": "nT",
+            "iqr": 10289.681,
+            "rms": 16928.2,
+            "peak_to_peak": 15228.85
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 20162.569,
+            "max": 43574.951,
+            "mean": 26956.748,
+            "median": 23438.234,
+            "std": 7400.413,
+            "q25": 21076.127,
+            "q75": 32100.932,
+            "unit": "nT",
+            "iqr": 11024.806,
+            "rms": 27954.112,
+            "peak_to_peak": 23412.381
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -64.168,
+            "max": 64.347,
+            "mean": 0.032,
+            "median": -0.001,
+            "std": 37.267,
+            "q25": -32.318,
+            "q75": 32.367,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -44.606,
+            "max": -4.04,
+            "mean": -24.27,
+            "median": -24.258,
+            "std": 9.562,
+            "q25": -31.235,
+            "q75": -17.291,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 501.167,
+            "max": 518.932,
+            "mean": 512.285,
+            "median": 513.701,
+            "std": 5.762,
+            "q25": 507.232,
+            "q75": 517.772,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -59.763,
+            "max": 71.903,
+            "mean": 6.029,
+            "median": 6.005,
+            "std": 38.031,
+            "q25": -26.897,
+            "q75": 38.947,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 42.423,
+            "max": 54.152,
+            "mean": 49.354,
+            "median": 49.666,
+            "std": 3.098,
+            "q25": 46.987,
+            "q75": 52.003,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2057,
+            "1": 7
+          },
+          "value_percent": {
+            "0": 99.661,
+            "1": 0.339
+          },
+          "total_count": 2064,
+          "label": "磁力矩器干扰标志",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "磁力矩器干扰标记"
+          }
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 218,
+            "1": 1846
+          },
+          "value_percent": {
+            "0": 10.562,
+            "1": 89.438
+          },
+          "total_count": 2064,
+          "label": "地影/日照状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "-9999": 58,
+            "0": 2006
+          },
+          "value_percent": {
+            "-9999": 2.81,
+            "0": 97.19
+          },
+          "total_count": 2064,
+          "label": "TBB 开关状态",
+          "value_labels": {
+            "0": "该标志未触发",
+            "1": "该标志触发"
+          }
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0,
+          "label": "N3 标志",
+          "value_labels": {
+            "0": "未标记",
+            "1": "已标记"
+          }
+        }
+      }
+    }
+  ],
+  "per_segment_statistics": [
+    {
+      "segment_id": "segment_1",
+      "time_coverage": {
+        "start_time": "2023-04-19T23:55:43Z",
+        "end_time": "2023-04-20T00:30:02Z",
+        "display_start_time": "2023-04-20 07:55",
+        "display_end_time": "2023-04-20 08:30",
+        "duration_seconds": 2059.0,
+        "sample_count": 2060,
+        "valid_time_count": 2060,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -6662.456,
+            "max": -240.363,
+            "mean": -2615.473,
+            "median": -1564.241,
+            "std": 1745.417,
+            "q25": -3948.855,
+            "q75": -1332.876,
+            "unit": "nT",
+            "iqr": 2615.98,
+            "rms": 3144.388,
+            "peak_to_peak": 6422.093
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -45481.995,
+            "max": 44818.535,
+            "mean": 335.473,
+            "median": 1475.483,
+            "std": 28925.323,
+            "q25": -27001.443,
+            "q75": 26872.626,
+            "unit": "nT",
+            "iqr": 53874.069,
+            "rms": 28927.268,
+            "peak_to_peak": 90300.53
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -24787.853,
+            "max": -7941.936,
+            "mean": -19020.592,
+            "median": -20171.681,
+            "std": 4849.529,
+            "q25": -23355.759,
+            "q75": -15395.566,
+            "unit": "nT",
+            "iqr": 7960.192,
+            "rms": 19629.082,
+            "peak_to_peak": 16845.917
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": 24726.784,
+            "max": 46648.414,
+            "mean": 34372.87,
+            "median": 33833.21,
+            "std": 7104.976,
+            "q25": 27458.015,
+            "q75": 41020.547,
+            "unit": "nT",
+            "iqr": 13562.532,
+            "rms": 35099.5,
+            "peak_to_peak": 21921.63
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -64.242,
+            "max": 64.132,
+            "mean": -0.117,
+            "median": -0.15,
+            "std": 37.228,
+            "q25": -32.435,
+            "q75": 32.186,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -165.315,
+            "max": -124.876,
+            "mean": -145.08,
+            "median": -145.074,
+            "std": 9.54,
+            "q25": -152.039,
+            "q75": -138.117,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": 499.939,
+            "max": 517.374,
+            "mean": 509.554,
+            "median": 510.261,
+            "std": 5.569,
+            "q25": 504.432,
+            "q75": 514.787,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -63.013,
+            "max": 68.731,
+            "mean": 2.799,
+            "median": 2.767,
+            "std": 38.057,
+            "q25": -30.156,
+            "q75": 35.739,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -73.454,
+            "max": -69.697,
+            "mean": -71.656,
+            "median": -71.72,
+            "std": 1.346,
+            "q25": -73.03,
+            "q75": -70.319,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2053,
+            "1": 7
+          },
+          "value_percent": {
+            "0": 99.66,
+            "1": 0.34
+          },
+          "total_count": 2060
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2060
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2060
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2060
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2060
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0
+        }
+      }
+    },
+    {
+      "segment_id": "segment_2",
+      "time_coverage": {
+        "start_time": "2023-04-20T00:43:05Z",
+        "end_time": "2023-04-20T01:17:28Z",
+        "display_start_time": "2023-04-20 08:43",
+        "display_end_time": "2023-04-20 09:17",
+        "duration_seconds": 2063.0,
+        "sample_count": 2064,
+        "valid_time_count": 2064,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -7661.917,
+            "max": 5332.973,
+            "mean": 1031.908,
+            "median": 3460.121,
+            "std": 4418.924,
+            "q25": -2994.548,
+            "q75": 4774.408,
+            "unit": "nT",
+            "iqr": 7768.956,
+            "rms": 4537.811,
+            "peak_to_peak": 12994.89
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -30990.745,
+            "max": 40877.811,
+            "mean": -39.941,
+            "median": -9533.705,
+            "std": 23919.332,
+            "q25": -20813.319,
+            "q75": 24489.509,
+            "unit": "nT",
+            "iqr": 45302.828,
+            "rms": 23919.365,
+            "peak_to_peak": 71868.555
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 9878.01,
+            "max": 26476.045,
+            "mean": 17115.268,
+            "median": 15626.859,
+            "std": 5722.586,
+            "q25": 11613.499,
+            "q75": 22809.939,
+            "unit": "nT",
+            "iqr": 11196.44,
+            "rms": 18046.617,
+            "peak_to_peak": 16598.035
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 23599.409,
+            "max": 42186.532,
+            "mean": 29740.884,
+            "median": 27612.365,
+            "std": 5821.339,
+            "q25": 24703.64,
+            "q75": 33875.774,
+            "unit": "nT",
+            "iqr": 9172.134,
+            "rms": 30305.249,
+            "peak_to_peak": 18587.123
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -64.18,
+            "max": 64.338,
+            "mean": 0.021,
+            "median": -0.011,
+            "std": 37.268,
+            "q25": -32.328,
+            "q75": 32.358,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 2.756,
+            "max": 43.319,
+            "mean": 23.087,
+            "median": 23.098,
+            "std": 9.561,
+            "q25": 16.122,
+            "q75": 30.065,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 501.266,
+            "max": 518.833,
+            "mean": 512.247,
+            "median": 513.642,
+            "std": 5.698,
+            "q25": 507.245,
+            "q75": 517.672,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -66.94,
+            "max": 64.976,
+            "mean": -1.043,
+            "median": -1.075,
+            "std": 38.107,
+            "q25": -34.04,
+            "q75": 31.94,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 95.265,
+            "max": 97.93,
+            "mean": 96.584,
+            "median": 96.566,
+            "std": 0.973,
+            "q25": 95.591,
+            "q75": 97.584,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2050,
+            "1": 14
+          },
+          "value_percent": {
+            "0": 99.322,
+            "1": 0.678
+          },
+          "total_count": 2064
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 214,
+            "1": 1850
+          },
+          "value_percent": {
+            "0": 10.368,
+            "1": 89.632
+          },
+          "total_count": 2064
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2064
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2064
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0
+        }
+      }
+    },
+    {
+      "segment_id": "segment_3",
+      "time_coverage": {
+        "start_time": "2023-04-20T01:28:50Z",
+        "end_time": "2023-04-20T02:04:45Z",
+        "display_start_time": "2023-04-20 09:28",
+        "display_end_time": "2023-04-20 10:04",
+        "duration_seconds": 2155.0,
+        "sample_count": 2156,
+        "valid_time_count": 2156,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -5217.093,
+            "max": 526.842,
+            "mean": -2042.015,
+            "median": -1453.179,
+            "std": 1743.37,
+            "q25": -3660.072,
+            "q75": -612.821,
+            "unit": "nT",
+            "iqr": 3047.251,
+            "rms": 2684.989,
+            "peak_to_peak": 5743.935
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -49035.218,
+            "max": 45104.692,
+            "mean": -1257.729,
+            "median": 1443.977,
+            "std": 30797.894,
+            "q25": -31238.51,
+            "q75": 26734.215,
+            "unit": "nT",
+            "iqr": 57972.726,
+            "rms": 30823.565,
+            "peak_to_peak": 94139.911
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -26220.367,
+            "max": -4600.19,
+            "mean": -18970.257,
+            "median": -20186.257,
+            "std": 5833.939,
+            "q25": -24066.528,
+            "q75": -14771.185,
+            "unit": "nT",
+            "iqr": 9295.343,
+            "rms": 19847.052,
+            "peak_to_peak": 21620.177
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": 25623.386,
+            "max": 49525.694,
+            "mean": 35963.166,
+            "median": 35502.435,
+            "std": 7606.412,
+            "q25": 28534.184,
+            "q75": 42989.595,
+            "unit": "nT",
+            "iqr": 14455.411,
+            "rms": 36758.765,
+            "peak_to_peak": 23902.308
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -64.247,
+            "max": 69.864,
+            "mean": 2.869,
+            "median": 2.862,
+            "std": 38.94,
+            "q25": -30.939,
+            "q75": 36.695,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -179.995,
+            "max": 179.983,
+            "mean": -120.485,
+            "median": -164.485,
+            "std": 115.578,
+            "q25": -171.383,
+            "q75": -154.447,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": 499.384,
+            "max": 517.357,
+            "mean": 509.037,
+            "median": 509.656,
+            "std": 5.842,
+            "q25": 503.537,
+            "q75": 514.574,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -66.774,
+            "max": 71.134,
+            "mean": 2.122,
+            "median": 2.089,
+            "std": 39.844,
+            "q25": -32.383,
+            "q75": 36.614,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2156,
+            "nan_count": 0,
+            "min": -96.427,
+            "max": -93.823,
+            "mean": -95.105,
+            "median": -95.055,
+            "std": 0.932,
+            "q25": -96.059,
+            "q75": -94.175,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2055,
+            "1": 101
+          },
+          "value_percent": {
+            "0": 95.315,
+            "1": 4.685
+          },
+          "total_count": 2156
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2156
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2156
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2156
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2156
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0
+        }
+      }
+    },
+    {
+      "segment_id": "segment_4",
+      "time_coverage": {
+        "start_time": "2023-04-20T02:17:48Z",
+        "end_time": "2023-04-20T02:52:10Z",
+        "display_start_time": "2023-04-20 10:17",
+        "display_end_time": "2023-04-20 10:52",
+        "duration_seconds": 2062.0,
+        "sample_count": 2063,
+        "valid_time_count": 2063,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -3793.076,
+            "max": 3340.314,
+            "mean": 618.946,
+            "median": 1403.354,
+            "std": 2274.123,
+            "q25": -1424.541,
+            "q75": 2727.391,
+            "unit": "nT",
+            "iqr": 4151.932,
+            "rms": 2356.847,
+            "peak_to_peak": 7133.39
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -26172.093,
+            "max": 41120.448,
+            "mean": 329.654,
+            "median": -10652.426,
+            "std": 22455.298,
+            "q25": -18969.453,
+            "q75": 22589.149,
+            "unit": "nT",
+            "iqr": 41558.602,
+            "rms": 22457.718,
+            "peak_to_peak": 67292.541
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": 9025.764,
+            "max": 25661.958,
+            "mean": 16428.211,
+            "median": 15126.723,
+            "std": 5810.477,
+            "q25": 11058.029,
+            "q75": 22232.502,
+            "unit": "nT",
+            "iqr": 11174.472,
+            "rms": 17425.492,
+            "peak_to_peak": 16636.194
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": 20836.926,
+            "max": 42377.587,
+            "mean": 27773.748,
+            "median": 24949.345,
+            "std": 6493.881,
+            "q25": 22801.972,
+            "q75": 32250.235,
+            "unit": "nT",
+            "iqr": 9448.263,
+            "rms": 28522.825,
+            "peak_to_peak": 21540.661
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -64.174,
+            "max": 64.282,
+            "mean": -0.005,
+            "median": -0.037,
+            "std": 37.25,
+            "q25": -32.339,
+            "q75": 32.315,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -20.877,
+            "max": 19.642,
+            "mean": -0.581,
+            "median": -0.574,
+            "std": 9.554,
+            "q25": -7.545,
+            "q75": 6.392,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": 501.239,
+            "max": 518.855,
+            "mean": 512.271,
+            "median": 513.682,
+            "std": 5.713,
+            "q25": 507.262,
+            "q75": 517.71,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": -63.171,
+            "max": 68.666,
+            "mean": 2.686,
+            "median": 2.654,
+            "std": 38.082,
+            "q25": -30.287,
+            "q75": 35.646,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2063,
+            "nan_count": 0,
+            "min": 71.292,
+            "max": 74.845,
+            "mean": 73.13,
+            "median": 73.184,
+            "std": 1.282,
+            "q25": 71.832,
+            "q75": 74.457,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2049,
+            "1": 14
+          },
+          "value_percent": {
+            "0": 99.321,
+            "1": 0.679
+          },
+          "total_count": 2063
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 217,
+            "1": 1846
+          },
+          "value_percent": {
+            "0": 10.519,
+            "1": 89.481
+          },
+          "total_count": 2063
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2063
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2063
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0
+        }
+      }
+    },
+    {
+      "segment_id": "segment_5",
+      "time_coverage": {
+        "start_time": "2023-04-20T03:05:09Z",
+        "end_time": "2023-04-20T03:39:28Z",
+        "display_start_time": "2023-04-20 11:05",
+        "display_end_time": "2023-04-20 11:39",
+        "duration_seconds": 2059.0,
+        "sample_count": 2060,
+        "valid_time_count": 2060,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -2621.631,
+            "max": 2238.454,
+            "mean": -546.223,
+            "median": -1008.896,
+            "std": 1764.674,
+            "q25": -2249.888,
+            "q75": 1238.055,
+            "unit": "nT",
+            "iqr": 3487.943,
+            "rms": 1847.278,
+            "peak_to_peak": 4860.085
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -51158.087,
+            "max": 42579.413,
+            "mean": -6713.109,
+            "median": -5712.324,
+            "std": 31099.449,
+            "q25": -37666.624,
+            "q75": 22047.734,
+            "unit": "nT",
+            "iqr": 59714.358,
+            "rms": 31815.744,
+            "peak_to_peak": 93737.5
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -27448.404,
+            "max": -1251.549,
+            "mean": -19740.309,
+            "median": -21335.225,
+            "std": 6699.679,
+            "q25": -25407.584,
+            "q75": -15617.476,
+            "unit": "nT",
+            "iqr": 9790.108,
+            "rms": 20846.235,
+            "peak_to_peak": 26196.855
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": 26599.913,
+            "max": 51241.468,
+            "mean": 37220.086,
+            "median": 36438.72,
+            "std": 8055.103,
+            "q25": 29528.328,
+            "q75": 43601.958,
+            "unit": "nT",
+            "iqr": 14073.631,
+            "rms": 38081.747,
+            "peak_to_peak": 24641.555
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -64.254,
+            "max": 64.123,
+            "mean": -0.128,
+            "median": -0.161,
+            "std": 37.23,
+            "q25": -32.447,
+            "q75": 32.176,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -179.983,
+            "max": 179.993,
+            "mean": 127.193,
+            "median": 164.636,
+            "std": 108.217,
+            "q25": 156.342,
+            "q75": 171.198,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": 499.723,
+            "max": 517.402,
+            "mean": 509.426,
+            "median": 510.115,
+            "std": 5.645,
+            "q25": 504.225,
+            "q75": 514.727,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -70.349,
+            "max": 61.345,
+            "mean": -4.568,
+            "median": -4.603,
+            "std": 38.04,
+            "q25": -37.506,
+            "q75": 28.356,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2060,
+            "nan_count": 0,
+            "min": -122.301,
+            "max": -115.876,
+            "mean": -118.684,
+            "median": -118.538,
+            "std": 1.992,
+            "q25": -120.42,
+            "q75": -116.836,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2046,
+            "1": 14
+          },
+          "value_percent": {
+            "0": 99.32,
+            "1": 0.68
+          },
+          "total_count": 2060
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2060
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2060
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2060
+          },
+          "value_percent": {
+            "0": 100.0
+          },
+          "total_count": 2060
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0
+        }
+      }
+    },
+    {
+      "segment_id": "segment_6",
+      "time_coverage": {
+        "start_time": "2023-04-20T03:52:31Z",
+        "end_time": "2023-04-20T04:26:54Z",
+        "display_start_time": "2023-04-20 11:52",
+        "display_end_time": "2023-04-20 12:26",
+        "duration_seconds": 2063.0,
+        "sample_count": 2064,
+        "valid_time_count": 2064,
+        "duplicate_time_removed_count": 0,
+        "segment_count": 1
+      },
+      "sampling": {
+        "cadence_median_seconds": 1.0,
+        "cadence_min_seconds": 1.0,
+        "cadence_max_seconds": 1.0,
+        "cadence_mean_seconds": 1.0,
+        "cadence_std_seconds": 0.0,
+        "gap_count": 0,
+        "large_gap_threshold_seconds": 5.0,
+        "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
+        "large_gap_ranges": []
+      },
+      "magnetic": {
+        "status": "ok",
+        "product_type": "HPM_5",
+        "variables": {
+          "Bx": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -2348.867,
+            "max": 165.23,
+            "mean": -924.229,
+            "median": -682.847,
+            "std": 859.405,
+            "q25": -1760.858,
+            "q75": -171.058,
+            "unit": "nT",
+            "iqr": 1589.8,
+            "rms": 1262.052,
+            "peak_to_peak": 2514.097
+          },
+          "By": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -24069.761,
+            "max": 42603.215,
+            "mean": 2016.596,
+            "median": -7814.819,
+            "std": 22118.069,
+            "q25": -17477.329,
+            "q75": 23370.171,
+            "unit": "nT",
+            "iqr": 40847.501,
+            "rms": 22209.809,
+            "peak_to_peak": 66672.975
+          },
+          "Bz": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 9141.502,
+            "max": 24370.351,
+            "mean": 16090.85,
+            "median": 14968.776,
+            "std": 5258.185,
+            "q25": 11087.071,
+            "q75": 21376.752,
+            "unit": "nT",
+            "iqr": 10289.681,
+            "rms": 16928.2,
+            "peak_to_peak": 15228.85
+          },
+          "B_abs": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 20162.569,
+            "max": 43574.951,
+            "mean": 26956.748,
+            "median": 23438.234,
+            "std": 7400.413,
+            "q25": 21076.127,
+            "q75": 32100.932,
+            "unit": "nT",
+            "iqr": 11024.806,
+            "rms": 27954.112,
+            "peak_to_peak": 23412.381
+          }
+        }
+      },
+      "position": {
+        "status": "ok",
+        "variables": {
+          "GEO_LAT": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -64.168,
+            "max": 64.347,
+            "mean": 0.032,
+            "median": -0.001,
+            "std": 37.267,
+            "q25": -32.318,
+            "q75": 32.367,
+            "unit": "deg"
+          },
+          "GEO_LON": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -44.606,
+            "max": -4.04,
+            "mean": -24.27,
+            "median": -24.258,
+            "std": 9.562,
+            "q25": -31.235,
+            "q75": -17.291,
+            "unit": "deg"
+          },
+          "ALTITUDE": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 501.167,
+            "max": 518.932,
+            "mean": 512.285,
+            "median": 513.701,
+            "std": 5.762,
+            "q25": 507.232,
+            "q75": 517.772,
+            "unit": "km"
+          },
+          "MAG_LAT": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": -59.763,
+            "max": 71.903,
+            "mean": 6.029,
+            "median": 6.005,
+            "std": 38.031,
+            "q25": -26.897,
+            "q75": 38.947,
+            "unit": "deg"
+          },
+          "MAG_LON": {
+            "status": "ok",
+            "finite_count": 2064,
+            "nan_count": 0,
+            "min": 42.423,
+            "max": 54.152,
+            "mean": 49.354,
+            "median": 49.666,
+            "std": 3.098,
+            "q25": 46.987,
+            "q75": 52.003,
+            "unit": "deg"
+          }
+        }
+      },
+      "quality_flags": {
+        "/FLAG_MT": {
+          "status": "ok",
+          "value_counts": {
+            "0": 2057,
+            "1": 7
+          },
+          "value_percent": {
+            "0": 99.661,
+            "1": 0.339
+          },
+          "total_count": 2064
+        },
+        "/FLAG_SHW": {
+          "status": "ok",
+          "value_counts": {
+            "0": 218,
+            "1": 1846
+          },
+          "value_percent": {
+            "0": 10.562,
+            "1": 89.438
+          },
+          "total_count": 2064
+        },
+        "/FLAG_TBB": {
+          "status": "ok",
+          "value_counts": {
+            "-9999": 58,
+            "0": 2006
+          },
+          "value_percent": {
+            "-9999": 2.81,
+            "0": 97.19
+          },
+          "total_count": 2064
+        },
+        "/FLAG_N3": {
+          "status": "missing",
+          "value_counts": {},
+          "value_percent": {},
+          "total_count": 0
+        }
+      }
+    }
+  ],
+  "quality_flag_statistics": {
+    "/FLAG_MT": {
+      "status": "ok",
+      "value_counts": {
+        "0": 12310,
+        "1": 157
+      },
+      "value_percent": {
+        "0": 98.741,
+        "1": 1.259
+      },
+      "total_count": 12467,
+      "label": "磁力矩器干扰标志",
+      "value_labels": {
+        "0": "该标志未触发",
+        "1": "磁力矩器干扰标记"
+      }
+    },
+    "/FLAG_SHW": {
+      "status": "ok",
+      "value_counts": {
+        "0": 6925,
+        "1": 5542
+      },
+      "value_percent": {
+        "0": 55.547,
+        "1": 44.453
+      },
+      "total_count": 12467,
+      "label": "地影/日照状态",
+      "value_labels": {
+        "0": "该标志未触发",
+        "1": "该标志触发"
+      }
+    },
+    "/FLAG_TBB": {
+      "status": "ok",
+      "value_counts": {
+        "-9999": 58,
+        "0": 12409
+      },
+      "value_percent": {
+        "-9999": 0.465,
+        "0": 99.535
+      },
+      "total_count": 12467,
+      "label": "TBB 开关状态",
+      "value_labels": {
+        "0": "该标志未触发",
+        "1": "该标志触发"
+      }
+    },
+    "/FLAG_N3": {
+      "status": "missing",
+      "value_counts": {},
+      "value_percent": {},
+      "total_count": 0,
+      "label": "N3 标志",
+      "value_labels": {
+        "0": "未标记",
+        "1": "已标记"
+      }
+    }
+  },
+  "warnings": [
+    "static_demo_sanitized_downsampled_visualization_only",
+    "not_formal_scientific_product",
+    "raw_h5_not_included",
+    "full_resolution_time_series_not_included"
+  ],
+  "errors": [],
+  "generated_at": "2026-06-09T11:29:59.477728+00:00",
+  "artifacts": {
+    "statistics_json": {
+      "artifact_id": "static-demo-statistics-json",
+      "label": "CSES HPM demo statistics JSON",
+      "media_type": "application/json",
+      "url": "demo_data/demo_statistics.json",
+      "download_url": "demo_data/demo_statistics.json",
+      "exists": true
+    },
+    "statistics_summary_csv": {
+      "artifact_id": "static-demo-statistics-summary-csv",
+      "label": "CSES HPM demo statistics CSV",
+      "media_type": "text/csv",
+      "url": "demo_data/demo_statistics_summary.csv",
+      "download_url": "demo_data/demo_statistics_summary.csv",
+      "exists": true
+    },
+    "manifest_json": {
+      "artifact_id": "static-demo-manifest-json",
+      "label": "CSES HPM demo manifest JSON",
+      "media_type": "application/json",
+      "url": "demo_data/demo_manifest.json",
+      "download_url": "demo_data/demo_manifest.json",
+      "exists": true
+    }
+  }
+}

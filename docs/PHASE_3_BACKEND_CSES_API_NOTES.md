@@ -64,9 +64,9 @@ Current CSES subset support is `sample_index` only. If a request uses `time` mod
 Unit/API tests:
 
 ```bash
-PYTHONPATH=/Volumes/Elements/satellite_data_web/backend \
+PYTHONPATH=<repo>/backend \
 python -m unittest discover \
-  -s /Volumes/Elements/satellite_data_web/backend/tests \
+  -s <repo>/backend/tests \
   -p 'test_*.py' \
   -v
 ```
@@ -81,9 +81,9 @@ OK
 Real CSES inspection refresh after candidate-rule update:
 
 ```bash
-python /Volumes/Elements/satellite_data_web/backend/scripts/inspect_cses_hpm.py \
-  --input-root /Users/foursoils/Downloads/HPM \
-  --output-root /Volumes/Elements/satellite_data_web/outputs/cses_hpm_inspection \
+python <repo>/backend/scripts/inspect_cses_hpm.py \
+  --input-root <local_cses_hpm_root> \
+  --output-root <repo>/outputs/cses_hpm_inspection \
   --max-preview 8 \
   --sample-size 2048
 ```
@@ -101,7 +101,7 @@ Result:
 Real API smoke command:
 
 ```bash
-PYTHONPATH=/Volumes/Elements/satellite_data_web/backend python - <<'PY'
+PYTHONPATH=<repo>/backend python - <<'PY'
 from fastapi.testclient import TestClient
 from app.main import create_app
 

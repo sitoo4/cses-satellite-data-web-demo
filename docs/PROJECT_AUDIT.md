@@ -4,13 +4,13 @@ Last updated: 2026-06-04
 
 ## Scope
 
-This is the phase-1 audit for the planned web application under `/Volumes/Elements/satellite_data_web`.
+This is the phase-1 audit for the planned web application under `<repo>`.
 
 Confirmed inputs inspected in this phase:
 
-- Cluster raw-data directory, sampled only by directory and filename metadata: `/Volumes/Elements/data/cluster`
-- Existing Cluster processing project: `/Volumes/Elements/data/idlpython_v2`
-- Existing Cluster processed outputs under `/Volumes/Elements/data/idlpython_v2/daily_full`, `daily_compact`, `quicklook_B`, `quicklook_E`, `quicklook_POS`, `manifests`, `provenance`, and `analysis`
+- Cluster raw-data directory, sampled only by directory and filename metadata: `<cluster_raw_root>`
+- Existing Cluster processing project: `<cluster_processed_root>`
+- Existing Cluster processed outputs under `<cluster_processed_root>/daily_full`, `daily_compact`, `quicklook_B`, `quicklook_E`, `quicklook_POS`, `manifests`, `provenance`, and `analysis`
 
 Out of scope for this phase:
 
@@ -25,12 +25,12 @@ Confirmed by directory sampling:
 
 | Path | Role | Sampled contents |
 |---|---|---|
-| `/Volumes/Elements/data/cluster/C1cichang` | C1 FGM spin magnetic-field CDF files | `c1_cp_fgm_spin_YYYYMMDD_vNN.cdf`; 7,676 CDF files sampled by filename |
-| `/Volumes/Elements/data/cluster/C1LMLT` | PMP L/MLT context files | `c1_jp_pmp_YYYYMM01_vNN.cdf`; 269 CDF files sampled by filename |
-| `/Volumes/Elements/data/cluster/C1_E_year` | yearly C1 EFW electric-field CDF files | `C1_CP_EFW_L3_E3D_GSE__YYYY0101_...cdf`; 18 CDF files sampled by filename |
-| `/Volumes/Elements/data/cluster/cl` | Cluster AUX position and spin-plane auxiliary data | `C1_CP_AUX_POSGSE_1M__...cdf`, `cl/sp/YYYY/cl_sp_aux_YYYYMMDD_vNN.cdf`; 7,437 CDF files sampled by filename |
-| `/Volumes/Elements/data/cluster/cis/2005` | C1 CIS density status sample for 2005-12-03 | `c1_pp_cis_20051203_v01.cdf` |
-| `/Volumes/Elements/data/cluster/whi/2005` | C1 WHISPER sample for 2005-12-03 | `c1_pp_whi_20051203_v01.cdf` |
+| `<cluster_raw_root>/C1cichang` | C1 FGM spin magnetic-field CDF files | `c1_cp_fgm_spin_YYYYMMDD_vNN.cdf`; 7,676 CDF files sampled by filename |
+| `<cluster_raw_root>/C1LMLT` | PMP L/MLT context files | `c1_jp_pmp_YYYYMM01_vNN.cdf`; 269 CDF files sampled by filename |
+| `<cluster_raw_root>/C1_E_year` | yearly C1 EFW electric-field CDF files | `C1_CP_EFW_L3_E3D_GSE__YYYY0101_...cdf`; 18 CDF files sampled by filename |
+| `<cluster_raw_root>/cl` | Cluster AUX position and spin-plane auxiliary data | `C1_CP_AUX_POSGSE_1M__...cdf`, `cl/sp/YYYY/cl_sp_aux_YYYYMMDD_vNN.cdf`; 7,437 CDF files sampled by filename |
+| `<cluster_raw_root>/cis/2005` | C1 CIS density status sample for 2005-12-03 | `c1_pp_cis_20051203_v01.cdf` |
+| `<cluster_raw_root>/whi/2005` | C1 WHISPER sample for 2005-12-03 | `c1_pp_whi_20051203_v01.cdf` |
 
 Directory sizes sampled with `du -sh`:
 
@@ -43,7 +43,7 @@ Directory sizes sampled with `du -sh`:
 
 ## Existing Cluster Processing Project
 
-The existing processing code lives in `/Volumes/Elements/data/idlpython_v2`.
+The existing processing code lives in `<cluster_processed_root>`.
 
 Key documents read:
 
@@ -87,14 +87,14 @@ Confirmed production product layout:
 
 | Product family | Confirmed paths |
 |---|---|
-| daily full NPZ | `/Volumes/Elements/data/idlpython_v2/daily_full/YYYY/daily_full_YYYYMMDD.npz` |
-| daily compact parquet | `/Volumes/Elements/data/idlpython_v2/daily_compact/YYYY/daily_compact_YYYYMMDD.parquet` |
-| B quicklook PNG | `/Volumes/Elements/data/idlpython_v2/quicklook_B/YYYY/B_YYYYMMDD.png` |
-| E quicklook PNG | `/Volumes/Elements/data/idlpython_v2/quicklook_E/YYYY/E_YYYYMMDD.png` |
-| POS quicklook PNG | `/Volumes/Elements/data/idlpython_v2/quicklook_POS/YYYY/POS_YYYYMMDD.png` |
-| manifest JSON | `/Volumes/Elements/data/idlpython_v2/manifests/YYYY/manifest_YYYYMMDD.json` |
-| provenance JSON | `/Volumes/Elements/data/idlpython_v2/provenance/YYYY/daily_provenance_YYYYMMDD.json` |
-| logs | `/Volumes/Elements/data/idlpython_v2/logs/YYYY/run_YYYYMMDD.log` |
+| daily full NPZ | `<cluster_processed_root>/daily_full/YYYY/daily_full_YYYYMMDD.npz` |
+| daily compact parquet | `<cluster_processed_root>/daily_compact/YYYY/daily_compact_YYYYMMDD.parquet` |
+| B quicklook PNG | `<cluster_processed_root>/quicklook_B/YYYY/B_YYYYMMDD.png` |
+| E quicklook PNG | `<cluster_processed_root>/quicklook_E/YYYY/E_YYYYMMDD.png` |
+| POS quicklook PNG | `<cluster_processed_root>/quicklook_POS/YYYY/POS_YYYYMMDD.png` |
+| manifest JSON | `<cluster_processed_root>/manifests/YYYY/manifest_YYYYMMDD.json` |
+| provenance JSON | `<cluster_processed_root>/provenance/YYYY/daily_provenance_YYYYMMDD.json` |
+| logs | `<cluster_processed_root>/logs/YYYY/run_YYYYMMDD.log` |
 
 Confirmed current product coverage:
 
@@ -110,7 +110,7 @@ Important path caveat:
 
 ## Existing Cluster Fields
 
-Confirmed by opening `/Volumes/Elements/data/idlpython_v2/daily_full/2005/daily_full_20051203.npz` metadata only:
+Confirmed by opening `<cluster_processed_root>/daily_full/2005/daily_full_20051203.npz` metadata only:
 
 - 74 keys, size about 11.5 MB.
 - Time axes:
@@ -147,7 +147,7 @@ Confirmed by opening `/Volumes/Elements/data/idlpython_v2/daily_full/2005/daily_
   - `segment_Er_band_power`, `segment_Ephi_band_power`, `segment_Epar_band_power`
   - `segment_BE_poloidal_ratio`, `segment_BE_toroidal_ratio`, `segment_BE_compressional_diagnostic_ratio`
 
-Confirmed compact table `/Volumes/Elements/data/idlpython_v2/daily_compact/2005/daily_compact_20051203.parquet`:
+Confirmed compact table `<cluster_processed_root>/daily_compact/2005/daily_compact_20051203.parquet`:
 
 - Shape: 219 rows x 41 columns.
 - Key columns include `time_unix`, `time_iso`, `L`, `MLT`, `MLAT`, `valid_B_flag`, `valid_E_flag`, `valid_BE_flag`, `quality_flag`, band powers, and B/E ratio summary fields.
@@ -216,8 +216,8 @@ All field identification in phase 2 must be recorded as either `confirmed` from 
 The smallest useful MVP should avoid rerunning Cluster science logic and avoid premature CSES physics:
 
 1. Backend config and datasource registry:
-   - `cluster` uses `/Volumes/Elements/data/idlpython_v2` processed outputs.
-   - `cses_hpm` uses `/Users/foursoils/Downloads/HPM` or configured HPM root.
+   - `cluster` uses `<cluster_processed_root>` processed outputs.
+   - `cses_hpm` uses `<local_cses_hpm_root>` or configured HPM root.
 2. Cluster read-only display:
    - List available Cluster processed dates.
    - Show date status from manifests or yearly reports.
@@ -242,10 +242,10 @@ The smallest useful MVP should avoid rerunning Cluster science logic and avoid p
 The next phase should create and run:
 
 ```bash
-cd /Volumes/Elements/satellite_data_web
+cd <repo>
 python backend/scripts/inspect_cses_hpm.py \
-  --input-root /Users/foursoils/Downloads/HPM \
-  --output-root /Volumes/Elements/satellite_data_web/outputs/cses_hpm_inspection \
+  --input-root <local_cses_hpm_root> \
+  --output-root <repo>/outputs/cses_hpm_inspection \
   --max-preview 8 \
   --sample-size 2048
 ```
@@ -269,7 +269,7 @@ Confirmed execution result:
 - Successful inspections: `656`.
 - Errors: `0`.
 - Per-file outputs present: `h5_tree.json`, `h5_tree.txt`, `summary.json`, and `report.md`.
-- No raw H5/HDF5/HE5/CDF files were copied under `/Volumes/Elements/satellite_data_web`.
+- No raw H5/HDF5/HE5/CDF files were copied under `<repo>`.
 
 ## Phase 6 Result
 
@@ -279,14 +279,14 @@ Implemented runtime scope:
 
 - Cluster reads existing `daily_full` NPZ arrays only for subset/statistics/export.
 - CSES reads selected H5 datasets under the configured HPM root with bounded sample-index ranges.
-- Exports and per-export `manifest.json` files are written under `/Volumes/Elements/satellite_data_web/outputs/exports` and served by artifact ID.
+- Exports and per-export `manifest.json` files are written under `<repo>/outputs/exports` and served by artifact ID.
 - CSV, DAT, and H5 are supported export formats; CDF export remains deferred/reserved.
 
 Safety boundaries preserved:
 
 - No Cluster raw CDF files are read by Phase 6 endpoints.
 - No Cluster production scripts are run by the web runtime.
-- No raw H5/HDF5/HE5/CDF files are copied into `/Volumes/Elements/satellite_data_web`.
+- No raw H5/HDF5/HE5/CDF files are copied into `<repo>`.
 
 Initial inferred CSES HPM candidates:
 

@@ -6,7 +6,7 @@
 
 **Architecture:** Add a new upload-session backend service under the existing FastAPI app, keeping legacy datasource APIs available. The frontend becomes a CSES HPM upload console that creates a session, displays backend-derived metadata/logs, and requests magnetic/orbit plots and exports by `upload_session_id`.
 
-**Tech Stack:** FastAPI, h5py, numpy, matplotlib, React/Vite/TypeScript, local outputs under `/Volumes/Elements/satellite_data_web/outputs`.
+**Tech Stack:** FastAPI, h5py, numpy, matplotlib, React/Vite/TypeScript, local outputs under `<repo>/outputs`.
 
 ---
 

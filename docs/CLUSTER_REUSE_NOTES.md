@@ -9,18 +9,18 @@ The web app must reuse existing Cluster processed products as inputs. Formal web
 Primary read-only roots:
 
 ```text
-/Volumes/Elements/data/idlpython_v2/daily_full
-/Volumes/Elements/data/idlpython_v2/daily_compact
-/Volumes/Elements/data/idlpython_v2/manifests
-/Volumes/Elements/data/idlpython_v2/provenance
+<cluster_processed_root>/daily_full
+<cluster_processed_root>/daily_compact
+<cluster_processed_root>/manifests
+<cluster_processed_root>/provenance
 ```
 
 Reference/debug-only quicklook roots:
 
 ```text
-/Volumes/Elements/data/idlpython_v2/quicklook_B
-/Volumes/Elements/data/idlpython_v2/quicklook_E
-/Volumes/Elements/data/idlpython_v2/quicklook_POS
+<cluster_processed_root>/quicklook_B
+<cluster_processed_root>/quicklook_E
+<cluster_processed_root>/quicklook_POS
 ```
 
 Current backend reuse:
@@ -31,7 +31,7 @@ Current backend reuse:
 - reads `daily_compact` parquet columns
 - reads a safe subset of manifest fields
 - returns `unsupported` for historical `existing_quicklook_*` requests because those PNGs are not formal web output
-- generates formal magnetic, electric, spectrogram, and orbit overview PNGs under `/Volumes/Elements/satellite_data_web/outputs/generated_plots/cluster`
+- generates formal magnetic, electric, spectrogram, and orbit overview PNGs under `<repo>/outputs/generated_plots/cluster`
 - generates PSD and orbit views from existing `daily_full` arrays without rerunning wavelet or production code
 - returns `unavailable` for `cluster_solar_wind_overview` with explicit missing/unverified fields because no validated solar-wind product is exposed in the current processed web datasource
 

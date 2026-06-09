@@ -4,13 +4,13 @@ Last updated: 2026-06-05
 
 ## Policy
 
-Cluster Web plots are formal Web-owned artifacts. The backend may read existing validated processed arrays and reuse field selection or plotting logic from `/Volumes/Elements/data/idlpython_v2`, but it must regenerate PNGs under:
+Cluster Web plots are formal Web-owned artifacts. The backend may read existing validated processed arrays and reuse field selection or plotting logic from `<cluster_processed_root>`, but it must regenerate PNGs under:
 
 ```text
-/Volumes/Elements/satellite_data_web/outputs/generated_plots/cluster/
+<repo>/outputs/generated_plots/cluster/
 ```
 
-Old PNG/PDF quicklooks under `/Volumes/Elements/data/idlpython_v2` are reference/debug products only. The Web app does not write to `/Volumes/Elements/data/idlpython_v2` or `/Volumes/Elements/data/cluster`, and it does not rerun multi-year production.
+Old PNG/PDF quicklooks under `<cluster_processed_root>` are reference/debug products only. The Web app does not write to `<cluster_processed_root>` or `<cluster_raw_root>`, and it does not rerun multi-year production.
 
 ## Implemented Cluster Catalog Plots
 
@@ -52,7 +52,7 @@ Old PNG/PDF quicklooks under `/Volumes/Elements/data/idlpython_v2` are reference
 
 - Desired fields: `flow_speed`, `SYM-H`, `pdyn`, `AE`, `Kp`, `Bmag_model`
 - Current status for `20051203`: `unavailable`
-- Current evidence: keyword search in `/Volumes/Elements/data/idlpython_v2` finds old context/quicklook traces, but `daily_full_20051203.npz` exposes only local Cluster context fields such as `segment_time_context_unix`, `segment_context_mask`, `full_day_time_context_unix`, and `full_day_context_mask`; it does not expose the desired solar-wind/context fields.
+- Current evidence: keyword search in `<cluster_processed_root>` finds old context/quicklook traces, but `daily_full_20051203.npz` exposes only local Cluster context fields such as `segment_time_context_unix`, `segment_context_mask`, `full_day_time_context_unix`, and `full_day_context_mask`; it does not expose the desired solar-wind/context fields.
 - API behavior: returns `status="unavailable"` with `missing_fields`; no PNG is generated
 
 ## Missing Or Unverified Work
