@@ -848,7 +848,7 @@ def optional_value(values: np.ndarray, index: int) -> float | None:
     return value if np.isfinite(value) else None
 
 
-def draw_magnetic_segments(path: Path, segments: list[dict[str, Any]], product: str) -> None:
+def draw_magnetic_segments(path: Path, segments: list[dict[str, Any]], product: str, *, integer_hour_ticks: bool = False) -> None:
     count = len(segments)
     cols = min(2, count)
     rows = int(math.ceil(count / cols))
@@ -875,7 +875,11 @@ def draw_magnetic_segments(path: Path, segments: list[dict[str, Any]], product: 
         ax.set_title(f"{title_start} - {title_end} UTC+8", fontsize=9)
         ax.grid(True, alpha=0.25)
         ax.legend(loc="best", fontsize=7)
-        ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M:%S"))
+        if integer_hour_ticks:
+            ax.xaxis.set_major_locator(mdates.HourLocator())
+            ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M"))
+        else:
+            ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M:%S"))
         ax.set_xlabel("UTC+8 time")
     fig.suptitle("CSES HPM magnetic diagnostic by plot group")
     fig.tight_layout()

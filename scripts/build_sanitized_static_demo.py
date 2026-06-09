@@ -122,7 +122,7 @@ def main() -> int:
 
     write_json(outdir / "magnetic_sanitized_downsampled.json", build_magnetic_payload(magnetic_points, segments, args.magnetic_downsample_sec))
     write_json(outdir / "orbit_points_sanitized.json", build_orbit_payload(orbit_points, segments, args.orbit_downsample_sec))
-    draw_magnetic_segments(outdir / "magnetic_overview.png", magnetic_plot_groups_from_sanitized(magnetic_points, segments, plot_groups), "HPM_5")
+    draw_magnetic_segments(outdir / "magnetic_overview.png", magnetic_plot_groups_from_sanitized(magnetic_points, segments, plot_groups), "HPM_5", integer_hour_ticks=True)
     write_interactive_orbit_html(outdir / "orbit_demo.html", orbit_segments_from_sanitized(orbit_points, segments), segments, plot_groups)
 
     session = build_static_session(source_records, deduped_rows, segments, plot_groups, duplicate_time_removed_count, statistics)

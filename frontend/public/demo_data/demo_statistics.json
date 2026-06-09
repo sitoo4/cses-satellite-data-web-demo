@@ -2967,7 +2967,7 @@
     "full_resolution_time_series_not_included"
   ],
   "errors": [],
-  "generated_at": "2026-06-09T11:29:59.477728+00:00",
+  "generated_at": "2026-06-09T12:46:40.925896+00:00",
   "artifacts": {
     "statistics_json": {
       "artifact_id": "static-demo-statistics-json",

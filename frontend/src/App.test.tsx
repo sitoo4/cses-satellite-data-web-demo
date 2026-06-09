@@ -339,6 +339,15 @@ describe("App static public demo workflow", () => {
     expect(screen.getByRole("img", { name: "demo magnetic" })).toHaveAttribute("src", expect.stringContaining("demo_data/magnetic_overview.png"));
     expect(screen.getByText("当前为 demo，不提供运行日志服务")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "频谱图" })).toHaveAttribute("title", "涉及其他数据，demo 版本不支持展示");
+    expect(document.querySelector(".crop-label-cell")).toHaveAttribute("title", "demo 版本不支持裁剪功能");
+    expect(document.querySelector(".crop-export-row")).toHaveAttribute("title", "sorry！下载达咩哦");
+    const staticExportButton = screen.getByRole("button", { name: "export" });
+    expect(staticExportButton).toBeDisabled();
+    expect(staticExportButton).toHaveAttribute("title", "sorry！下载达咩哦");
+    expect(screen.queryByRole("link", { name: "导出统计 JSON" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "导出统计 CSV" })).not.toBeInTheDocument();
+    expect(screen.getByText("导出统计 JSON")).toHaveAttribute("title", "sorry！下载达咩哦");
+    expect(screen.getByText("导出统计 CSV")).toHaveAttribute("title", "sorry！下载达咩哦");
     expect(screen.queryByRole("link", { name: "导出当前图像" })).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "上传文件" }));
     expect(screen.getByRole("alert")).toHaveTextContent("当前为 demo，脱敏数据已准备，不支持上传");
