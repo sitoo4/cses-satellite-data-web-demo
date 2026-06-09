@@ -59,8 +59,6 @@ def make_client(root: Path) -> TestClient:
     config_path.write_text(
         json.dumps(
             {
-                "cluster_raw_root": str(root / "cluster"),
-                "cluster_processed_root": str(root / "idlpython_v2"),
                 "cses_hpm_root": str(root / "unused_hpm_root"),
                 "outputs_root": str(root / "outputs"),
             }

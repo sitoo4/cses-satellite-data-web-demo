@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import csv
 import json
-import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -14,10 +13,6 @@ from fastapi.testclient import TestClient
 from app.datasources.cses_hpm import parse_cses_utc_time_millis
 from app.main import create_app
 from app.services.cses_h5_inspector import inspect_h5_tree
-
-
-def run_external_cluster_tests() -> bool:
-    return os.environ.get("SATELLITE_WEB_RUN_EXTERNAL_CLUSTER_TESTS") == "1"
 
 
 class Phase6ExportStatsApiTest(unittest.TestCase):
@@ -44,8 +39,6 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "cluster_raw_root": str(root / "cluster"),
-                        "cluster_processed_root": str(root / "idlpython_v2"),
                         "cses_hpm_root": str(hpm_root),
                         "outputs_root": str(output_root),
                     }
@@ -287,8 +280,6 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "cluster_raw_root": str(root / "cluster"),
-                        "cluster_processed_root": str(root / "idlpython_v2"),
                         "cses_hpm_root": str(hpm_root),
                         "outputs_root": str(output_root),
                     }
@@ -453,242 +444,6 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
         self.assertEqual(parsed[1] - parsed[0], 1250)
         self.assertEqual(parsed[2] - parsed[1], 1000)
 
-    @unittest.skipUnless(run_external_cluster_tests(), "External Cluster processed products are not included in public-demo")
-    def test_cluster_processed_subset_stats_and_export_use_daily_full_only(self) -> None:
-        client = TestClient(create_app())
-
-        subset = client.post(
-            "/api/datasources/cluster/subset",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_B_MFA_after_delete", "segment_MLAT"],
-                "range": {"mode": "sample_index", "start_index": 0, "end_index": 5},
-                "preview_limit": 5,
-            },
-        )
-        self.assertEqual(subset.status_code, 200)
-        subset_payload = subset.json()
-        self.assertEqual(subset_payload["range"]["sample_count"], 5)
-        self.assertEqual(subset_payload["variables"][0]["path"], "segment_B_MFA_after_delete")
-        self.assertEqual(len(subset_payload["variables"][0]["data"]), 5)
-
-        stats = client.post(
-            "/api/datasources/cluster/stats",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_B_MFA_after_delete", "segment_MLAT"],
-                "range": {"mode": "sample_index", "start_index": 0, "end_index": 10},
-            },
-        )
-        self.assertEqual(stats.status_code, 200)
-        stats_payload = stats.json()
-        by_name = {item["path"]: item for item in stats_payload["variables"]}
-        self.assertEqual(by_name["segment_B_MFA_after_delete"]["component_count"], 3)
-        self.assertEqual(by_name["segment_MLAT"]["component_count"], 1)
-        self.assertEqual(by_name["segment_B_MFA_after_delete"]["stats"][0]["count"], 10)
-
-        saved_cluster_stats = client.post(
-            "/api/datasources/cluster/stats",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_B_MFA_after_delete"],
-                "range": {"mode": "sample_index", "start_index": 0, "end_index": 10},
-                "save_format": "json",
-            },
-        )
-        self.assertEqual(saved_cluster_stats.status_code, 200)
-        cluster_stats_artifact = saved_cluster_stats.json()["stats_artifact"]
-        self.assertEqual(cluster_stats_artifact["media_type"], "application/json")
-        self.assertTrue(str(cluster_stats_artifact["artifact_id"]).startswith("cluster:stats:20051203:"))
-        self.assertIn("<repo>/outputs/stats", cluster_stats_artifact["path"])
-        self.assertNotIn("<cluster_raw_root>", cluster_stats_artifact["path"])
-
-        saved_cluster_dat_stats = client.post(
-            "/api/datasources/cluster/stats",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_MLAT"],
-                "range": {"mode": "sample_index", "start_index": 0, "end_index": 3},
-                "save_format": "dat",
-            },
-        )
-        self.assertEqual(saved_cluster_dat_stats.status_code, 200)
-        cluster_dat_stats_artifact = saved_cluster_dat_stats.json()["stats_artifact"]
-        self.assertEqual(cluster_dat_stats_artifact["media_type"], "text/plain")
-        self.assertIn("<repo>/outputs/stats", cluster_dat_stats_artifact["path"])
-        self.assertNotIn("<cluster_raw_root>", cluster_dat_stats_artifact["path"])
-        cluster_dat_stats_text = client.get(f"/api/artifacts/{cluster_dat_stats_artifact['artifact_id']}").text
-        self.assertTrue(cluster_dat_stats_text.startswith("variable\tcomponent\tcount\tfinite_count\tmin\tmax\tmean\tmedian\tstd\tmissing_ratio\n"))
-        self.assertIn("segment_MLAT\t0\t3\t3", cluster_dat_stats_text)
-
-        saved_cluster_cdf_stats = client.post(
-            "/api/datasources/cluster/stats",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_MLAT"],
-                "range": {"mode": "sample_index", "start_index": 0, "end_index": 3},
-                "save_format": "cdf",
-            },
-        )
-        self.assertEqual(saved_cluster_cdf_stats.status_code, 200)
-        cluster_cdf_stats_payload = saved_cluster_cdf_stats.json()
-        self.assertEqual(cluster_cdf_stats_payload["status"], "unsupported")
-        self.assertEqual(cluster_cdf_stats_payload["save_format"], "cdf")
-        self.assertEqual(cluster_cdf_stats_payload["reserved"], True)
-        self.assertNotIn("stats_artifact", cluster_cdf_stats_payload)
-        self.assertIn("CDF remains reserved", cluster_cdf_stats_payload["reason"])
-
-        export = client.post(
-            "/api/datasources/cluster/export",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_B_MFA_after_delete", "segment_MLAT"],
-                "range": {"mode": "sample_index", "start_index": 0, "end_index": 3},
-                "format": "csv",
-            },
-        )
-        self.assertEqual(export.status_code, 200)
-        export_payload = export.json()
-        artifact = export_payload["artifact"]
-        self.assertTrue(str(artifact["artifact_id"]).startswith("cluster:export:20051203:"))
-        self.assertIn("<repo>/outputs/exports", artifact["path"])
-        self.assertNotIn("<cluster_raw_root>", artifact["path"])
-        self.assertIn("manifest_artifact", export_payload)
-        self.assertEqual(export_payload["manifest"]["datasource"], "cluster")
-        self.assertEqual(export_payload["manifest"]["export_format"], "csv")
-        self.assertEqual(export_payload["manifest"]["sample_count"], 3)
-        self.assertEqual(export_payload["manifest"]["variables"][0]["path"], "segment_B_MFA_after_delete")
-
-        artifact_response = client.get(f"/api/artifacts/{artifact['artifact_id']}")
-        self.assertEqual(artifact_response.status_code, 200)
-        rows = list(csv.DictReader(artifact_response.text.splitlines()))
-        self.assertEqual(len(rows), 3)
-        self.assertEqual(rows[0]["sample_index"], "0")
-        self.assertIn("segment_B_MFA_after_delete_0", rows[0])
-        self.assertIn("segment_MLAT", rows[0])
-
-        manifest_response = client.get(f"/api/artifacts/{export_payload['manifest_artifact']['artifact_id']}")
-        self.assertEqual(manifest_response.status_code, 200)
-        self.assertIn("<cluster_processed_root>/daily_full/2005/daily_full_20051203.npz", manifest_response.json()["original_file"])
-
-        dat_export = client.post(
-            "/api/datasources/cluster/export",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_MLAT"],
-                "range": {"mode": "sample_index", "start_index": 0, "end_index": 2},
-                "format": "dat",
-            },
-        )
-        self.assertEqual(dat_export.status_code, 200)
-        dat_artifact = dat_export.json()["artifact"]
-        self.assertEqual(dat_artifact["media_type"], "text/plain")
-        self.assertIn("<repo>/outputs/exports", dat_artifact["path"])
-        self.assertNotIn("<cluster_raw_root>", dat_artifact["path"])
-        dat_text = client.get(f"/api/artifacts/{dat_artifact['artifact_id']}").text
-        self.assertTrue(dat_text.startswith("sample_index\tsegment_MLAT\n"))
-
-        cluster_cdf_export = client.post(
-            "/api/datasources/cluster/export",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_MLAT"],
-                "range": {"mode": "sample_index", "start_index": 0, "end_index": 2},
-                "format": "cdf",
-            },
-        )
-        self.assertEqual(cluster_cdf_export.status_code, 200)
-        cluster_cdf_payload = cluster_cdf_export.json()
-        self.assertEqual(cluster_cdf_payload["status"], "unsupported")
-        self.assertEqual(cluster_cdf_payload["format"], "cdf")
-        self.assertEqual(cluster_cdf_payload["reserved"], True)
-        self.assertNotIn("artifact", cluster_cdf_payload)
-        self.assertIn("CDF remains reserved", cluster_cdf_payload["reason"])
-
-    @unittest.skipUnless(run_external_cluster_tests(), "External Cluster processed products are not included in public-demo")
-    def test_cluster_time_range_uses_confirmed_processed_time_axis(self) -> None:
-        client = TestClient(create_app())
-        range_spec = {
-            "mode": "time",
-            "start": "2005-12-03T14:45:11.122997Z",
-            "end": "2005-12-03T14:45:23.527997Z",
-        }
-
-        subset = client.post(
-            "/api/datasources/cluster/subset",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_MLAT"],
-                "range": range_spec,
-                "preview_limit": 20,
-            },
-        )
-        self.assertEqual(subset.status_code, 200)
-        subset_payload = subset.json()
-        self.assertEqual(subset_payload["range"]["mode"], "time")
-        self.assertEqual(subset_payload["range"]["resolved_mode"], "sample_index")
-        self.assertEqual(subset_payload["range"]["start_index"], 2)
-        self.assertEqual(subset_payload["range"]["end_index"], 5)
-        self.assertEqual(subset_payload["range"]["sample_count"], 3)
-        self.assertEqual(subset_payload["range"]["time_variable"], "segment_time_context_unix")
-        self.assertEqual(subset_payload["range"]["time_confidence"], "confirmed")
-
-        timeseries = client.post(
-            "/api/datasources/cluster/timeseries",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_MLAT"],
-                "range": range_spec,
-            },
-        )
-        self.assertEqual(timeseries.status_code, 200)
-        timeseries_payload = timeseries.json()
-        self.assertEqual(timeseries_payload["range"]["start_index"], 2)
-        self.assertEqual(timeseries_payload["range"]["end_index"], 5)
-        self.assertEqual(timeseries_payload["time_axis"]["kind"], "utc")
-        self.assertEqual(timeseries_payload["time_axis"]["path"], "segment_time_context_unix")
-        self.assertEqual(timeseries_payload["time_axis"]["confidence"], "confirmed")
-        self.assertEqual(
-            timeseries_payload["time_axis"]["data"],
-            [
-                "2005-12-03T14:45:11.123001Z",
-                "2005-12-03T14:45:15.259003Z",
-                "2005-12-03T14:45:19.393997Z",
-            ],
-        )
-
-        stats = client.post(
-            "/api/datasources/cluster/stats",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_MLAT"],
-                "range": range_spec,
-            },
-        )
-        self.assertEqual(stats.status_code, 200)
-        stats_payload = stats.json()
-        self.assertEqual(stats_payload["range"]["sample_count"], 3)
-        self.assertEqual(stats_payload["variables"][0]["stats"][0]["count"], 3)
-
-        export = client.post(
-            "/api/datasources/cluster/export",
-            json={
-                "file_id": "20051203",
-                "variables": ["segment_MLAT"],
-                "range": range_spec,
-                "format": "csv",
-            },
-        )
-        self.assertEqual(export.status_code, 200)
-        export_payload = export.json()
-        self.assertEqual(export_payload["range"]["mode"], "time")
-        self.assertEqual(export_payload["range"]["resolved_mode"], "sample_index")
-        self.assertEqual(export_payload["manifest"]["range"]["time_confidence"], "confirmed")
-        csv_text = client.get(f"/api/artifacts/{export_payload['artifact']['artifact_id']}").text
-        rows = list(csv.DictReader(csv_text.splitlines()))
-        self.assertEqual(len(rows), 3)
-        self.assertEqual(rows[0]["sample_index"], "2")
-
     def test_cses_batch_stats_sort_deduplicate_and_summarize_selected_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
@@ -717,8 +472,6 @@ class Phase6ExportStatsApiTest(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "cluster_raw_root": str(root / "cluster"),
-                        "cluster_processed_root": str(root / "idlpython_v2"),
                         "cses_hpm_root": str(hpm_root),
                         "outputs_root": str(output_root),
                     }

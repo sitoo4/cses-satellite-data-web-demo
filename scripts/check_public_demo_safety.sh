@@ -26,6 +26,17 @@ echo "Checking demo_data display date sanitization..."
 date_hits="$(grep -R -n -E '2023-|202304' frontend/public/demo_data 2>/dev/null || true)"
 [[ -z "$date_hits" ]] || fail "unsanitized source dates found in demo_data:\n$date_hits"
 
+echo "Checking public demo contains only CSES references..."
+forbidden_pattern="$(printf '%s' 'clus' 'ter|' 'idl' 'python|' 'daily' '_full|' 'whis' 'per|' 'c1_cp|c[1-4]_cp|' 'om' 'ni')"
+cses_only_hits="$(
+  git grep -n -i -E "$forbidden_pattern" -- . \
+    ':!frontend/package-lock.json' \
+    ':!frontend/node_modules' \
+    ':!frontend/dist' \
+    ':!scripts/check_public_demo_safety.sh' 2>/dev/null || true
+)"
+[[ -z "$cses_only_hits" ]] || fail "non-CSES references found:\n$cses_only_hits"
+
 echo "Checking static demo file sizes..."
 python - <<'PY'
 import json

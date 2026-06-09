@@ -13,8 +13,6 @@ DEFAULT_APP_ROOT = Path(__file__).resolve().parents[3]
 @dataclass(frozen=True)
 class AppConfig:
     app_root: Path
-    cluster_raw_root: Path
-    cluster_processed_root: Path
     cses_hpm_root: Path
     outputs_root: Path
 
@@ -37,8 +35,6 @@ def load_config(config_path: Path | str | None = None) -> AppConfig:
         app_root = path.parent.parent if path.parent.name == "backend" else path.parent
     return AppConfig(
         app_root=app_root,
-        cluster_raw_root=_path_value(payload, "cluster_raw_root", app_root / "sample_data" / "cluster_raw_not_included"),
-        cluster_processed_root=_path_value(payload, "cluster_processed_root", app_root / "sample_data" / "cluster_processed_not_included"),
         cses_hpm_root=_path_value(payload, "cses_hpm_root", app_root / "sample_data" / "cses_hpm_not_included"),
         outputs_root=_path_value(payload, "outputs_root", app_root / "outputs"),
     )

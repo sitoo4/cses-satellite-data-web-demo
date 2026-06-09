@@ -315,7 +315,7 @@ class CsesHpmDataSource(DataSource):
                 {
                     "plot_type": "cses_hpm_solar_wind_overview",
                     "display_name": "HPM solar wind",
-                    "description": "Disabled because CSES HPM files do not contain OMNI/solar-wind context.",
+                    "description": "Disabled because CSES HPM files do not contain external solar-wind context.",
                     "enabled": False,
                     "disabled_reason": CSES_UNSUPPORTED_FEATURES["solar_wind"],
                     "required_fields": [],
@@ -645,7 +645,7 @@ class CsesHpmDataSource(DataSource):
             "time": {"field": time_variable, "confidence": "inferred"},
             "processing_log": [
                 "Used H5 geographic lat/lon/alt fields directly.",
-                "No Cluster L/MLT/MLAT conversion was applied.",
+                "No derived magnetic-coordinate conversion was applied.",
             ],
             "artifact": artifact,
         }

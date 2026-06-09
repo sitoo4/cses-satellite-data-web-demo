@@ -5,14 +5,12 @@ from typing import Any
 from app.core.artifacts import ArtifactRegistry
 from app.core.config import AppConfig
 from app.datasources.base import DataSource
-from app.datasources.cluster import ClusterDataSource
 from app.datasources.cses_hpm import CsesHpmDataSource
 
 
 class DataSourceRegistry:
     def __init__(self, config: AppConfig, artifacts: ArtifactRegistry) -> None:
         self._sources: dict[str, DataSource] = {
-            "cluster": ClusterDataSource(config, artifacts),
             "cses_hpm": CsesHpmDataSource(config, artifacts),
         }
 

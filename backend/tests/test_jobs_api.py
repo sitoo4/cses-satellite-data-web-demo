@@ -30,8 +30,6 @@ class JobsApiTest(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "cluster_raw_root": str(root / "cluster"),
-                        "cluster_processed_root": str(root / "idlpython_v2"),
                         "cses_hpm_root": str(hpm_root),
                         "outputs_root": str(output_root),
                     }

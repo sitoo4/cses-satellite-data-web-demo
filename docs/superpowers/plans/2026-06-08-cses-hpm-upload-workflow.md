@@ -4,7 +4,7 @@
 
 **Goal:** Replace the CSES HPM web workflow with an upload-session driven UI and backend data flow.
 
-**Architecture:** Add a new upload-session backend service under the existing FastAPI app, keeping legacy datasource APIs available. The frontend becomes a CSES HPM upload console that creates a session, displays backend-derived metadata/logs, and requests magnetic/orbit plots and exports by `upload_session_id`.
+**Architecture:** Add a new upload-session backend service under the existing FastAPI app, keeping CSES HPM datasource APIs available. The frontend becomes a CSES HPM upload console that creates a session, displays backend-derived metadata/logs, and requests magnetic/orbit plots and exports by `upload_session_id`.
 
 **Tech Stack:** FastAPI, h5py, numpy, matplotlib, React/Vite/TypeScript, local outputs under `<repo>/outputs`.
 
@@ -51,7 +51,7 @@
 
 **Files:**
 - Modify: `README.md`
-- Create or modify: `docs/WEB_APP_USER_GUIDE_ZH.md`
+- Modify: `DEMO.md`
 
 - [ ] Document upload-driven flow, API examples, commands, tests, and known limitations.
 - [ ] Verify backend unit tests.

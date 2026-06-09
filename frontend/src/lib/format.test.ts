@@ -19,20 +19,20 @@ describe("frontend format helpers", () => {
   });
 
   it("builds artifact URLs without exposing local file paths", () => {
-    expect(artifactUrl("cluster:quicklook_B:20051203")).toBe("/api/artifacts/cluster%3Aquicklook_B%3A20051203");
+    expect(artifactUrl("cses_hpm:plot:demo_segment_01")).toBe("/api/artifacts/cses_hpm%3Aplot%3Ademo_segment_01");
   });
 
-  it("summarizes Cluster product availability from product flags", () => {
+  it("summarizes product availability from product flags", () => {
     const availability = productAvailability({
-      daily_full: { exists: true, size_bytes: 100 },
-      quicklook_B: { exists: false, size_bytes: 0 },
-      quicklook_E: { exists: true, size_bytes: 200 }
+      magnetic_overview: { exists: true, size_bytes: 100 },
+      orbit_overview: { exists: false, size_bytes: 0 },
+      statistics_summary: { exists: true, size_bytes: 200 }
     });
 
     expect(availability).toEqual({
       total: 3,
       available: 2,
-      missing: ["quicklook_B"]
+      missing: ["orbit_overview"]
     });
   });
 

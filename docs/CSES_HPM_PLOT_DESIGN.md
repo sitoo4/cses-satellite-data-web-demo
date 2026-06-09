@@ -4,7 +4,7 @@ Last updated: 2026-06-05
 
 ## Policy
 
-CSES HPM plots are designed from H5 inspector output. The backend must not copy Cluster plot categories into CSES by default. CSES HPM is currently a CSES-01 HPM magnetometer-only H5 datasource rooted at:
+CSES HPM plots are designed from H5 inspector output. The public demo exposes only CSES-01 HPM magnetometer plots and sanitized static derivatives.
 
 ```text
 <local_cses_hpm_root>
@@ -37,7 +37,7 @@ The backend does not write to `<local_cses_hpm_root>` and does not modify source
 
 - Field basis: direct H5 latitude, longitude, and altitude candidates
 - Figure content: lon-lat track, altitude over sample/time, lat/lon over sample/time
-- Boundary: no Cluster `L`, `MLT`, or `MLAT` plot is shown unless a future verified CSES coordinate conversion is added
+- Boundary: no derived magnetic-coordinate plot is shown unless a future verified CSES coordinate conversion is added
 
 ### `cses_hpm_cadence_overview`
 
@@ -65,10 +65,10 @@ This remains disabled even if `/UTC_TIME` can be mechanically parsed, because pa
 
 ### Electric Field And Solar Wind
 
-CSES HPM does not expose electric-field data or solar-wind/OMNI context in the current datasource. The catalog items remain disabled with:
+CSES HPM does not expose electric-field data or external solar-wind context in the current datasource. The catalog items remain disabled with:
 
 ```text
 not available for CSES HPM magnetometer-only datasource
 ```
 
-These features must not be made available by copying Cluster logic into CSES.
+These features remain disabled until product-specific rules and inputs are confirmed.

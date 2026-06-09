@@ -45,8 +45,6 @@ class CsesDatasourceApiTest(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "cluster_raw_root": str(root / "cluster"),
-                        "cluster_processed_root": str(root / "idlpython_v2"),
                         "cses_hpm_root": str(hpm_root),
                         "outputs_root": str(output_root),
                     }
@@ -90,8 +88,6 @@ class CsesDatasourceApiTest(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "cluster_raw_root": str(root / "cluster"),
-                        "cluster_processed_root": str(root / "idlpython_v2"),
                         "cses_hpm_root": str(hpm_root),
                         "outputs_root": str(output_root),
                     }
@@ -148,8 +144,6 @@ class CsesDatasourceApiTest(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "cluster_raw_root": str(root / "cluster"),
-                        "cluster_processed_root": str(root / "idlpython_v2"),
                         "cses_hpm_root": str(hpm_root),
                         "outputs_root": str(output_root),
                     }
@@ -166,7 +160,7 @@ class CsesDatasourceApiTest(unittest.TestCase):
             datasources = client.get("/api/datasources")
             self.assertEqual(datasources.status_code, 200)
             names = {item["name"] for item in datasources.json()["datasources"]}
-            self.assertEqual(names, {"cluster", "cses_hpm"})
+            self.assertEqual(names, {"cses_hpm"})
             cses_summary = next(item for item in datasources.json()["datasources"] if item["name"] == "cses_hpm")
             unsupported = {item["feature"]: item["reason"] for item in cses_summary["unsupported"]}
             self.assertIn("electric_field", unsupported)
@@ -407,8 +401,6 @@ class CsesDatasourceApiTest(unittest.TestCase):
             config_path.write_text(
                 json.dumps(
                     {
-                        "cluster_raw_root": str(root / "cluster"),
-                        "cluster_processed_root": str(root / "idlpython_v2"),
                         "cses_hpm_root": str(hpm_root),
                         "outputs_root": str(output_root),
                     }
