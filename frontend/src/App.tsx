@@ -301,12 +301,12 @@ export default function App() {
             ) : null}
             <div className="crop-export-row" title={IS_STATIC_DEMO ? STATIC_DOWNLOAD_DISABLED_REASON : undefined}>
               <span className="crop-export-label">{IS_STATIC_DEMO ? "下载 demo 统计结果" : "按当前裁剪后的数据范围导出"}</span>
-              <select value={exportFormat} disabled={IS_STATIC_DEMO} onChange={(event) => setExportFormat(event.target.value as ExportFormat)}>
+              <select value={exportFormat} onChange={(event) => setExportFormat(event.target.value as ExportFormat)}>
                 {IS_STATIC_DEMO ? (
                   <>
                     <option value="csv">csv</option>
-                    <option value="json">json</option>
-                    <option value="manifest">manifest</option>
+                    <option value="dat">dat</option>
+                    <option value="h5">h5</option>
                   </>
                 ) : (
                   <>

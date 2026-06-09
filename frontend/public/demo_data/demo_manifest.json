@@ -1,7 +1,7 @@
 {
   "name": "CSES HPM GitHub Pages sanitized static demo",
   "mode": "static_public_demo_sanitized",
-  "generated_at": "2026-06-09T12:46:40.993071+00:00",
+  "generated_at": "2026-06-09T13:12:59.205168+00:00",
   "source": {
     "description": "Derived locally from six CSES-01 HPM_5 H5 files. Raw H5 files are not included.",
     "file_count": 6,
@@ -55,12 +55,12 @@
     "magnetic_demo_point_count": 211,
     "orbit_demo_point_count": 108,
     "time_range_utc": {
-      "start": "2023-04-19T23:55:43Z",
-      "end": "2023-04-20T04:26:54Z"
+      "start": "2000-12-17T07:55:43Z",
+      "end": "2000-12-17T12:26:54Z"
     },
     "time_range_beijing": {
-      "start": "2023-04-20 07:55",
-      "end": "2023-04-20 12:26"
+      "start": "2000-12-17 07:55",
+      "end": "2000-12-17 12:26"
     },
     "segment_count": 6,
     "plot_group_count": 1

@@ -8,10 +8,10 @@
     "product_type": "HPM_5"
   },
   "time_range": {
-    "start_time": "2023-04-19T23:55:43Z",
-    "end_time": "2023-04-20T04:26:54Z",
-    "display_start_time": "2023-04-20 07:55",
-    "display_end_time": "2023-04-20 12:26"
+    "start_time": "2000-12-17T07:55:43Z",
+    "end_time": "2000-12-17T12:26:54Z",
+    "display_start_time": "2000-12-17 07:55",
+    "display_end_time": "2000-12-17 12:26"
   },
   "processing_summary": {
     "uploaded_file_count": 6,
@@ -30,10 +30,10 @@
   },
   "overall_statistics": {
     "time_coverage": {
-      "start_time": "2023-04-19T23:55:43Z",
-      "end_time": "2023-04-20T04:26:54Z",
-      "display_start_time": "2023-04-20 07:55",
-      "display_end_time": "2023-04-20 12:26",
+      "start_time": "2000-12-17T23:55:43Z",
+      "end_time": "2000-12-17T04:26:54Z",
+      "display_start_time": "2000-12-17 07:55",
+      "display_end_time": "2000-12-17 12:26",
       "duration_seconds": 16271.0,
       "sample_count": 12467,
       "valid_time_count": 12467,
@@ -51,38 +51,38 @@
       "large_gap_threshold_rule": "max(5s, 2.5*median_cadence_seconds)",
       "large_gap_ranges": [
         {
-          "start": "2023-04-20T00:30:02Z",
-          "end": "2023-04-20T00:43:05Z",
-          "display_start": "2023-04-20 08:30",
-          "display_end": "2023-04-20 08:43",
+          "start": "2000-12-17T00:30:02Z",
+          "end": "2000-12-17T00:43:05Z",
+          "display_start": "2000-12-17 08:30",
+          "display_end": "2000-12-17 08:43",
           "gap_seconds": 783.0
         },
         {
-          "start": "2023-04-20T01:17:28Z",
-          "end": "2023-04-20T01:28:50Z",
-          "display_start": "2023-04-20 09:17",
-          "display_end": "2023-04-20 09:28",
+          "start": "2000-12-17T01:17:28Z",
+          "end": "2000-12-17T01:28:50Z",
+          "display_start": "2000-12-17 09:17",
+          "display_end": "2000-12-17 09:28",
           "gap_seconds": 682.0
         },
         {
-          "start": "2023-04-20T02:04:45Z",
-          "end": "2023-04-20T02:17:48Z",
-          "display_start": "2023-04-20 10:04",
-          "display_end": "2023-04-20 10:17",
+          "start": "2000-12-17T02:04:45Z",
+          "end": "2000-12-17T02:17:48Z",
+          "display_start": "2000-12-17 10:04",
+          "display_end": "2000-12-17 10:17",
           "gap_seconds": 783.0
         },
         {
-          "start": "2023-04-20T02:52:10Z",
-          "end": "2023-04-20T03:05:09Z",
-          "display_start": "2023-04-20 10:52",
-          "display_end": "2023-04-20 11:05",
+          "start": "2000-12-17T02:52:10Z",
+          "end": "2000-12-17T03:05:09Z",
+          "display_start": "2000-12-17 10:52",
+          "display_end": "2000-12-17 11:05",
           "gap_seconds": 779.0
         },
         {
-          "start": "2023-04-20T03:39:28Z",
-          "end": "2023-04-20T03:52:31Z",
-          "display_start": "2023-04-20 11:39",
-          "display_end": "2023-04-20 11:52",
+          "start": "2000-12-17T03:39:28Z",
+          "end": "2000-12-17T03:52:31Z",
+          "display_start": "2000-12-17 11:39",
+          "display_end": "2000-12-17 11:52",
           "gap_seconds": 783.0
         }
       ]
@@ -280,10 +280,10 @@
       "hpm_product": "HPM_5",
       "raw_sample_count": 2060,
       "time_coverage": {
-        "start_time": "2023-04-19T23:55:43Z",
-        "end_time": "2023-04-20T00:30:02Z",
-        "display_start_time": "2023-04-20 07:55",
-        "display_end_time": "2023-04-20 08:30",
+        "start_time": "2000-12-17T23:55:43Z",
+        "end_time": "2000-12-17T00:30:02Z",
+        "display_start_time": "2000-12-17 07:55",
+        "display_end_time": "2000-12-17 08:30",
         "duration_seconds": 2059.0,
         "sample_count": 2060,
         "valid_time_count": 2060,
@@ -509,10 +509,10 @@
       "hpm_product": "HPM_5",
       "raw_sample_count": 2064,
       "time_coverage": {
-        "start_time": "2023-04-20T00:43:05Z",
-        "end_time": "2023-04-20T01:17:28Z",
-        "display_start_time": "2023-04-20 08:43",
-        "display_end_time": "2023-04-20 09:17",
+        "start_time": "2000-12-17T00:43:05Z",
+        "end_time": "2000-12-17T01:17:28Z",
+        "display_start_time": "2000-12-17 08:43",
+        "display_end_time": "2000-12-17 09:17",
         "duration_seconds": 2063.0,
         "sample_count": 2064,
         "valid_time_count": 2064,
@@ -740,10 +740,10 @@
       "hpm_product": "HPM_5",
       "raw_sample_count": 2156,
       "time_coverage": {
-        "start_time": "2023-04-20T01:28:50Z",
-        "end_time": "2023-04-20T02:04:45Z",
-        "display_start_time": "2023-04-20 09:28",
-        "display_end_time": "2023-04-20 10:04",
+        "start_time": "2000-12-17T01:28:50Z",
+        "end_time": "2000-12-17T02:04:45Z",
+        "display_start_time": "2000-12-17 09:28",
+        "display_end_time": "2000-12-17 10:04",
         "duration_seconds": 2155.0,
         "sample_count": 2156,
         "valid_time_count": 2156,
@@ -969,10 +969,10 @@
       "hpm_product": "HPM_5",
       "raw_sample_count": 2063,
       "time_coverage": {
-        "start_time": "2023-04-20T02:17:48Z",
-        "end_time": "2023-04-20T02:52:10Z",
-        "display_start_time": "2023-04-20 10:17",
-        "display_end_time": "2023-04-20 10:52",
+        "start_time": "2000-12-17T02:17:48Z",
+        "end_time": "2000-12-17T02:52:10Z",
+        "display_start_time": "2000-12-17 10:17",
+        "display_end_time": "2000-12-17 10:52",
         "duration_seconds": 2062.0,
         "sample_count": 2063,
         "valid_time_count": 2063,
@@ -1200,10 +1200,10 @@
       "hpm_product": "HPM_5",
       "raw_sample_count": 2060,
       "time_coverage": {
-        "start_time": "2023-04-20T03:05:09Z",
-        "end_time": "2023-04-20T03:39:28Z",
-        "display_start_time": "2023-04-20 11:05",
-        "display_end_time": "2023-04-20 11:39",
+        "start_time": "2000-12-17T03:05:09Z",
+        "end_time": "2000-12-17T03:39:28Z",
+        "display_start_time": "2000-12-17 11:05",
+        "display_end_time": "2000-12-17 11:39",
         "duration_seconds": 2059.0,
         "sample_count": 2060,
         "valid_time_count": 2060,
@@ -1429,10 +1429,10 @@
       "hpm_product": "HPM_5",
       "raw_sample_count": 2064,
       "time_coverage": {
-        "start_time": "2023-04-20T03:52:31Z",
-        "end_time": "2023-04-20T04:26:54Z",
-        "display_start_time": "2023-04-20 11:52",
-        "display_end_time": "2023-04-20 12:26",
+        "start_time": "2000-12-17T03:52:31Z",
+        "end_time": "2000-12-17T04:26:54Z",
+        "display_start_time": "2000-12-17 11:52",
+        "display_end_time": "2000-12-17 12:26",
         "duration_seconds": 2063.0,
         "sample_count": 2064,
         "valid_time_count": 2064,
@@ -1660,10 +1660,10 @@
     {
       "segment_id": "segment_1",
       "time_coverage": {
-        "start_time": "2023-04-19T23:55:43Z",
-        "end_time": "2023-04-20T00:30:02Z",
-        "display_start_time": "2023-04-20 07:55",
-        "display_end_time": "2023-04-20 08:30",
+        "start_time": "2000-12-17T23:55:43Z",
+        "end_time": "2000-12-17T00:30:02Z",
+        "display_start_time": "2000-12-17 07:55",
+        "display_end_time": "2000-12-17 08:30",
         "duration_seconds": 2059.0,
         "sample_count": 2060,
         "valid_time_count": 2060,
@@ -1865,10 +1865,10 @@
     {
       "segment_id": "segment_2",
       "time_coverage": {
-        "start_time": "2023-04-20T00:43:05Z",
-        "end_time": "2023-04-20T01:17:28Z",
-        "display_start_time": "2023-04-20 08:43",
-        "display_end_time": "2023-04-20 09:17",
+        "start_time": "2000-12-17T00:43:05Z",
+        "end_time": "2000-12-17T01:17:28Z",
+        "display_start_time": "2000-12-17 08:43",
+        "display_end_time": "2000-12-17 09:17",
         "duration_seconds": 2063.0,
         "sample_count": 2064,
         "valid_time_count": 2064,
@@ -2072,10 +2072,10 @@
     {
       "segment_id": "segment_3",
       "time_coverage": {
-        "start_time": "2023-04-20T01:28:50Z",
-        "end_time": "2023-04-20T02:04:45Z",
-        "display_start_time": "2023-04-20 09:28",
-        "display_end_time": "2023-04-20 10:04",
+        "start_time": "2000-12-17T01:28:50Z",
+        "end_time": "2000-12-17T02:04:45Z",
+        "display_start_time": "2000-12-17 09:28",
+        "display_end_time": "2000-12-17 10:04",
         "duration_seconds": 2155.0,
         "sample_count": 2156,
         "valid_time_count": 2156,
@@ -2277,10 +2277,10 @@
     {
       "segment_id": "segment_4",
       "time_coverage": {
-        "start_time": "2023-04-20T02:17:48Z",
-        "end_time": "2023-04-20T02:52:10Z",
-        "display_start_time": "2023-04-20 10:17",
-        "display_end_time": "2023-04-20 10:52",
+        "start_time": "2000-12-17T02:17:48Z",
+        "end_time": "2000-12-17T02:52:10Z",
+        "display_start_time": "2000-12-17 10:17",
+        "display_end_time": "2000-12-17 10:52",
         "duration_seconds": 2062.0,
         "sample_count": 2063,
         "valid_time_count": 2063,
@@ -2484,10 +2484,10 @@
     {
       "segment_id": "segment_5",
       "time_coverage": {
-        "start_time": "2023-04-20T03:05:09Z",
-        "end_time": "2023-04-20T03:39:28Z",
-        "display_start_time": "2023-04-20 11:05",
-        "display_end_time": "2023-04-20 11:39",
+        "start_time": "2000-12-17T03:05:09Z",
+        "end_time": "2000-12-17T03:39:28Z",
+        "display_start_time": "2000-12-17 11:05",
+        "display_end_time": "2000-12-17 11:39",
         "duration_seconds": 2059.0,
         "sample_count": 2060,
         "valid_time_count": 2060,
@@ -2689,10 +2689,10 @@
     {
       "segment_id": "segment_6",
       "time_coverage": {
-        "start_time": "2023-04-20T03:52:31Z",
-        "end_time": "2023-04-20T04:26:54Z",
-        "display_start_time": "2023-04-20 11:52",
-        "display_end_time": "2023-04-20 12:26",
+        "start_time": "2000-12-17T03:52:31Z",
+        "end_time": "2000-12-17T04:26:54Z",
+        "display_start_time": "2000-12-17 11:52",
+        "display_end_time": "2000-12-17 12:26",
         "duration_seconds": 2063.0,
         "sample_count": 2064,
         "valid_time_count": 2064,
@@ -2967,7 +2967,7 @@
     "full_resolution_time_series_not_included"
   ],
   "errors": [],
-  "generated_at": "2026-06-09T12:46:40.925896+00:00",
+  "generated_at": "2026-06-09T13:12:59.135903+00:00",
   "artifacts": {
     "statistics_json": {
       "artifact_id": "static-demo-statistics-json",

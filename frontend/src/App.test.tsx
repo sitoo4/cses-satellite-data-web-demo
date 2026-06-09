@@ -77,6 +77,21 @@ function uploadPayload(fileCount: number) {
   };
 }
 
+function staticUploadPayload() {
+  const payload = uploadPayload(2);
+  return {
+    ...payload,
+    upload_session_id: "static-public-demo",
+    crop_enabled: false,
+    run_log: [],
+    display_time_range: { start: "2000-12-17 07:55", end: "2000-12-17 08:00" },
+    crop_options: {
+      start: { ...payload.crop_options.start, years: [2000], months: [12], days: [17], default: { year: 2000, month: 12, day: 17, hour: 7, minute: 55 }, minutes_by_hour: { "2000-12-17T07": [55] } },
+      end: { ...payload.crop_options.end, years: [2000], months: [12], days: [17], default: { year: 2000, month: 12, day: 17, hour: 8, minute: 0 }, minutes_by_hour: { "2000-12-17T08": [0] } }
+    }
+  };
+}
+
 describe("App upload workflow", () => {
   beforeEach(() => {
     vi.stubGlobal(
@@ -313,7 +328,7 @@ describe("App static public demo workflow", () => {
           static_demo: true,
           mode: "github_pages_static",
           notice: "demo",
-          session: { ...uploadPayload(2), upload_session_id: "static-public-demo", crop_enabled: false, run_log: [] },
+          session: staticUploadPayload(),
           plots: {
             magnetic: { artifact_id: "static-magnetic-overview", media_type: "image/png", label: "demo magnetic", url: "demo_data/magnetic_overview.png", download_url: "demo_data/magnetic_overview.png" },
             orbit: { artifact_id: "static-orbit-demo", media_type: "text/html", label: "demo orbit", url: "demo_data/orbit_demo.html", download_url: "demo_data/orbit_demo.html" }
@@ -336,6 +351,8 @@ describe("App static public demo workflow", () => {
     render(<StaticApp />);
 
     await waitFor(() => expect(screen.getByText("DEMO")).toBeInTheDocument());
+    expect(screen.getAllByText("2000-12-17 07:55").length).toBeGreaterThan(0);
+    expect(document.body).not.toHaveTextContent("2023-04-20");
     expect(screen.getByRole("img", { name: "demo magnetic" })).toHaveAttribute("src", expect.stringContaining("demo_data/magnetic_overview.png"));
     expect(screen.getByText("当前为 demo，不提供运行日志服务")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "频谱图" })).toHaveAttribute("title", "涉及其他数据，demo 版本不支持展示");
@@ -344,6 +361,9 @@ describe("App static public demo workflow", () => {
     const staticExportButton = screen.getByRole("button", { name: "export" });
     expect(staticExportButton).toBeDisabled();
     expect(staticExportButton).toHaveAttribute("title", "sorry！下载达咩哦");
+    const staticExportSelect = document.querySelector(".crop-export-row select") as HTMLSelectElement;
+    expect(staticExportSelect).not.toBeDisabled();
+    expect(Array.from(staticExportSelect.options).map((option) => option.value)).toEqual(["csv", "dat", "h5"]);
     expect(screen.queryByRole("link", { name: "导出统计 JSON" })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "导出统计 CSV" })).not.toBeInTheDocument();
     expect(screen.getByText("导出统计 JSON")).toHaveAttribute("title", "sorry！下载达咩哦");
@@ -367,10 +387,10 @@ function staticStatisticsPayload() {
     session_id: "static-public-demo",
     product_type_status: { status: "single", products: ["HPM_5"], product_type: "HPM_5" },
     time_range: {
-      start_time: "2023-04-19T23:55:00Z",
-      end_time: "2023-04-20T04:27:00Z",
-      display_start_time: "2023-04-20 07:55",
-      display_end_time: "2023-04-20 12:27"
+      start_time: "2000-12-17T23:55:00Z",
+      end_time: "2000-12-17T04:27:00Z",
+      display_start_time: "2000-12-17 07:55",
+      display_end_time: "2000-12-17 12:27"
     },
     processing_summary: {
       uploaded_file_count: 6,

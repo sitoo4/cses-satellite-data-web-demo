@@ -22,6 +22,10 @@ private_pattern="$(printf '%s%s%s%s%s%s' '/Volumes' '/Elements/HPM|' '/Users' '/
 private_hits="$(grep -R -n -E "$private_pattern" frontend/public/demo_data frontend/src README.md DEMO.md STATIC_DEMO_BUILD.md 2>/dev/null || true)"
 [[ -z "$private_hits" ]] || fail "private paths or real filenames found:\n$private_hits"
 
+echo "Checking demo_data display date sanitization..."
+date_hits="$(grep -R -n -E '2023-|202304' frontend/public/demo_data 2>/dev/null || true)"
+[[ -z "$date_hits" ]] || fail "unsanitized source dates found in demo_data:\n$date_hits"
+
 echo "Checking static demo file sizes..."
 python - <<'PY'
 import json

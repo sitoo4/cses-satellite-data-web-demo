@@ -13,7 +13,7 @@
   "session": {
     "upload_session_id": "static-public-demo",
     "mode": "batch",
-    "created_at": "2026-06-09T12:46:40.925896+00:00",
+    "created_at": "2026-06-09T13:12:59.135903+00:00",
     "per_file_records": [
       {
         "upload_id": "demo_segment_01",
@@ -25,10 +25,10 @@
         "hpm_product": "HPM_5",
         "sample_count": 2060,
         "time_parseable": true,
-        "start_time": "2023-04-19T23:55:43Z",
-        "end_time": "2023-04-20T00:30:02Z",
-        "display_start_time": "2023-04-20 07:55",
-        "display_end_time": "2023-04-20 08:30",
+        "start_time": "2000-12-17T07:55:43Z",
+        "end_time": "2000-12-17T08:30:02Z",
+        "display_start_time": "2000-12-17 07:55",
+        "display_end_time": "2000-12-17 08:30",
         "has_vector_magnetic": true,
         "has_scalar_magnetic": false,
         "quality_flag_summary": {
@@ -88,10 +88,10 @@
         "hpm_product": "HPM_5",
         "sample_count": 2064,
         "time_parseable": true,
-        "start_time": "2023-04-20T00:43:05Z",
-        "end_time": "2023-04-20T01:17:28Z",
-        "display_start_time": "2023-04-20 08:43",
-        "display_end_time": "2023-04-20 09:17",
+        "start_time": "2000-12-17T08:43:05Z",
+        "end_time": "2000-12-17T09:17:28Z",
+        "display_start_time": "2000-12-17 08:43",
+        "display_end_time": "2000-12-17 09:17",
         "has_vector_magnetic": true,
         "has_scalar_magnetic": false,
         "quality_flag_summary": {
@@ -154,10 +154,10 @@
         "hpm_product": "HPM_5",
         "sample_count": 2156,
         "time_parseable": true,
-        "start_time": "2023-04-20T01:28:50Z",
-        "end_time": "2023-04-20T02:04:45Z",
-        "display_start_time": "2023-04-20 09:28",
-        "display_end_time": "2023-04-20 10:04",
+        "start_time": "2000-12-17T09:28:50Z",
+        "end_time": "2000-12-17T10:04:45Z",
+        "display_start_time": "2000-12-17 09:28",
+        "display_end_time": "2000-12-17 10:04",
         "has_vector_magnetic": true,
         "has_scalar_magnetic": false,
         "quality_flag_summary": {
@@ -217,10 +217,10 @@
         "hpm_product": "HPM_5",
         "sample_count": 2063,
         "time_parseable": true,
-        "start_time": "2023-04-20T02:17:48Z",
-        "end_time": "2023-04-20T02:52:10Z",
-        "display_start_time": "2023-04-20 10:17",
-        "display_end_time": "2023-04-20 10:52",
+        "start_time": "2000-12-17T10:17:48Z",
+        "end_time": "2000-12-17T10:52:10Z",
+        "display_start_time": "2000-12-17 10:17",
+        "display_end_time": "2000-12-17 10:52",
         "has_vector_magnetic": true,
         "has_scalar_magnetic": false,
         "quality_flag_summary": {
@@ -283,10 +283,10 @@
         "hpm_product": "HPM_5",
         "sample_count": 2060,
         "time_parseable": true,
-        "start_time": "2023-04-20T03:05:09Z",
-        "end_time": "2023-04-20T03:39:28Z",
-        "display_start_time": "2023-04-20 11:05",
-        "display_end_time": "2023-04-20 11:39",
+        "start_time": "2000-12-17T11:05:09Z",
+        "end_time": "2000-12-17T11:39:28Z",
+        "display_start_time": "2000-12-17 11:05",
+        "display_end_time": "2000-12-17 11:39",
         "has_vector_magnetic": true,
         "has_scalar_magnetic": false,
         "quality_flag_summary": {
@@ -346,10 +346,10 @@
         "hpm_product": "HPM_5",
         "sample_count": 2064,
         "time_parseable": true,
-        "start_time": "2023-04-20T03:52:31Z",
-        "end_time": "2023-04-20T04:26:54Z",
-        "display_start_time": "2023-04-20 11:52",
-        "display_end_time": "2023-04-20 12:26",
+        "start_time": "2000-12-17T11:52:31Z",
+        "end_time": "2000-12-17T12:26:54Z",
+        "display_start_time": "2000-12-17 11:52",
+        "display_end_time": "2000-12-17 12:26",
         "has_vector_magnetic": true,
         "has_scalar_magnetic": false,
         "quality_flag_summary": {
@@ -411,76 +411,76 @@
         "upload_id": "demo_segment_01",
         "filename": "demo_segment_01",
         "hpm_product": "HPM_5",
-        "start": "2023-04-19T23:55:43Z",
-        "end": "2023-04-20T00:30:02Z",
-        "display_start": "2023-04-20 07:55",
-        "display_end": "2023-04-20 08:30"
+        "start": "2000-12-17T07:55:43Z",
+        "end": "2000-12-17T08:30:02Z",
+        "display_start": "2000-12-17 07:55",
+        "display_end": "2000-12-17 08:30"
       },
       {
         "upload_id": "demo_segment_02",
         "filename": "demo_segment_02",
         "hpm_product": "HPM_5",
-        "start": "2023-04-20T00:43:05Z",
-        "end": "2023-04-20T01:17:28Z",
-        "display_start": "2023-04-20 08:43",
-        "display_end": "2023-04-20 09:17"
+        "start": "2000-12-17T08:43:05Z",
+        "end": "2000-12-17T09:17:28Z",
+        "display_start": "2000-12-17 08:43",
+        "display_end": "2000-12-17 09:17"
       },
       {
         "upload_id": "demo_segment_03",
         "filename": "demo_segment_03",
         "hpm_product": "HPM_5",
-        "start": "2023-04-20T01:28:50Z",
-        "end": "2023-04-20T02:04:45Z",
-        "display_start": "2023-04-20 09:28",
-        "display_end": "2023-04-20 10:04"
+        "start": "2000-12-17T09:28:50Z",
+        "end": "2000-12-17T10:04:45Z",
+        "display_start": "2000-12-17 09:28",
+        "display_end": "2000-12-17 10:04"
       },
       {
         "upload_id": "demo_segment_04",
         "filename": "demo_segment_04",
         "hpm_product": "HPM_5",
-        "start": "2023-04-20T02:17:48Z",
-        "end": "2023-04-20T02:52:10Z",
-        "display_start": "2023-04-20 10:17",
-        "display_end": "2023-04-20 10:52"
+        "start": "2000-12-17T10:17:48Z",
+        "end": "2000-12-17T10:52:10Z",
+        "display_start": "2000-12-17 10:17",
+        "display_end": "2000-12-17 10:52"
       },
       {
         "upload_id": "demo_segment_05",
         "filename": "demo_segment_05",
         "hpm_product": "HPM_5",
-        "start": "2023-04-20T03:05:09Z",
-        "end": "2023-04-20T03:39:28Z",
-        "display_start": "2023-04-20 11:05",
-        "display_end": "2023-04-20 11:39"
+        "start": "2000-12-17T11:05:09Z",
+        "end": "2000-12-17T11:39:28Z",
+        "display_start": "2000-12-17 11:05",
+        "display_end": "2000-12-17 11:39"
       },
       {
         "upload_id": "demo_segment_06",
         "filename": "demo_segment_06",
         "hpm_product": "HPM_5",
-        "start": "2023-04-20T03:52:31Z",
-        "end": "2023-04-20T04:26:54Z",
-        "display_start": "2023-04-20 11:52",
-        "display_end": "2023-04-20 12:26"
+        "start": "2000-12-17T11:52:31Z",
+        "end": "2000-12-17T12:26:54Z",
+        "display_start": "2000-12-17 11:52",
+        "display_end": "2000-12-17 12:26"
       }
     ],
     "merged_time_range": {
-      "start": "2023-04-19T23:55:43Z",
-      "end": "2023-04-20T04:26:54Z"
+      "start": "2000-12-17T07:55:43Z",
+      "end": "2000-12-17T12:26:54Z"
     },
     "display_time_zone": "Asia/Shanghai",
     "display_time_range": {
-      "start": "2023-04-20 07:55",
-      "end": "2023-04-20 12:26"
+      "start": "2000-12-17 07:55",
+      "end": "2000-12-17 12:26"
     },
     "crop_options": {
       "start": {
         "years": [
-          2023
+          2000
         ],
         "months": [
-          4
+          12
         ],
         "days": [
-          20
+          17
         ],
         "hours": [
           7,
@@ -491,14 +491,14 @@
           12
         ],
         "minutes_by_hour": {
-          "2023-04-20T07": [
+          "2000-12-17T07": [
             55,
             56,
             57,
             58,
             59
           ],
-          "2023-04-20T08": [
+          "2000-12-17T08": [
             0,
             1,
             2,
@@ -560,7 +560,7 @@
             58,
             59
           ],
-          "2023-04-20T09": [
+          "2000-12-17T09": [
             0,
             1,
             2,
@@ -622,7 +622,7 @@
             58,
             59
           ],
-          "2023-04-20T10": [
+          "2000-12-17T10": [
             0,
             1,
             2,
@@ -684,7 +684,7 @@
             58,
             59
           ],
-          "2023-04-20T11": [
+          "2000-12-17T11": [
             0,
             1,
             2,
@@ -746,7 +746,7 @@
             58,
             59
           ],
-          "2023-04-20T12": [
+          "2000-12-17T12": [
             0,
             1,
             2,
@@ -777,22 +777,22 @@
           ]
         },
         "default": {
-          "year": 2023,
-          "month": 4,
-          "day": 20,
+          "year": 2000,
+          "month": 12,
+          "day": 17,
           "hour": 7,
           "minute": 55
         }
       },
       "end": {
         "years": [
-          2023
+          2000
         ],
         "months": [
-          4
+          12
         ],
         "days": [
-          20
+          17
         ],
         "hours": [
           7,
@@ -803,14 +803,14 @@
           12
         ],
         "minutes_by_hour": {
-          "2023-04-20T07": [
+          "2000-12-17T07": [
             55,
             56,
             57,
             58,
             59
           ],
-          "2023-04-20T08": [
+          "2000-12-17T08": [
             0,
             1,
             2,
@@ -872,7 +872,7 @@
             58,
             59
           ],
-          "2023-04-20T09": [
+          "2000-12-17T09": [
             0,
             1,
             2,
@@ -934,7 +934,7 @@
             58,
             59
           ],
-          "2023-04-20T10": [
+          "2000-12-17T10": [
             0,
             1,
             2,
@@ -996,7 +996,7 @@
             58,
             59
           ],
-          "2023-04-20T11": [
+          "2000-12-17T11": [
             0,
             1,
             2,
@@ -1058,7 +1058,7 @@
             58,
             59
           ],
-          "2023-04-20T12": [
+          "2000-12-17T12": [
             0,
             1,
             2,
@@ -1089,9 +1089,9 @@
           ]
         },
         "default": {
-          "year": 2023,
-          "month": 4,
-          "day": 20,
+          "year": 2000,
+          "month": 12,
+          "day": 17,
           "hour": 12,
           "minute": 26
         }
@@ -1101,65 +1101,65 @@
       {
         "segment_id": "segment_1",
         "source_id": null,
-        "start": "2023-04-19T23:55:43Z",
-        "end": "2023-04-20T00:30:02Z",
-        "display_start": "2023-04-20 07:55",
-        "display_end": "2023-04-20 08:30",
+        "start": "2000-12-17T07:55:43Z",
+        "end": "2000-12-17T08:30:02Z",
+        "display_start": "2000-12-17 07:55",
+        "display_end": "2000-12-17 08:30",
         "sample_count": 2060
       },
       {
         "segment_id": "segment_2",
         "source_id": null,
-        "start": "2023-04-20T00:43:05Z",
-        "end": "2023-04-20T01:17:28Z",
-        "display_start": "2023-04-20 08:43",
-        "display_end": "2023-04-20 09:17",
+        "start": "2000-12-17T08:43:05Z",
+        "end": "2000-12-17T09:17:28Z",
+        "display_start": "2000-12-17 08:43",
+        "display_end": "2000-12-17 09:17",
         "sample_count": 2064
       },
       {
         "segment_id": "segment_3",
         "source_id": null,
-        "start": "2023-04-20T01:28:50Z",
-        "end": "2023-04-20T02:04:45Z",
-        "display_start": "2023-04-20 09:28",
-        "display_end": "2023-04-20 10:04",
+        "start": "2000-12-17T09:28:50Z",
+        "end": "2000-12-17T10:04:45Z",
+        "display_start": "2000-12-17 09:28",
+        "display_end": "2000-12-17 10:04",
         "sample_count": 2156
       },
       {
         "segment_id": "segment_4",
         "source_id": null,
-        "start": "2023-04-20T02:17:48Z",
-        "end": "2023-04-20T02:52:10Z",
-        "display_start": "2023-04-20 10:17",
-        "display_end": "2023-04-20 10:52",
+        "start": "2000-12-17T10:17:48Z",
+        "end": "2000-12-17T10:52:10Z",
+        "display_start": "2000-12-17 10:17",
+        "display_end": "2000-12-17 10:52",
         "sample_count": 2063
       },
       {
         "segment_id": "segment_5",
         "source_id": null,
-        "start": "2023-04-20T03:05:09Z",
-        "end": "2023-04-20T03:39:28Z",
-        "display_start": "2023-04-20 11:05",
-        "display_end": "2023-04-20 11:39",
+        "start": "2000-12-17T11:05:09Z",
+        "end": "2000-12-17T11:39:28Z",
+        "display_start": "2000-12-17 11:05",
+        "display_end": "2000-12-17 11:39",
         "sample_count": 2060
       },
       {
         "segment_id": "segment_6",
         "source_id": null,
-        "start": "2023-04-20T03:52:31Z",
-        "end": "2023-04-20T04:26:54Z",
-        "display_start": "2023-04-20 11:52",
-        "display_end": "2023-04-20 12:26",
+        "start": "2000-12-17T11:52:31Z",
+        "end": "2000-12-17T12:26:54Z",
+        "display_start": "2000-12-17 11:52",
+        "display_end": "2000-12-17 12:26",
         "sample_count": 2064
       }
     ],
     "plot_groups": [
       {
         "group_id": "group_1",
-        "start": "2023-04-19T23:55:43Z",
-        "end": "2023-04-20T04:26:54Z",
-        "display_start": "2023-04-20 07:55",
-        "display_end": "2023-04-20 12:26",
+        "start": "2000-12-17T23:55:43Z",
+        "end": "2000-12-17T04:26:54Z",
+        "display_start": "2000-12-17 07:55",
+        "display_end": "2000-12-17 12:26",
         "segment_ids": [
           "segment_1",
           "segment_2",

@@ -5,8 +5,9 @@ import argparse
 import csv
 import json
 import math
+import re
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -19,7 +20,7 @@ BACKEND_ROOT = REPO_ROOT / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from app.datasources.cses_hpm import format_utc_millis, parse_cses_utc_time_millis  # noqa: E402
+from app.datasources.cses_hpm import parse_cses_utc_time_millis  # noqa: E402
 from app.services.cses_hpm_statistics import (  # noqa: E402
     magnetic_statistics,
     position_statistics,
@@ -36,12 +37,10 @@ from app.services.cses_hpm_uploads import (  # noqa: E402
     QUALITY_FIELDS,
     TIME_FIELD,
     VECTOR_FIELD,
-    build_crop_options,
     build_plot_groups,
     build_segments,
     dedupe_rows_by_time,
     draw_magnetic_segments,
-    format_beijing_millis,
     has_dataset,
     json_safe,
     read_optional_1d,
@@ -61,6 +60,9 @@ POSITION_DEFAULT_UNITS = {
     "/MAG_LON": "deg",
 }
 DEMO_SESSION_ID = "static-public-demo"
+DEMO_DISPLAY_DATE = (2000, 12, 17)
+DEMO_DISPLAY_DATE_TEXT = "2000-12-17"
+DEMO_BEIJING_TZ = timezone(timedelta(hours=8))
 MAGNETIC_DOWNSAMPLE_SECONDS = 60
 ORBIT_DOWNSAMPLE_SECONDS = 120
 NOISE_SEED = 20260609
@@ -75,6 +77,88 @@ DERIVED_FILES = (
     "magnetic_overview.png",
     "orbit_demo.html",
 )
+DATA_DATE_RE = re.compile(r"2023-04-\d{2}")
+
+
+def demo_utc_millis(value_ms: int) -> str:
+    dt = datetime.fromtimestamp(value_ms / 1000, DEMO_BEIJING_TZ)
+    return f"{DEMO_DISPLAY_DATE_TEXT}T{dt.hour:02d}:{dt.minute:02d}:{dt.second:02d}Z"
+
+
+def demo_display_millis(value_ms: int) -> str:
+    dt = datetime.fromtimestamp(value_ms / 1000, DEMO_BEIJING_TZ)
+    return f"{DEMO_DISPLAY_DATE_TEXT} {dt.hour:02d}:{dt.minute:02d}"
+
+
+def demo_beijing_parts(value_ms: int) -> dict[str, int]:
+    dt = datetime.fromtimestamp(value_ms / 1000, DEMO_BEIJING_TZ)
+    return {"year": DEMO_DISPLAY_DATE[0], "month": DEMO_DISPLAY_DATE[1], "day": DEMO_DISPLAY_DATE[2], "hour": dt.hour, "minute": dt.minute}
+
+
+def demo_crop_options(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    if not rows:
+        empty = {"years": [], "months": [], "days": [], "hours": [], "minutes_by_hour": {}, "default": None}
+        return {"start": empty, "end": empty}
+    minutes = demo_available_minutes(int(rows[0]["time_ms"]), int(rows[-1]["time_ms"]))
+    option = {
+        "years": [DEMO_DISPLAY_DATE[0]],
+        "months": [DEMO_DISPLAY_DATE[1]],
+        "days": [DEMO_DISPLAY_DATE[2]],
+        "hours": sorted({item["hour"] for item in minutes}),
+        "minutes_by_hour": demo_minutes_by_hour(minutes),
+    }
+    return {
+        "start": {**option, "default": demo_beijing_parts(int(rows[0]["time_ms"]))},
+        "end": {**option, "default": demo_beijing_parts(int(rows[-1]["time_ms"]))},
+    }
+
+
+def demo_available_minutes(start_ms: int, end_ms: int) -> list[dict[str, int]]:
+    start_dt = datetime.fromtimestamp(start_ms / 1000, DEMO_BEIJING_TZ).replace(second=0, microsecond=0)
+    end_dt = datetime.fromtimestamp(end_ms / 1000, DEMO_BEIJING_TZ).replace(second=0, microsecond=0)
+    values: list[dict[str, int]] = []
+    current = start_dt
+    max_minutes = 24 * 60
+    count = 0
+    while current <= end_dt and count <= max_minutes:
+        values.append({"hour": current.hour, "minute": current.minute})
+        current += timedelta(minutes=1)
+        count += 1
+    return values
+
+
+def demo_minutes_by_hour(values: list[dict[str, int]]) -> dict[str, list[int]]:
+    buckets: dict[str, set[int]] = {}
+    for item in values:
+        key = f"{DEMO_DISPLAY_DATE_TEXT}T{item['hour']:02d}"
+        buckets.setdefault(key, set()).add(item["minute"])
+    return {key: sorted(minutes) for key, minutes in sorted(buckets.items())}
+
+
+def demo_plot_time_ms(value_ms: int) -> int:
+    dt = datetime.fromtimestamp(value_ms / 1000, DEMO_BEIJING_TZ)
+    demo_dt = datetime(DEMO_DISPLAY_DATE[0], DEMO_DISPLAY_DATE[1], DEMO_DISPLAY_DATE[2], dt.hour, dt.minute, dt.second, tzinfo=DEMO_BEIJING_TZ)
+    return int(demo_dt.timestamp() * 1000)
+
+
+def demo_plot_time_ms_from_display(display_time: str) -> int:
+    dt = datetime.strptime(display_time, "%Y-%m-%d %H:%M").replace(tzinfo=DEMO_BEIJING_TZ)
+    return int(dt.timestamp() * 1000)
+
+
+def demo_point_utc_label(point: dict[str, Any]) -> str:
+    display_time = str(point.get("display_time", f"{DEMO_DISPLAY_DATE_TEXT} 00:00"))
+    return display_time.replace(" ", "T") + ":00Z"
+
+
+def sanitize_demo_data_dates(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {key: sanitize_demo_data_dates(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [sanitize_demo_data_dates(item) for item in value]
+    if isinstance(value, str):
+        return DATA_DATE_RE.sub(DEMO_DISPLAY_DATE_TEXT, value)
+    return value
 
 
 def main() -> int:
@@ -109,6 +193,7 @@ def main() -> int:
         raise ValueError("no parseable rows found")
 
     segments = add_display_to_segments(build_segments(deduped_rows))
+    plot_segments = demo_plot_segments(segments)
     plot_groups = sanitize_plot_groups(build_plot_groups(segments))
     magnetic_points = downsample_magnetic_points(deduped_rows, segments, args.magnetic_downsample_sec)
     orbit_points = downsample_orbit_points(deduped_rows, segments, args.orbit_downsample_sec)
@@ -122,8 +207,14 @@ def main() -> int:
 
     write_json(outdir / "magnetic_sanitized_downsampled.json", build_magnetic_payload(magnetic_points, segments, args.magnetic_downsample_sec))
     write_json(outdir / "orbit_points_sanitized.json", build_orbit_payload(orbit_points, segments, args.orbit_downsample_sec))
-    draw_magnetic_segments(outdir / "magnetic_overview.png", magnetic_plot_groups_from_sanitized(magnetic_points, segments, plot_groups), "HPM_5", integer_hour_ticks=True)
-    write_interactive_orbit_html(outdir / "orbit_demo.html", orbit_segments_from_sanitized(orbit_points, segments), segments, plot_groups)
+    draw_magnetic_segments(
+        outdir / "magnetic_overview.png",
+        magnetic_plot_groups_from_sanitized(magnetic_points, plot_segments, plot_groups),
+        "HPM_5",
+        integer_hour_ticks=True,
+        title="CSES HPM Magnetic field component diagram",
+    )
+    write_interactive_orbit_html(outdir / "orbit_demo.html", orbit_segments_from_sanitized(orbit_points, plot_segments), plot_segments, plot_groups)
 
     session = build_static_session(source_records, deduped_rows, segments, plot_groups, duplicate_time_removed_count, statistics)
     manifest = build_manifest(source_records, deduped_rows, segments, plot_groups, magnetic_points, orbit_points, args.magnetic_downsample_sec, args.orbit_downsample_sec)
@@ -229,10 +320,10 @@ def read_demo_source(path: Path, source_id: str) -> tuple[dict[str, Any], list[d
         "hpm_product": "HPM_5",
         "sample_count": len(rows),
         "time_parseable": bool(rows),
-        "start_time": format_utc_millis(int(rows[0]["time_ms"])) if rows else None,
-        "end_time": format_utc_millis(int(rows[-1]["time_ms"])) if rows else None,
-        "display_start_time": format_beijing_millis(int(rows[0]["time_ms"])) if rows else None,
-        "display_end_time": format_beijing_millis(int(rows[-1]["time_ms"])) if rows else None,
+        "start_time": demo_utc_millis(int(rows[0]["time_ms"])) if rows else None,
+        "end_time": demo_utc_millis(int(rows[-1]["time_ms"])) if rows else None,
+        "display_start_time": demo_display_millis(int(rows[0]["time_ms"])) if rows else None,
+        "display_end_time": demo_display_millis(int(rows[-1]["time_ms"])) if rows else None,
         "has_vector_magnetic": True,
         "has_scalar_magnetic": False,
         "quality_flag_summary": quality_summary,
@@ -286,22 +377,46 @@ def add_display_to_segments(segments: list[dict[str, Any]]) -> list[dict[str, An
         output.append(
             {
                 **segment,
-                "display_start": format_beijing_millis(int(segment["start_ms"])),
-                "display_end": format_beijing_millis(int(segment["end_ms"])),
+                "display_start": demo_display_millis(int(segment["start_ms"])),
+                "display_end": demo_display_millis(int(segment["end_ms"])),
+            }
+        )
+    return output
+
+
+def demo_plot_segments(segments: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    output: list[dict[str, Any]] = []
+    for segment in segments:
+        start_ms = demo_plot_time_ms(int(segment["start_ms"]))
+        end_ms = demo_plot_time_ms(int(segment["end_ms"]))
+        output.append(
+            {
+                **segment,
+                "start": demo_utc_millis(int(segment["start_ms"])),
+                "end": demo_utc_millis(int(segment["end_ms"])),
+                "start_ms": start_ms,
+                "end_ms": end_ms,
+                "display_start": demo_display_millis(int(segment["start_ms"])),
+                "display_end": demo_display_millis(int(segment["end_ms"])),
             }
         )
     return output
 
 
 def sanitize_plot_groups(plot_groups: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    return [
-        {
-            **group,
-            "display_start": group.get("display_start"),
-            "display_end": group.get("display_end"),
-        }
-        for group in plot_groups
-    ]
+    output: list[dict[str, Any]] = []
+    for group in plot_groups:
+        item = {**group}
+        if "start" in item and isinstance(item["start"], str):
+            item["start"] = DATA_DATE_RE.sub(DEMO_DISPLAY_DATE_TEXT, item["start"])
+        if "end" in item and isinstance(item["end"], str):
+            item["end"] = DATA_DATE_RE.sub(DEMO_DISPLAY_DATE_TEXT, item["end"])
+        if "display_start" in item and isinstance(item["display_start"], str):
+            item["display_start"] = DATA_DATE_RE.sub(DEMO_DISPLAY_DATE_TEXT, item["display_start"])
+        if "display_end" in item and isinstance(item["display_end"], str):
+            item["display_end"] = DATA_DATE_RE.sub(DEMO_DISPLAY_DATE_TEXT, item["display_end"])
+        output.append(item)
+    return output
 
 
 def downsample_magnetic_points(rows: list[dict[str, Any]], segments: list[dict[str, Any]], interval_seconds: int) -> list[dict[str, Any]]:
@@ -334,7 +449,7 @@ def downsample_magnetic_points(rows: list[dict[str, Any]], segments: list[dict[s
             points.append(
                 {
                     "time_label": relative_label(int(row["time_ms"]), int(rows[0]["time_ms"])),
-                    "display_time": format_beijing_millis(int(row["time_ms"])),
+                    "display_time": demo_display_millis(int(row["time_ms"])),
                     "segment_id": segment["segment_id"],
                     "source_id": row["source_id"],
                     "Bx_demo": round(noisy["Bx"], 1),
@@ -366,7 +481,7 @@ def downsample_orbit_points(rows: list[dict[str, Any]], segments: list[dict[str,
             points.append(
                 {
                     "time_label": relative_label(int(row["time_ms"]), int(rows[0]["time_ms"])),
-                    "display_time": format_beijing_millis(int(row["time_ms"])),
+                    "display_time": demo_display_millis(int(row["time_ms"])),
                     "segment_id": segment["segment_id"],
                     "source_id": row["source_id"],
                     "GEO_LAT": round(float(row["GEO_LAT"]), 2),
@@ -420,6 +535,8 @@ def magnetic_plot_groups_from_sanitized(points: list[dict[str, Any]], segments: 
     rows = [
         {
             "time_ms": public_point_time_ms(point, segments),
+            "time_utc": demo_point_utc_label(point),
+            "display_time": point["display_time"],
             "values": [point["Bx_demo"], point["By_demo"], point["Bz_demo"]],
             "source_id": point.get("source_id"),
         }
@@ -432,6 +549,8 @@ def orbit_segments_from_sanitized(points: list[dict[str, Any]], segments: list[d
     rows = [
         {
             "time_ms": public_point_time_ms(point, segments),
+            "time_utc": demo_point_utc_label(point),
+            "display_time": point["display_time"],
             "lat": point["GEO_LAT"],
             "lon": point["GEO_LON"],
             "alt": point["ALTITUDE"],
@@ -443,13 +562,9 @@ def orbit_segments_from_sanitized(points: list[dict[str, Any]], segments: list[d
 
 
 def public_point_time_ms(point: dict[str, Any], segments: list[dict[str, Any]]) -> int:
-    segment = next((item for item in segments if item["segment_id"] == point["segment_id"]), None)
-    if not segment:
-        return 0
-    h, m, s = [int(part) for part in point["time_label"].replace("T+", "").split(":")]
-    offset_ms = ((h * 3600) + (m * 60) + s) * 1000
-    origin_ms = int(segments[0]["start_ms"])
-    return origin_ms + offset_ms
+    if point.get("display_time"):
+        return demo_plot_time_ms_from_display(str(point["display_time"]))
+    return demo_plot_time_ms(int(segments[0]["start_ms"])) if segments else 0
 
 
 def build_sanitized_statistics(
@@ -500,15 +615,15 @@ def build_sanitized_statistics(
         "errors": [],
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
-    return json_safe_payload(result)
+    return json_safe_payload(sanitize_demo_data_dates(result))
 
 
 def rounded_time_range(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return {
-        "start_time": format_utc_millis(int(rows[0]["time_ms"])),
-        "end_time": format_utc_millis(int(rows[-1]["time_ms"])),
-        "display_start_time": format_beijing_millis(int(rows[0]["time_ms"])),
-        "display_end_time": format_beijing_millis(int(rows[-1]["time_ms"])),
+        "start_time": demo_utc_millis(int(rows[0]["time_ms"])),
+        "end_time": demo_utc_millis(int(rows[-1]["time_ms"])),
+        "display_start_time": demo_display_millis(int(rows[0]["time_ms"])),
+        "display_end_time": demo_display_millis(int(rows[-1]["time_ms"])),
     }
 
 
@@ -616,15 +731,15 @@ def build_static_session(
             for record in source_records
         ],
         "merged_time_range": {
-            "start": format_utc_millis(int(rows[0]["time_ms"])),
-            "end": format_utc_millis(int(rows[-1]["time_ms"])),
+            "start": demo_utc_millis(int(rows[0]["time_ms"])),
+            "end": demo_utc_millis(int(rows[-1]["time_ms"])),
         },
         "display_time_zone": "Asia/Shanghai",
         "display_time_range": {
-            "start": format_beijing_millis(int(rows[0]["time_ms"])),
-            "end": format_beijing_millis(int(rows[-1]["time_ms"])),
+            "start": demo_display_millis(int(rows[0]["time_ms"])),
+            "end": demo_display_millis(int(rows[-1]["time_ms"])),
         },
-        "crop_options": build_crop_options(rows),
+        "crop_options": demo_crop_options(rows),
         "segments": public_segment_ranges(segments, include_internal_ms=False),
         "plot_groups": plot_groups,
         "sample_count": len(rows),
@@ -647,8 +762,8 @@ def public_segment_ranges(segments: list[dict[str, Any]], *, include_internal_ms
         item = {
             "segment_id": segment["segment_id"],
             "source_id": segment.get("source_id"),
-            "start": segment["start"],
-            "end": segment["end"],
+            "start": demo_utc_millis(int(segment["start_ms"])),
+            "end": demo_utc_millis(int(segment["end_ms"])),
             "display_start": segment.get("display_start"),
             "display_end": segment.get("display_end"),
             "sample_count": int(segment["sample_count"]),
@@ -758,12 +873,12 @@ def build_manifest(
             "magnetic_demo_point_count": len(magnetic_points),
             "orbit_demo_point_count": len(orbit_points),
             "time_range_utc": {
-                "start": format_utc_millis(int(rows[0]["time_ms"])),
-                "end": format_utc_millis(int(rows[-1]["time_ms"])),
+                "start": demo_utc_millis(int(rows[0]["time_ms"])),
+                "end": demo_utc_millis(int(rows[-1]["time_ms"])),
             },
             "time_range_beijing": {
-                "start": format_beijing_millis(int(rows[0]["time_ms"])),
-                "end": format_beijing_millis(int(rows[-1]["time_ms"])),
+                "start": demo_display_millis(int(rows[0]["time_ms"])),
+                "end": demo_display_millis(int(rows[-1]["time_ms"])),
             },
             "segment_count": len(segments),
             "plot_group_count": len(plot_groups),
@@ -822,7 +937,7 @@ def append_variable_rows(rows: list[dict[str, Any]], scope: str, segment_id: str
 
 
 def write_json(path: Path, payload: dict[str, Any]) -> None:
-    path.write_text(json.dumps(json_safe_payload(payload), indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(json_safe_payload(sanitize_demo_data_dates(payload)), indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
 
 
 def json_safe_payload(value: Any) -> Any:

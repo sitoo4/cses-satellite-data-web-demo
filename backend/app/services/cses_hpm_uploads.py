@@ -848,7 +848,14 @@ def optional_value(values: np.ndarray, index: int) -> float | None:
     return value if np.isfinite(value) else None
 
 
-def draw_magnetic_segments(path: Path, segments: list[dict[str, Any]], product: str, *, integer_hour_ticks: bool = False) -> None:
+def draw_magnetic_segments(
+    path: Path,
+    segments: list[dict[str, Any]],
+    product: str,
+    *,
+    integer_hour_ticks: bool = False,
+    title: str = "CSES HPM magnetic diagnostic by plot group",
+) -> None:
     count = len(segments)
     cols = min(2, count)
     rows = int(math.ceil(count / cols))
@@ -881,7 +888,7 @@ def draw_magnetic_segments(path: Path, segments: list[dict[str, Any]], product: 
         else:
             ax.xaxis.set_major_formatter(mdates.DateFormatter("%H:%M:%S"))
         ax.set_xlabel("UTC+8 time")
-    fig.suptitle("CSES HPM magnetic diagnostic by plot group")
+    fig.suptitle(title)
     fig.tight_layout()
     fig.savefig(path)
     plt.close(fig)
@@ -988,15 +995,15 @@ def write_interactive_orbit_html(path: Path, segments: list[dict[str, Any]], seg
             lat.append(round(float(row["lat"]), 5))
             lon.append(round(float(row["lon"]), 5))
             alt.append(round(float(row["alt"]), 3))
-            time.append(format_utc_millis(int(row["time_ms"])))
-            display_time.append(format_beijing_millis(int(row["time_ms"])))
+            time.append(row.get("time_utc") or format_utc_millis(int(row["time_ms"])))
+            display_time.append(row.get("display_time") or format_beijing_millis(int(row["time_ms"])))
         payload_segments.append(
             {
                 "segment_id": segment["segment_id"],
                 "start": segment["start"],
                 "end": segment["end"],
-                "display_start": format_beijing_millis(int(segment["start_ms"])),
-                "display_end": format_beijing_millis(int(segment["end_ms"])),
+                "display_start": segment.get("display_start") or format_beijing_millis(int(segment["start_ms"])),
+                "display_end": segment.get("display_end") or format_beijing_millis(int(segment["end_ms"])),
                 "color": segment_colors.get(segment["segment_id"], SEGMENT_COLORS[index % len(SEGMENT_COLORS)]),
                 "x": x,
                 "y": y,
@@ -1016,8 +1023,8 @@ def write_interactive_orbit_html(path: Path, segments: list[dict[str, Any]], seg
         "gap_links": gap_links,
         "overall_start": segment_ranges[0]["start"] if segment_ranges else None,
         "overall_end": segment_ranges[-1]["end"] if segment_ranges else None,
-        "overall_display_start": format_beijing_millis(int(segment_ranges[0]["start_ms"])) if segment_ranges else None,
-        "overall_display_end": format_beijing_millis(int(segment_ranges[-1]["end_ms"])) if segment_ranges else None,
+        "overall_display_start": segment_ranges[0].get("display_start") if segment_ranges else None,
+        "overall_display_end": segment_ranges[-1].get("display_end") if segment_ranges else None,
     }
     path.write_text(interactive_orbit_html(payload), encoding="utf-8")
 
