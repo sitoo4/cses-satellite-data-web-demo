@@ -404,7 +404,7 @@ function FeatureStatisticsPanel({ statistics, loading }: { statistics: FeatureSt
             <StatItem label="Segment" value={String(statistics.processing_summary.segment_count)} />
             <StatItem label="样本去重" value={String(statistics.processing_summary.duplicate_time_removed_count)} />
             <StatItem label="采样中位数" value={numberLabel(statistics.overall_statistics.sampling?.cadence_median_seconds, "s")} />
-            <StatItem label="产品状态" value={statistics.product_type_status.status} />
+            <StatItem label="数据类型" value={displayProductType(statistics.product_type_status)} />
           </div>
           {primaryMagnetic ? (
             <div className="statistics-block magnetic-statistics-block">
@@ -510,6 +510,11 @@ function StatItem({ label, value, className = "" }: { label: string; value: Reac
       <strong>{value}</strong>
     </div>
   );
+}
+
+function displayProductType(productTypeStatus: FeatureStatisticsPayload["product_type_status"]): string {
+  const productType = productTypeStatus.product_type ?? productTypeStatus.products?.join("/");
+  return productType ? productType.replaceAll("_", "") : productTypeStatus.status;
 }
 
 function numberLabel(value: NumericStats[keyof NumericStats] | number | null | undefined, unit?: string | null): string {

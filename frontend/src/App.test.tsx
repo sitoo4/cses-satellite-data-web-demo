@@ -271,6 +271,8 @@ describe("App upload workflow", () => {
     await waitFor(() => expect(screen.getByRole("img", { name: "plot" })).toBeInTheDocument());
     expect(screen.getByText("统计分析")).toBeInTheDocument();
     expect(screen.getByText("B_abs")).toBeInTheDocument();
+    expect(screen.getByText("数据类型")).toBeInTheDocument();
+    expect(screen.getByText("HPM5")).toBeInTheDocument();
     expect(screen.getByRole("table", { name: "位置范围统计表" })).toBeInTheDocument();
     expect(screen.getAllByText("始：").length).toBeGreaterThan(0);
     expect(screen.getAllByText("终：").length).toBeGreaterThan(0);
