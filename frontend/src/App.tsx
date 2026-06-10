@@ -284,8 +284,8 @@ export default function App() {
           <div className="label-cell crop-label-cell" title={IS_STATIC_DEMO ? STATIC_CROP_DISABLED_REASON : undefined}>
             <strong>裁剪区</strong>
             <small>
-              <span>裁剪范围为可用时间段。</span>
-              <span>按北京时间选择。</span>
+              <span>裁剪范围为可用时间段</span>
+              <span>按北京时间选择</span>
             </small>
           </div>
           <div className="crop-box">

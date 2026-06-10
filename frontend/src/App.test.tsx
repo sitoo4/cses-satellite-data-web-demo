@@ -226,7 +226,7 @@ describe("App upload workflow", () => {
     expect(cropRows).toHaveLength(2);
     expect(cropRows[0]).toHaveAttribute("aria-label", "开始时间");
     expect(cropRows[1]).toHaveAttribute("aria-label", "结束时间");
-    expect(document.querySelector(".crop-label-cell > small")).toHaveTextContent("裁剪范围为可用时间段。按北京时间选择。");
+    expect(document.querySelector(".crop-label-cell > small")).toHaveTextContent("裁剪范围为可用时间段按北京时间选择");
     expect(document.querySelector(".crop-box > small")).not.toBeInTheDocument();
     expect(screen.getByText("按当前裁剪后的数据范围导出")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "export" })).toBeInTheDocument();
