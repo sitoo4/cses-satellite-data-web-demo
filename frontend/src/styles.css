@@ -55,6 +55,7 @@ button:disabled {
   --stripe-green: #5C7F71;
   --stripe-orange: #B2653B;
   --stripe-red: #802520;
+  --header-action-shift: -24px;
   position: relative;
   display: grid;
   grid-template-columns: 88px minmax(220px, 1fr) minmax(160px, 240px) auto minmax(260px, 0.7fr);
@@ -164,6 +165,7 @@ button:disabled {
   font-size: 1.1rem;
   font-weight: 900;
   cursor: pointer;
+  transform: translateX(var(--header-action-shift));
 }
 
 .upload-button input {
@@ -182,6 +184,7 @@ button:disabled {
   border: 2px solid #2a2923;
   background: #f4ecd8;
   font-weight: 900;
+  transform: translateX(var(--header-action-shift));
 }
 
 .notice {
@@ -797,6 +800,7 @@ button:disabled {
 
 @media (max-width: 980px) {
   .topbar {
+    --header-action-shift: 0px;
     grid-template-columns: 72px 1fr;
   }
 
