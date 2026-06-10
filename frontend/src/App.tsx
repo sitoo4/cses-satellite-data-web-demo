@@ -402,7 +402,7 @@ function FeatureStatisticsPanel({ statistics, loading }: { statistics: FeatureSt
             />
             <StatItem label="样本数" value={String(statistics.processing_summary.final_sample_count)} />
             <StatItem label="Segment" value={String(statistics.processing_summary.segment_count)} />
-            <StatItem label="重复样本去除" value={String(statistics.processing_summary.duplicate_time_removed_count)} />
+            <StatItem label="样本去重" value={String(statistics.processing_summary.duplicate_time_removed_count)} />
             <StatItem label="采样中位数" value={numberLabel(statistics.overall_statistics.sampling?.cadence_median_seconds, "s")} />
             <StatItem label="产品状态" value={statistics.product_type_status.status} />
           </div>
