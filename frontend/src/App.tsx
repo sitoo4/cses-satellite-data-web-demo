@@ -429,7 +429,17 @@ function FeatureStatisticsPanel({ statistics, loading }: { statistics: FeatureSt
                   return (
                     <tr key={name}>
                       <th scope="row">{name}</th>
-                      <td>{stats?.status === "missing" ? "missing" : rangeLabel(stats?.min, stats?.max, stats?.unit)}</td>
+                      <td>
+                        {stats?.status === "missing" ? (
+                          "missing"
+                        ) : (
+                          <span className="position-range-lines">
+                            {positionRangeItems(stats?.min, stats?.max, stats?.unit).map((item) => (
+                              <span key={item}>{item}</span>
+                            ))}
+                          </span>
+                        )}
+                      </td>
                     </tr>
                   );
                 })}
@@ -500,6 +510,15 @@ function numberLabel(value: NumericStats[keyof NumericStats] | number | null | u
 
 function rangeLabel(min: NumericStats[keyof NumericStats] | number | null | undefined, max: NumericStats[keyof NumericStats] | number | null | undefined, unit?: string | null): string {
   return `${numberLabel(min, unit)} 至 ${numberLabel(max, unit)}`;
+}
+
+function positionValueLabel(value: NumericStats[keyof NumericStats] | number | null | undefined, unit?: string | null): string {
+  const formatted = numberLabel(value);
+  return unit ? `${formatted}${unit}` : formatted;
+}
+
+function positionRangeItems(min: NumericStats[keyof NumericStats] | number | null | undefined, max: NumericStats[keyof NumericStats] | number | null | undefined, unit?: string | null): string[] {
+  return [`始：${positionValueLabel(min, unit)}`, `终：${positionValueLabel(max, unit)}`];
 }
 
 function formatQualityFlagCounts(field: string, counts: Record<string, number>): string {
