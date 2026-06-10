@@ -228,7 +228,7 @@ export default function App() {
         <div className="mascot mascot-left">
           <img src={publicAssetUrl("mascots/theme-main.png")} alt="" />
         </div>
-        <h1>张衡一号数据分析</h1>
+        <h1>CSES HPM 数据分析</h1>
         {IS_STATIC_DEMO ? (
           <button className="upload-button" type="button" title={STATIC_DEMO_NOTICE} onClick={() => setError(STATIC_DEMO_NOTICE)}>
             <FileUp size={19} aria-hidden="true" />

@@ -198,7 +198,7 @@ describe("App upload workflow", () => {
   it("renders upload-only CSES HPM console", () => {
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "张衡一号数据分析" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "CSES HPM 数据分析" })).toBeInTheDocument();
     expect(screen.getByText("图预览")).toBeInTheDocument();
     expect(screen.queryByText("DATE ARCHIVE")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "频谱图" })).toBeDisabled();
