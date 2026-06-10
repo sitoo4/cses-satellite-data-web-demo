@@ -515,7 +515,7 @@ button:disabled {
 
 .statistics-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(162px, 1.52fr) minmax(70px, 0.48fr);
   gap: 7px;
   margin-bottom: 10px;
 }
@@ -540,6 +540,31 @@ button:disabled {
   display: block;
   margin-top: 2px;
   overflow-wrap: anywhere;
+}
+
+.statistics-grid .time-range-stat {
+  min-width: 0;
+}
+
+.statistics-grid .time-range-stat strong {
+  font-size: 0.95rem;
+}
+
+.statistics-grid .time-range-stat-lines {
+  display: grid;
+  gap: 2px;
+  color: #211c16;
+  font-size: inherit;
+}
+
+.statistics-grid .time-range-stat-lines span {
+  display: block;
+  color: #211c16;
+  font-size: inherit;
+  line-height: 1.08;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  word-break: keep-all;
 }
 
 .statistics-block {
@@ -597,18 +622,30 @@ button:disabled {
   overflow-wrap: normal;
 }
 
-.position-range-lines {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
-  line-height: 1.18;
+.statistics-block .position-range-pairs {
+  display: grid;
+  gap: 3px;
 }
 
-.position-range-lines span {
-  display: block;
-  max-width: 100%;
-  overflow-wrap: anywhere;
+.statistics-block .position-range-pair {
+  display: grid;
+  grid-template-columns: 28px 88px;
+  align-items: baseline;
+  justify-content: end;
+  column-gap: 2px;
+  line-height: 1.15;
+}
+
+.statistics-block .position-range-key {
+  color: #211c16;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.statistics-block .position-range-value {
+  color: #211c16;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .quality-statistics-table th {
@@ -633,18 +670,17 @@ button:disabled {
   overflow-wrap: normal;
 }
 
-.quality-count-lines {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+.statistics-block .quality-count-lines {
+  display: grid;
+  gap: 3px;
   line-height: 1.18;
 }
 
-.quality-count-lines span {
+.statistics-block .quality-count-lines span {
   display: block;
-  max-width: 100%;
-  overflow-wrap: anywhere;
+  color: #211c16;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .statistics-block.compact span {

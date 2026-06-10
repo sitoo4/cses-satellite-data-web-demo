@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Download, FileUp, Image as ImageIcon, Loader2, Play, Rotate3D, Save } from "lucide-react";
 
 import { api, artifactDownloadUrl, artifactUrl, publicAssetUrl, type CropSelectDefault, type CropSelectOptions, type ExportPayload, type FeatureStatisticsPayload, type NumericStats, type PlotPayload, type SegmentRange, type UploadSessionPayload, type UploadedFileRecord } from "./api";
@@ -390,7 +390,16 @@ function FeatureStatisticsPanel({ statistics, loading }: { statistics: FeatureSt
       ) : (
         <>
           <div className="statistics-grid">
-            <StatItem label="时间范围" value={`${statistics.time_range.display_start_time ?? statistics.time_range.start_time ?? "-"} - ${statistics.time_range.display_end_time ?? statistics.time_range.end_time ?? "-"}`} />
+            <StatItem
+              className="time-range-stat"
+              label="时间范围"
+              value={
+                <span className="time-range-stat-lines">
+                  <span>{statistics.time_range.display_start_time ?? statistics.time_range.start_time ?? "-"}</span>
+                  <span>{statistics.time_range.display_end_time ?? statistics.time_range.end_time ?? "-"}</span>
+                </span>
+              }
+            />
             <StatItem label="样本数" value={String(statistics.processing_summary.final_sample_count)} />
             <StatItem label="Segment" value={String(statistics.processing_summary.segment_count)} />
             <StatItem label="重复样本去除" value={String(statistics.processing_summary.duplicate_time_removed_count)} />
@@ -433,9 +442,12 @@ function FeatureStatisticsPanel({ statistics, loading }: { statistics: FeatureSt
                         {stats?.status === "missing" ? (
                           "missing"
                         ) : (
-                          <span className="position-range-lines">
+                          <span className="position-range-pairs">
                             {positionRangeItems(stats?.min, stats?.max, stats?.unit).map((item) => (
-                              <span key={item}>{item}</span>
+                              <span className="position-range-pair" key={item.label}>
+                                <span className="position-range-key">{item.label}：</span>
+                                <span className="position-range-value">{item.value}</span>
+                              </span>
                             ))}
                           </span>
                         )}
@@ -491,9 +503,9 @@ function DownloadControl({ href, label }: { href: string; label: string }) {
   return <a href={href} download>{label}</a>;
 }
 
-function StatItem({ label, value }: { label: string; value: string }) {
+function StatItem({ label, value, className = "" }: { label: string; value: ReactNode; className?: string }) {
   return (
-    <div>
+    <div className={className}>
       <span>{label}</span>
       <strong>{value}</strong>
     </div>
@@ -517,8 +529,11 @@ function positionValueLabel(value: NumericStats[keyof NumericStats] | number | n
   return unit ? `${formatted}${unit}` : formatted;
 }
 
-function positionRangeItems(min: NumericStats[keyof NumericStats] | number | null | undefined, max: NumericStats[keyof NumericStats] | number | null | undefined, unit?: string | null): string[] {
-  return [`始：${positionValueLabel(min, unit)}`, `终：${positionValueLabel(max, unit)}`];
+function positionRangeItems(min: NumericStats[keyof NumericStats] | number | null | undefined, max: NumericStats[keyof NumericStats] | number | null | undefined, unit?: string | null): Array<{ label: string; value: string }> {
+  return [
+    { label: "始", value: positionValueLabel(min, unit) },
+    { label: "终", value: positionValueLabel(max, unit) }
+  ];
 }
 
 function formatQualityFlagCounts(field: string, counts: Record<string, number>): string {

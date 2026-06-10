@@ -272,8 +272,10 @@ describe("App upload workflow", () => {
     expect(screen.getByText("统计分析")).toBeInTheDocument();
     expect(screen.getByText("B_abs")).toBeInTheDocument();
     expect(screen.getByRole("table", { name: "位置范围统计表" })).toBeInTheDocument();
-    expect(screen.getByText("始：-5deg")).toBeInTheDocument();
-    expect(screen.getByText("终：5deg")).toBeInTheDocument();
+    expect(screen.getAllByText("始：").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("终：").length).toBeGreaterThan(0);
+    expect(screen.getByText("-5deg")).toBeInTheDocument();
+    expect(screen.getByText("5deg")).toBeInTheDocument();
     expect(screen.queryByText("-5 deg 至 5 deg")).not.toBeInTheDocument();
     expect(screen.getByRole("table", { name: "质量标志统计表" })).toBeInTheDocument();
     expect(screen.getAllByText("/FLAG_MT").length).toBeGreaterThan(0);
